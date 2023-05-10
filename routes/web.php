@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('beranda');
-})->name('beranda');
+})->name('home');
 
 Route::get('/layanan', function () {
     return view('layanan');
