@@ -31,6 +31,8 @@ Route::get('/', function () {
     return view('beranda');
 })->name('home');
 
+// Ini ada perubahan dari lokal saya yah
+
 Route::get('/layanan', function () {
     return view('layanan');
 })->name('layanan');
