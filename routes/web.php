@@ -29,9 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('beranda');
-})->name('home');
-
-// Ini ada perubahan dari lokal saya yah
+})->name('beranda');
 
 Route::get('/layanan', function () {
     return view('layanan');
