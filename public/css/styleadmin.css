@@ -1,0 +1,35 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Viga&display=swap');
+
+:root {
+    --font-primary : 'Viga', sans-serif ;
+    --font-secondary : 'Poppins', sans-serif;
+    --primary-color : #022E57;
+    --secondary-color : #FFEBAD;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: #06283D;
+    font-family: var(--font-primary);
+    font-weight: 400;
+}
+
+.main-sidebar {
+    background-color: var(--primary-color);
+    color: #FFEBAD !important;
+}
+
+.text-second {
+    font-family: var(--font-secondary);
+}
