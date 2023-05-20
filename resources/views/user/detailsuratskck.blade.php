@@ -126,18 +126,6 @@
                                         <div class="w-full h-full"><input type="file" class="file-input file-input-bordered file-input-primary w-full mt-2" accept="image/png, image/jpeg" name="pengantar_rt"/></div>
                                     </td>
                                 </tr>
-                                {{-- <tr>
-                                    <th scope="row">Status Surat</th>
-                                    <td>
-                                        @if($s->status == 'Terkirim')
-                                        <div class="btn btn-warning">Terkirim</div>
-                                        @elseif(($s->status == 'Diterima'))
-                                        <div class="btn btn-success">Diterima</div>
-                                        @else
-                                        <div class="btn btn-danger">Ditolak</div>
-                                        @endif
-                                    </td>
-                                </tr> --}}
                                 <tr>
                                     <th scope="row">Aksi</th>
                                     <td class="flex justify-center">

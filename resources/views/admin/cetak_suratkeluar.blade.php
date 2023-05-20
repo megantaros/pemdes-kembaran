@@ -3,8 +3,8 @@
 
 @section('content')
     <div class="container-fluid">
-        <h2 class="text-center my-4">Laporan Surat Masuk</h2>
-        <table class="table table-bordered border-dark">
+        <h2 class="text-center my-4">Laporan Surat Keluar</h2>
+        <table class="table table-bordered border-dark border">
             <thead class="table-active">
               <tr class="text-center">
                 <th scope="col">No</th>

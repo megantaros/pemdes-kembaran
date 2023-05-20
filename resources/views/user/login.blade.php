@@ -13,7 +13,7 @@
   <body class="lg:h-screen h-[140vh] relative bg-[#F0F4F4]">
     <section id="login">
       <div class="flex justify-center">
-        <div class="flex lg:flex-row flex-col shadow-lg form-login lg:w-4/5 w-4/5 lg:h-[40vh] rounded-lg overflow-hidden">
+        <div class="flex lg:flex-row flex-col shadow-lg form-login lg:w-4/5 w-4/5 lg:h-[60vh] rounded-lg overflow-hidden">
           <div class="lg:w-full w-full bg-[#022E57] relative text-center py-6">
             <div class="lg:absolute lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2">
               <img src="{{asset('assets/logo-login.png')}}" alt="Logo Kebumen" class="m-auto lg:w-[153px] lg:h-[210px] w-auto h-[150px]">

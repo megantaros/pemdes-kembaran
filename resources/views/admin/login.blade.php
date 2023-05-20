@@ -24,7 +24,7 @@
           <div class="lg:p-10 p-4 flex flex-col justify-start w-full bg-white">
             <form action="/loginadmin" method="POST">
               @csrf
-                <h2 class="font-bold lg:text-4xl text-xl lg:mb-4 mb-3">Login</h2> 
+                <h2 class="font-bold lg:text-4xl text-xl lg:mb-4 mb-3">Login Admin</h2> 
                 <div class="mb-2">
                   <input type="text" placeholder="Masukkan Email Anda" class="lg:input-md input-sm lg:placeholder:text-lg placeholder:text-sm bg-[#F0F4F4] w-full rounded my-1 lg:text-md text-sm" name="email"/>
                   @error('email')
@@ -47,10 +47,7 @@
                   </div>
                   @enderror
                 </div>
-                <div class="max-w-xs w-full mb-6"><a href="#" class="lg:text-md text-sm">Lupa password ?<a></div>
-                <input type="submit" class="btn-login rounded-md w-full text-md py-2" value="Masuk"/>
-                <div class="text-sm mt-5 text-center">Belum punya akun ? 
-                <span><a href="/daftar" class="font-semibold">Daftar disini!<a></span></div>
+                <input type="submit" class="btn-login rounded-md w-full text-md py-2 mt-5" value="Masuk"/>
             </form>
           </div>
         </div>
