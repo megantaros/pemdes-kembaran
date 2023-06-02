@@ -30,7 +30,7 @@ class EmployeeController extends Controller
             $data->foto = $request->file('foto')->getClientOriginalName();
             $data->save();
             };
-        return redirect()->route('pegawai')->with('success', 'Data Berhasil Ditambahkan');
+        return redirect()->route('pegawai')->with('success', 'Data Baru Berhasil Ditambahkan');
     }
     public function tampilkandata($id){
         $data = Employee::find($id);
