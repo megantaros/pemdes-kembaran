@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AndroidController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +25,20 @@ Route::get('/users', function () {
     return $users;
 });
 
-Route::post('/loginandroid', [LoginController::class, 'loginandroid']);
-Route::post('/registandroid', [LoginController::class, 'registandroid']);
+Route::prefix('android')->group(function () {
+    
+    Route::get('/', [AndroidController::class, 'start'])->name('start.android');
+    Route::post('/login', [AndroidController::class, 'login'])->name('login.android');
+    Route::post('/regist', [AndroidController::class, 'regist'])->name('regist.android');
+
+    Route::prefix('surat_pengajuan')->group(function () {
+        Route::post('/store', [AndroidController::class, 'store_surat_pengajuan'])->name('store.surat_pengajuan.android');
+        Route::get('/{id_warga}', [AndroidController::class, 'get_surat_pengajuan'])->name('get_surat_pengajuan.android');
+        Route::delete('/{id_surat_pengajuan}', [AndroidController::class, 'delete_surat_pengajuan'])->name('delete_surat_pengajuan.android');
+    });
+
+    Route::prefix('surat_ket_domisili')->group(function () {
+        Route::get('/{id_surat_pengajuan}', [AndroidController::class, 'get_surat_ket_domisili'])->name('get_surat_ket_domisili.android');
+        Route::post('/store/{id_surat_pengajuan}', [AndroidController::class, 'store_surat_ket_domisili'])->name('store_surat_ket_domisili.android');
+    });
+});
