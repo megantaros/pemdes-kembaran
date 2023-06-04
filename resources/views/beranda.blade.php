@@ -102,31 +102,130 @@
                 <p class="lg:text-xl lg:mb-20 lg:w-2/5 mx-auto text-md mb-7 w-4/5">Pemerintah Desa Kembaran siap melayani Anda kapanpun dan dimanapun</p>
             </div>
             <div class="grid lg:grid-cols-3 lg:gap-3 gap-2 grid-cols-2">
-                <a href="/layanan" class="cols lg:h-56 shadow-xl lg:pt-8 py-6 cardService border-inherit">
+                <a href="#my_modal_1" class="cols lg:h-56 shadow-xl lg:pt-8 py-6 cardService border-inherit">
                     <img src="{{ asset('assets/icon-1.png') }}" class="m-auto lg:w-[106px] lg:h-[106px] w-[53px] h-[53px]">
                     <div class="lg:mt-3 lg:text-xl lg:leading-loose mt-2 w-3/4 m-auto">Surat Pengantar KK & KTP</div>
                 </a>
-                <a href="#" class="cols lg:h-56 shadow-xl lg:pt-8 py-6 cardService border-inherit">
+                <a href="#my_modal_2" class="cols lg:h-56 shadow-xl lg:pt-8 py-6 cardService border-inherit">
                     <img src="{{ asset('assets/icon-2.png') }}" class="m-auto lg:w-[106px] lg:h-[106px] w-[53px] h-[53px]">
                     <div class="lg:mt-3 lg:text-xl lg:leading-loose mt-2 w-3/4 m-auto leading-5">Surat Keterangan Usaha</div>
                 </a>
-                <a href="#" class="cols lg:h-56 shadow-xl lg:pt-8 py-6 cardService border-inherit">
+                <a href="#my_modal_3" class="cols lg:h-56 shadow-xl lg:pt-8 py-6 cardService border-inherit">
                     <img src="{{ asset('assets/icon-3.png') }}" class="m-auto lg:w-[99px] lg:h-[111px] w-auto h-[53px]">
                     <div class="lg:mt-3 lg:text-xl lg:leading-loose mt-2 w-3/4 m-auto leading-5">Surat Pengantar SKCK</div>
                 </a>
-                <a href="#" class="cols lg:h-56 shadow-xl lg:pt-8 py-6 cardService border-inherit">
+                <a href="#my_modal_4" class="cols lg:h-56 shadow-xl lg:pt-8 py-6 cardService border-inherit">
                     <img src="{{ asset('assets/icon-4.png') }}" class="m-auto lg:w-[106px] lg:h-[106px] w-auto h-[53px]">
                     <div class="lg:mt-3 lg:text-xl lg:leading-loose mt-2 w-3/4 m-auto leading-5">Surat Keterangan Domisili</div>
                 </a>
-                <a href="#" class="cols lg:h-56 shadow-xl lg:pt-8 py-6 cardService border-inherit">
+                <a href="#my_modal_5" class="cols lg:h-56 shadow-xl lg:pt-8 py-6 cardService border-inherit">
                     <img src="{{ asset('assets/icon-5.png') }}" class="m-auto lg:w-[123px] lg:h-[103px] w-auto h-[53px]">
                     <div class="lg:mt-3 lg:text-xl lg:leading-loose mt-2 w-3/4 m-auto leading-5">Surat Keterangan Pindah</div>
                 </a>
-                <a href="#" class="cols lg:h-56 shadow-xl lg:pt-8 py-6 cardService border-inherit">
+                <a href="#my_modal_6" class="cols lg:h-56 shadow-xl lg:pt-8 py-6 cardService border-inherit">
                     <img src="{{ asset('assets/icon-6.png') }}" class="m-auto lg:w-[111px] lg:h-[92px] w-auto h-[53px]">
                     <div class="lg:mt-3 lg:text-xl lg:leading-loose mt-2 w-3/4 m-auto leading-5">Surat Keterangan Pindah Datang</div>
                 </a>
-                
+            </div>
+            {{-- Modal --}}
+            <div class="modal" id="my_modal_1">
+                <div class="modal-box text-xl">
+                  {{-- <h3 class="font-bold text-lg"><strong>yang dibutuhkan:</strong></h3> --}}
+                  <div class="alert alert-info justify-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span><strong>Info</strong>Dokumen yang dibuthkan: </span>
+                  </div>
+                  {{-- <p class="py-4">This modal works with anchor links</p> --}}
+                  <div class="card bg-white text-left border-0 text-lg">
+                        <p>1. KTP Asli</p>
+                        <p>2. KK Asli</p>
+                        <p>3. Surat Pengantar dari RT</p>
+                        <p class="my-2">Untuk pengurusan KK, tambahkan:</p>
+                        <p>4. Fotokopi Buku Nikah</p>
+                  </div>
+                  <div class="modal-action">
+                   <a href="#service" class="btn btn-primary text-white fw-normal">Oke</a>
+                  </div>
+                </div>
+            </div>
+            <div class="modal" id="my_modal_2">
+                <div class="modal-box text-xl">
+                  <div class="alert alert-info justify-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span><strong>Info</strong>Dokumen yang dibuthkan: </span>
+                  </div>
+                  <div class="card bg-white text-left border-0 text-lg">
+                        <p>1. Fotokopi KTP</p>
+                        <p>2. Fotokopi KK</p>
+                        <p>3. Foto Lokasi Usaha</p>
+                        <p>4. Surat Pengantar dari RT</p>
+                  </div>
+                  <div class="modal-action">
+                   <a href="#service" class="btn btn-primary text-white fw-normal">Oke</a>
+                  </div>
+                </div>
+            </div>
+            <div class="modal" id="my_modal_3">
+                <div class="modal-box text-xl">
+                  <div class="alert alert-info justify-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span><strong>Info</strong>Dokumen yang dibuthkan: </span>
+                  </div>
+                  <div class="card bg-white text-left border-0 text-lg">
+                        <p>1. Fotokopi KTP</p>
+                        <p>2. Surat Pengantar dari RT</p>
+                  </div>
+                  <div class="modal-action">
+                   <a href="#service" class="btn btn-primary text-white fw-normal">Oke</a>
+                  </div>
+                </div>
+            </div>
+            <div class="modal" id="my_modal_4">
+                <div class="modal-box text-xl">
+                  <div class="alert alert-info justify-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span><strong>Info</strong>Dokumen yang dibuthkan: </span>
+                  </div>
+                  <div class="card bg-white text-left border-0 text-lg">
+                    <p>1. Fotokopi KTP</p>
+                    <p>2. Fotokopi KK</p>
+                    <p>3. Foto Rumah</p>
+                    <p>4. Surat Pengantar dari RT</p>
+                  </div>
+                  <div class="modal-action">
+                   <a href="#service" class="btn btn-primary text-white fw-normal">Oke</a>
+                  </div>
+                </div>
+            </div>
+            <div class="modal" id="my_modal_5">
+                <div class="modal-box text-xl">
+                  <div class="alert alert-info justify-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span><strong>Info</strong>Dokumen yang dibuthkan: </span>
+                  </div>
+                  <div class="card bg-white text-left border-0 text-lg">
+                    <p>1. KTP Asli</p>
+                    <p>2. KK Asli</p>
+                    <p>3. Surat Pengantar dari RT</p>
+                  </div>
+                  <div class="modal-action">
+                   <a href="#service" class="btn btn-primary text-white fw-normal">Oke</a>
+                  </div>
+                </div>
+            </div>
+            <div class="modal" id="my_modal_6">
+                <div class="modal-box text-xl">
+                  <div class="alert alert-info justify-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span><strong>Info</strong>Dokumen yang dibuthkan: </span>
+                  </div>
+                  <div class="card bg-white text-left border-0 text-lg">
+                    <p>1. Surat Keterangan Pindah yang dikeluarkan oleh Kantor Capil</p>
+                  </div>
+                  <div class="modal-action">
+                   <a href="#service" class="btn btn-primary text-white fw-normal">Oke</a>
+                  </div>
+                </div>
             </div>
         </div>
     </section>
