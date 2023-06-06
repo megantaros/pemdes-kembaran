@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('surat_ket_pindah_datang', function (Blueprint $table) {
-            $table->bigIncrements('id_surat_ket_pindah');
+            $table->bigIncrements('id_surat_ket_pindah_datang');
             $table->unsignedBigInteger('id_warga')->unique();
             $table->string('jenis_surat')->default('Surat Keterangan Pindah Datang');
             $table->string('foto_surat_ket_pindah_capil');
