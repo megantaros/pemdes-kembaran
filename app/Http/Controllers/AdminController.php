@@ -115,9 +115,9 @@ class AdminController extends Controller
             ->where('surat_pengajuan.id_surat', '!=', NULL)
             ->select('warga.*', 'surat_pengajuan.*')
             ->get();
-        // return view('admin.cetak_suratkeluar', compact('data'));
-        $pdf = Pdf::loadview('admin.cetak_suratkeluar', compact('data'));
-        return $pdf->download('surat_keluar.pdf');
+        return view('admin.cetak_suratkeluar', compact('data'));
+        // $pdf = Pdf::loadview('admin.cetak_suratkeluar', compact('data'));
+        // return $pdf->download('surat_keluar.pdf');
     }
     public function get_suratditolak(Request $request) {
         if ($request->search) {
