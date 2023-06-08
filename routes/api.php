@@ -30,6 +30,8 @@ Route::prefix('android')->group(function () {
     Route::get('/', [AndroidController::class, 'start'])->name('start.android');
     Route::post('/login', [AndroidController::class, 'login'])->name('login.android');
     Route::post('/regist', [AndroidController::class, 'regist'])->name('regist.android');
+    Route::post('/update/{id_warga}', [AndroidController::class, 'update'])->name('update.android');
+    Route::get('/profil/{id_warga}', [AndroidController::class, 'get_data_warga'])->name('profil.android');
 
     Route::prefix('surat_pengajuan')->group(function () {
         Route::post('/store', [AndroidController::class, 'store_surat_pengajuan'])->name('store.surat_pengajuan.android');
@@ -40,6 +42,6 @@ Route::prefix('android')->group(function () {
     Route::prefix('surat_ket_domisili')->group(function () {
         Route::get('/{id_warga}', [AndroidController::class, 'get_surat_ket_domisili'])->name('get_surat_ket_domisili.android');
         Route::post('/store/{id_surat_pengajuan}', [AndroidController::class, 'store_surat_ket_domisili'])->name('store_surat_ket_domisili.android');
-        Route::put('/edit/{id_surat_ket_domisili}', [AndroidController::class, 'update_surat_ket_domisili'])->name('update_surat_ket_domisili.android');
+        Route::post('/edit/{id_surat_ket_domisili}', [AndroidController::class, 'update_surat_ket_domisili'])->name('update_surat_ket_domisili.android');
     });
 });

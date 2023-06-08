@@ -31,7 +31,6 @@ class AndroidController extends Controller {
             return ApiFormatter::createApi(400, 'Failed');
         }     
     }
-
     public function regist(Request $request) {
         User::create([
             'name' => $request->name,
@@ -40,6 +39,34 @@ class AndroidController extends Controller {
         ]);
         return ApiFormatter::createApi(200, 'Register Berhasil');
     }
+    public function update(Request $request, $id_warga) {
+        User::query()->find($id_warga)->update($request->all());
+        // if($request->password){
+        //     User::query()->find($id_warga)->update([
+        //         'password' => bcrypt($request->password),
+        //     ]);
+        // }
+        $user = $request->user();
+        if($request->password){
+            User::query()->find($id_warga)->update([
+                'password' => $user->password,
+            ]);
+        }
+
+        $data = User::find($id_warga)->first();
+
+        return ApiFormatter::createApi(200, 'Success', $data);
+    }
+
+    public function get_data_warga($id_warga) {
+        $data = User::find($id_warga)->first();
+        if($data){
+            return ApiFormatter::createApi(200, 'Success', $data);
+        } else {
+            return ApiFormatter::createApi(400, 'Failed');
+        }     
+    }
+
     public function store_surat_pengajuan(Request $request) {
         $data = SuratPengajuan::create([
             'jenis_surat' => $request->jenis_surat,
