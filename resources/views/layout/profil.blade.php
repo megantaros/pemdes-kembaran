@@ -8,6 +8,9 @@
     <link rel="shortcut icon" href="{{ asset('assets/favicon.png') }}" type="image/x-icon" style="width: auto;">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@400;600&family=Viga&display=swap" rel="stylesheet">
 
     @vite('resources/js/app.js')
 </head>
@@ -174,5 +177,27 @@
         swal("Maaf Gagal Mengupdate Data!", "Pastikan Anda Mengisi Form dengan Benar!", "error");
     @endif
 </script>
+{{-- <script>
+    $(".btn-hapus").click(function () {
+        var id = $(this).attr("data-id");
+        var surat = $(this).attr("data-jenis");
+        swal({
+            title: "Apakah anda yakin?",
+            text: "Kamu akan menghapus data surat " + surat,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                window.location = "/deletesurat/" + id;
+                swal("Data surat telah dihapus!", {
+                    icon: "success",
+                });
+            } else {
+                swal("Surat tidak jadi dihapus!");
+            }
+        });
+    });
+</script> --}}
 
 </html>

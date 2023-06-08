@@ -131,21 +131,20 @@
             <div class="modal" id="my_modal_1">
                 <div class="modal-box text-xl">
                   {{-- <h3 class="font-bold text-lg"><strong>yang dibutuhkan:</strong></h3> --}}
-                  <div class="alert alert-info justify-start">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span><strong>Info</strong>Dokumen yang dibuthkan: </span>
-                  </div>
-                  {{-- <p class="py-4">This modal works with anchor links</p> --}}
-                  <div class="card bg-white text-left border-0 text-lg">
-                        <p>1. KTP Asli</p>
-                        <p>2. KK Asli</p>
-                        <p>3. Surat Pengantar dari RT</p>
-                        <p class="my-2">Untuk pengurusan KK, tambahkan:</p>
-                        <p>4. Fotokopi Buku Nikah</p>
-                  </div>
-                  <div class="modal-action">
-                   <a href="#service" class="btn btn-primary text-white fw-normal">Oke</a>
-                  </div>
+                    <div class="alert alert-info justify-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span><strong>Info</strong>Dokumen yang dibuthkan: </span>
+                    </div>
+                    <div class="card bg-white text-left border-0 text-lg">
+                            <p>1. KTP Asli</p>
+                            <p>2. KK Asli</p>
+                            <p>3. Surat Pengantar dari RT</p>
+                            <p class="my-2">Untuk pengurusan KK, tambahkan:</p>
+                            <p>4. Fotokopi Buku Nikah</p>
+                    </div>
+                    <div class="modal-action">
+                    <a href="#service" class="btn btn-primary text-white fw-normal">Oke</a>
+                    </div>
                 </div>
             </div>
             <div class="modal" id="my_modal_2">

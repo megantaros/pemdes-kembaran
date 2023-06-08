@@ -64,7 +64,7 @@ Route::group(['middleware' => ['auth', 'hakakses:user']], function(){
     Route::controller(SuratPengajuanController::class)->group(function() {
         Route::post('/insertsuratpengajuan', 'store');
         Route::get('/profil/suratsaya', 'get')->name('suratsaya');
-        Route::get('/deletesurat/{id}', 'delete');
+        Route::get('/delete-surat/{id}', 'delete');
     });
 
     Route::controller(SuratKetDomisiliController::class)->group(function() {

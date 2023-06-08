@@ -34,11 +34,12 @@ Route::prefix('android')->group(function () {
     Route::prefix('surat_pengajuan')->group(function () {
         Route::post('/store', [AndroidController::class, 'store_surat_pengajuan'])->name('store.surat_pengajuan.android');
         Route::get('/{id_warga}', [AndroidController::class, 'get_surat_pengajuan'])->name('get_surat_pengajuan.android');
-        Route::delete('/{id_surat_pengajuan}', [AndroidController::class, 'delete_surat_pengajuan'])->name('delete_surat_pengajuan.android');
+        Route::delete('/delete/{id_surat_pengajuan}', [AndroidController::class, 'delete_surat_pengajuan'])->name('delete_surat_pengajuan.android');
     });
 
     Route::prefix('surat_ket_domisili')->group(function () {
-        Route::get('/{id_surat_pengajuan}', [AndroidController::class, 'get_surat_ket_domisili'])->name('get_surat_ket_domisili.android');
+        Route::get('/{id_warga}', [AndroidController::class, 'get_surat_ket_domisili'])->name('get_surat_ket_domisili.android');
         Route::post('/store/{id_surat_pengajuan}', [AndroidController::class, 'store_surat_ket_domisili'])->name('store_surat_ket_domisili.android');
+        Route::put('/edit/{id_surat_ket_domisili}', [AndroidController::class, 'update_surat_ket_domisili'])->name('update_surat_ket_domisili.android');
     });
 });
