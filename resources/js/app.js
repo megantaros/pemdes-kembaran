@@ -17,13 +17,13 @@ $(document).ready(function () {
         var surat = $(this).attr("data-jenis");
         swal({
             title: "Apakah anda yakin?",
-            text: "Kamu akan menghapus data surat " + surat + "",
+            text: "Kamu akan menghapus data surat " + surat,
             icon: "warning",
             buttons: true,
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete) {
-                window.location = "/deletesurat/" + id + "";
+                window.location = "/delete-surat/" + id;
                 swal("Data surat telah dihapus!", {
                     icon: "success",
                 });

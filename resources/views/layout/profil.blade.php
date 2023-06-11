@@ -177,5 +177,27 @@
         swal("Maaf Gagal Mengupdate Data!", "Pastikan Anda Mengisi Form dengan Benar!", "error");
     @endif
 </script>
+{{-- <script>
+    $(".btn-hapus").click(function () {
+        var id = $(this).attr("data-id");
+        var surat = $(this).attr("data-jenis");
+        swal({
+            title: "Apakah anda yakin?",
+            text: "Kamu akan menghapus data surat " + surat,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                window.location = "/deletesurat/" + id;
+                swal("Data surat telah dihapus!", {
+                    icon: "success",
+                });
+            } else {
+                swal("Surat tidak jadi dihapus!");
+            }
+        });
+    });
+</script> --}}
 
 </html>
