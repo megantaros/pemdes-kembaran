@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->enum('jenis_kelamin', ['Pria', 'Wanita']);
-            $table->string('notelpon');
-            $table->string('foto');
-            $table->timestamps();
-        });
+        // Schema::create('employees', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('nama');
+        //     $table->enum('jenis_kelamin', ['Pria', 'Wanita']);
+        //     $table->string('notelpon');
+        //     $table->string('foto');
+        //     $table->timestamps();
+        // });
+        Schema::dropIfExists('employees');
     }
 
     /**

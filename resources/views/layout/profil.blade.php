@@ -100,7 +100,7 @@
         </div>
     </div>
 
-    <div class="lg:h-[250vh] h-[230vh]">
+    <div class="lg:h-[120vh] h-[230vh]">
     @yield('content')
     </div>
 

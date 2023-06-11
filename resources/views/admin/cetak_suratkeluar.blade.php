@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h2 class="text-center my-4">Laporan Surat Keluar</h2>
+        <h4 class="text-center my-4">Laporan Surat Keluar</h4>
         <table class="table table-bordered border-dark border">
             <thead class="table-active">
               <tr class="text-center">

@@ -68,7 +68,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="basis-1/1 bg-white h-100vh w-full rounded-lg p-6 shadow-lg">
+                    <div class="basis-1/1 bg-white h-100vh w-full rounded-lg p-6 shadow-lg min-h-screen">
                         <div class="text-3xl">Profil Saya</div>
                         <div class="text-xl text-[#070b34] text-info-user">Pastikan identitas Anda sesuai dengan yang tertera di e-KTP</div>
                         <div class="divider"></div> 

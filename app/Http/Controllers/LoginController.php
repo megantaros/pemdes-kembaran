@@ -123,46 +123,4 @@ class LoginController extends Controller
         // SuratPengajuan::where('id_surat', NULL)->delete();
         return \redirect('/login');
     }
-
-    // API Android
-    public function loginandroid(Request $request, User $user){
-        if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            // return response()->json(['error' => 'Maaf Password Anda Salah!'], 401);
-            return ApiFormatter::createApi(400, 'Failed');
-        } 
-            $data = Auth::user();
-            if($data){
-                return ApiFormatter::createApi(200, 'Success', [$data]);
-            } else {
-                return ApiFormatter::createApi(400, 'Failed');
-            }     
-    } 
-    public function registandroid(Request $request) {
-        $data = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'notelpon' => $request->notelpon,
-            'alamat' => $request->alamat,
-            'password' => bcrypt($request->password),
-            'remember_token' => Str::random(60),
-        ]);
-        // if ($data){
-        //     return ApiFormatter::createApi(200, 'Success', [$data]);
-        // } else {
-        //     return ApiFormatter::createApi(400, 'Failed');
-        // }
-        if($data) {
-            return response()->json(['message' => 'Success'], 200);
-        } else {
-            return response()->json(['message' => 'Failed'], 400);
-        }
-    }
-    
-    // public function suratsaya() {
-    //     $data = Domisili::all();
-    //     // dd($data);
-    //     return view('suratpengajuan', compact('data'));
-    // }
-
 }

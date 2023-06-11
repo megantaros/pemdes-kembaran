@@ -6,7 +6,7 @@
         <div class="lg:h-[400px] h-[200px] relative" style="background: #022E57; color: #06283D;">
             <div class="container absolute py-14 left-1/2 transform -translate-x-1/2">
                 <div class="flex lg:flex-row flex-col gap-4">
-                    <div class="basis-1/3 bg-white lg:h-100vh w-full rounded-lg p-6 shadow-lg lg:relative">
+                    <div class="basis-1/3 bg-white w-full rounded-lg p-6 shadow-lg lg:relative">
                         <div class="flex flex-row gap-4">
                             <div class="w-[60px]">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -68,7 +68,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="basis-1/1 bg-white h-100vh w-full rounded-lg p-6 shadow-lg">
+                    <div class="basis-1/1 bg-white h-100vh w-full rounded-lg p-6 shadow-lg min-h-screen">
                         <div class="lg:text-3xl text-2xl">Surat Pengajuan Saya</div>
                         <div class="lg:text-xl text-lg text-[#070b34] text-info-user">Pastikan identitas anda sesuai dengan yang tertera di e-KTP</div>
                         <div class="divider"></div>
