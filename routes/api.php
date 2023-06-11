@@ -44,4 +44,10 @@ Route::prefix('android')->group(function () {
         Route::post('/store/{id_surat_pengajuan}', [AndroidController::class, 'store_surat_ket_domisili'])->name('store_surat_ket_domisili.android');
         Route::post('/edit/{id_surat_ket_domisili}', [AndroidController::class, 'update_surat_ket_domisili'])->name('update_surat_ket_domisili.android');
     });
+
+    Route::prefix('surat_peng_skck')->group(function () {
+        Route::get('/{id_warga}', [AndroidController::class, 'get_surat_peng_skck'])->name('get_surat_peng_skck.android');
+        Route::post('/store/{id_surat_pengajuan}', [AndroidController::class, 'store_surat_peng_skck'])->name('store_surat_peng_skck.android');
+        Route::post('/edit/{id_surat_peng_skck}', [AndroidController::class, 'update_surat_peng_skck'])->name('update_surat_peng_skck.android');
+    });
 });

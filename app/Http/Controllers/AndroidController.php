@@ -73,10 +73,8 @@ class AndroidController extends Controller {
             'id_warga' => $request->id_warga,
         ]);
 
-        $pemohon = DB::table('surat_pengajuan')->where('id_warga', $data->id_warga)->first();
-
         if($data){
-            return ApiFormatter::createApi(200, 'Success', $pemohon);
+            return ApiFormatter::createApi(200, 'Success', $data);
         } else {
             return ApiFormatter::createApi(400, 'Failed');
         }     
@@ -207,6 +205,71 @@ class AndroidController extends Controller {
             $data->foto_lokasi = $request->file('foto_lokasi')->getClientOriginalName();
             $data->save();
             };
+        if ($request->hasFile('pengantar_rt'))
+            {
+            $request->file('pengantar_rt')->move('berkaspemohon/', $request->file('pengantar_rt')->getClientOriginalName());
+            $data->pengantar_rt = $request->file('pengantar_rt')->getClientOriginalName();
+            $data->save();
+            };
+        
+            if($data){
+                return ApiFormatter::createApi(200, 'Success', $data);
+            } else {
+                return ApiFormatter::createApi(400, 'Failed');
+            }   
+    }
+    public function get_surat_peng_skck($id_warga) {
+        // $data = Domisili::where('id_warga', $id_warga)->first();
+
+        $data = Skck::join('surat_pengajuan', 'surat_peng_skck.id_surat_peng_skck', '=', 'surat_pengajuan.id_surat')
+            ->where('surat_pengajuan.id_warga', $id_warga)
+            ->where('surat_pengajuan.jenis_surat', 'Surat Pengantar SKCK')
+            ->select('surat_peng_skck.*', 'surat_pengajuan.*')
+            ->first(); 
+
+        if($data){
+            return ApiFormatter::createApi(200, 'Success', $data);
+        } else {
+            return ApiFormatter::createApi(400, 'Failed');
+        }     
+    }
+    public function store_surat_peng_skck(Request $request, $id_surat_pengajuan){
+        $data = Skck::create($request->all());
+            if ($request->hasFile('fc_ktp'))
+                {
+                $request->file('fc_ktp')->move('berkaspemohon/', $request->file('fc_ktp')->getClientOriginalName());
+                $data->fc_ktp = $request->file('fc_ktp')->getClientOriginalName();
+                $data->save();
+                }
+            if ($request->hasFile('pengantar_rt'))
+                {
+                $request->file('pengantar_rt')->move('berkaspemohon/', $request->file('pengantar_rt')->getClientOriginalName());
+                $data->pengantar_rt = $request->file('pengantar_rt')->getClientOriginalName();
+                $data->save();
+                };    
+            
+            $suratpengajuan = SuratPengajuan::find($id_surat_pengajuan);
+            $suratpengajuan->update([
+                'id_surat' => $data->id_surat_peng_skck,
+            ]);
+
+            $keterangan = DB::table('surat_peng_skck')->where('id_surat_peng_skck', $data->id_surat_peng_skck)->first();
+
+            if($data){
+                return ApiFormatter::createApi(200, 'Success', $keterangan);
+            } else {
+                return ApiFormatter::createApi(400, 'Failed');
+            }     
+    }
+    public function update_surat_peng_skck(Request $request, $id_surat_ket_domisili) {
+        $data = Skck::find($id_surat_ket_domisili);
+        $data->update($request->all());
+        if ($request->hasFile('fc_ktp'))
+            {
+            $request->file('fc_ktp')->move('berkaspemohon/', $request->file('fc_ktp')->getClientOriginalName());
+            $data->fc_ktp = $request->file('fc_ktp')->getClientOriginalName();
+            $data->save();
+            }
         if ($request->hasFile('pengantar_rt'))
             {
             $request->file('pengantar_rt')->move('berkaspemohon/', $request->file('pengantar_rt')->getClientOriginalName());
