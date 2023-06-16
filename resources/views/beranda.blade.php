@@ -133,7 +133,7 @@
                   {{-- <h3 class="font-bold text-lg"><strong>yang dibutuhkan:</strong></h3> --}}
                     <div class="alert alert-info justify-start">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <span><strong>Info</strong>Dokumen yang dibuthkan: </span>
+                        <span><strong>Dokumen yang dibutuhkan: </strong></span>
                     </div>
                     <div class="card bg-white text-left border-0 text-lg">
                             <p>1. KTP Asli</p>
@@ -151,7 +151,7 @@
                 <div class="modal-box text-xl">
                   <div class="alert alert-info justify-start">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span><strong>Info</strong>Dokumen yang dibuthkan: </span>
+                    <span><strong>Dokumen yang dibutuhkan: </strong></span>
                   </div>
                   <div class="card bg-white text-left border-0 text-lg">
                         <p>1. Fotokopi KTP</p>
@@ -168,7 +168,7 @@
                 <div class="modal-box text-xl">
                   <div class="alert alert-info justify-start">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span><strong>Info</strong>Dokumen yang dibuthkan: </span>
+                    <span><strong>Dokumen yang dibutuhkan: </strong></span>
                   </div>
                   <div class="card bg-white text-left border-0 text-lg">
                         <p>1. Fotokopi KTP</p>
@@ -183,7 +183,7 @@
                 <div class="modal-box text-xl">
                   <div class="alert alert-info justify-start">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span><strong>Info</strong>Dokumen yang dibuthkan: </span>
+                    <span><strong>Dokumen yang dibutuhkan: </strong></span>
                   </div>
                   <div class="card bg-white text-left border-0 text-lg">
                     <p>1. Fotokopi KTP</p>
@@ -200,7 +200,7 @@
                 <div class="modal-box text-xl">
                   <div class="alert alert-info justify-start">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span><strong>Info</strong>Dokumen yang dibuthkan: </span>
+                    <span><strong>Dokumen yang dibutuhkan: </strong></span>
                   </div>
                   <div class="card bg-white text-left border-0 text-lg">
                     <p>1. KTP Asli</p>
@@ -216,7 +216,7 @@
                 <div class="modal-box text-xl">
                   <div class="alert alert-info justify-start">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span><strong>Info</strong>Dokumen yang dibuthkan: </span>
+                    <span><strong>Dokumen yang dibutuhkan: </strong></span>
                   </div>
                   <div class="card bg-white text-left border-0 text-lg">
                     <p>1. Surat Keterangan Pindah yang dikeluarkan oleh Kantor Capil</p>

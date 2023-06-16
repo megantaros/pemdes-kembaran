@@ -219,8 +219,6 @@ class AndroidController extends Controller {
             }   
     }
     public function get_surat_peng_skck($id_warga) {
-        // $data = Domisili::where('id_warga', $id_warga)->first();
-
         $data = Skck::join('surat_pengajuan', 'surat_peng_skck.id_surat_peng_skck', '=', 'surat_pengajuan.id_surat')
             ->where('surat_pengajuan.id_warga', $id_warga)
             ->where('surat_pengajuan.jenis_surat', 'Surat Pengantar SKCK')

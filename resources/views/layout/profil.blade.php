@@ -99,11 +99,11 @@
             </div>
         </div>
     </div>
-
-    <div class="lg:h-[120vh] h-[230vh]">
-    @yield('content')
+    
+    <div class="lg:min-h-[100vh] h-[230vh]">
+        @yield('content')
     </div>
-
+        
     <footer id="footer" class="pt-4">
         <div class="container">
             <div class="grid lg:grid-cols-4 gap-4 md:grid-cols-4 grid-cols-2">
