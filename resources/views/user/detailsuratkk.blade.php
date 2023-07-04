@@ -158,7 +158,7 @@
                                         <th scope="row">Fotokopi Buku Nikah</th>
                                         <td>
                                             <div class="w-50"><img src="{{ asset('berkaspemohon/'.$data->fc_buku_nikah) }}" class="border rounded" /></div>
-                                            <div class="w-full h-full"><input type="file" class="file-input file-input-bordered file-input-primary w-full mt-2" accept="image/png, image/jpeg" name="foto_kk"/></div>
+                                            <div class="w-full h-full"><input type="file" class="file-input file-input-bordered file-input-primary w-full mt-2" accept="image/png, image/jpeg" name="fc_buku_nikah"/></div>
                                         </td>
                                     </tr>
                                     <tr>

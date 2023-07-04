@@ -3,6 +3,7 @@
 use App\Http\Controllers\AndroidController;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/cek_login', [AndroidController::class, 'sanctum']);
+Route::post('/cek_register', [AndroidController::class, 'sanctum_store']);
+Route::group(['middleware' => ['auth:sanctum']], function(){
+    Route::get('/user', function(Request $request) {
+        $user = auth('sanctum')->user();
+        // $user = $request->user();
+        return $user;
+    });
+    Route::post('/logout', [AndroidController::class, 'logout_sanctum']);
 });
-
 Route::get('/users', function () {
     $users = User::all();
     return $users;
@@ -27,27 +34,27 @@ Route::get('/users', function () {
 
 Route::prefix('android')->group(function () {
     
-    Route::get('/', [AndroidController::class, 'start'])->name('start.android');
-    Route::post('/login', [AndroidController::class, 'login'])->name('login.android');
-    Route::post('/regist', [AndroidController::class, 'regist'])->name('regist.android');
-    Route::post('/update/{id_warga}', [AndroidController::class, 'update'])->name('update.android');
-    Route::get('/profil/{id_warga}', [AndroidController::class, 'get_data_warga'])->name('profil.android');
+    Route::get('/', [AndroidController::class, 'start']);
+    Route::post('/login', [AndroidController::class, 'login']);
+    Route::post('/regist', [AndroidController::class, 'regist']);
+    Route::post('/update/{id_warga}', [AndroidController::class, 'update']);
+    Route::get('/profil/{id_warga}', [AndroidController::class, 'get_data_warga']);
 
     Route::prefix('surat_pengajuan')->group(function () {
-        Route::post('/store', [AndroidController::class, 'store_surat_pengajuan'])->name('store.surat_pengajuan.android');
-        Route::get('/{id_warga}', [AndroidController::class, 'get_surat_pengajuan'])->name('get_surat_pengajuan.android');
-        Route::delete('/delete/{id_surat_pengajuan}', [AndroidController::class, 'delete_surat_pengajuan'])->name('delete_surat_pengajuan.android');
+        Route::post('/store', [AndroidController::class, 'store_surat_pengajuan']);
+        Route::get('/{id_warga}', [AndroidController::class, 'get_surat_pengajuan']);
+        Route::delete('/delete/{id_surat_pengajuan}', [AndroidController::class, 'delete_surat_pengajuan']);
     });
 
     Route::prefix('surat_ket_domisili')->group(function () {
-        Route::get('/{id_warga}', [AndroidController::class, 'get_surat_ket_domisili'])->name('get_surat_ket_domisili.android');
-        Route::post('/store/{id_surat_pengajuan}', [AndroidController::class, 'store_surat_ket_domisili'])->name('store_surat_ket_domisili.android');
-        Route::post('/edit/{id_surat_ket_domisili}', [AndroidController::class, 'update_surat_ket_domisili'])->name('update_surat_ket_domisili.android');
+        Route::get('/{id_warga}', [AndroidController::class, 'get_surat_ket_domisili']);
+        Route::post('/store/{id_surat_pengajuan}', [AndroidController::class, 'store_surat_ket_domisili']);
+        Route::post('/edit/{id_surat_ket_domisili}', [AndroidController::class, 'update_surat_ket_domisili']);
     });
 
     Route::prefix('surat_peng_skck')->group(function () {
-        Route::get('/{id_warga}', [AndroidController::class, 'get_surat_peng_skck'])->name('get_surat_peng_skck.android');
-        Route::post('/store/{id_surat_pengajuan}', [AndroidController::class, 'store_surat_peng_skck'])->name('store_surat_peng_skck.android');
-        Route::post('/edit/{id_surat_peng_skck}', [AndroidController::class, 'update_surat_peng_skck'])->name('update_surat_peng_skck.android');
+        Route::get('/{id_warga}', [AndroidController::class, 'get_surat_peng_skck']);
+        Route::post('/store/{id_surat_pengajuan}', [AndroidController::class, 'store_surat_peng_skck']);
+        Route::post('/edit/{id_surat_peng_skck}', [AndroidController::class, 'update_surat_peng_skck']);
     });
 });

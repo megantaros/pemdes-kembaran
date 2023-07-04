@@ -12,6 +12,7 @@ use App\Models\SuratKetUsaha;
 use App\Models\SuratPengajuan;
 use App\Models\SuratPengKk;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +38,7 @@ class AndroidController extends Controller {
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
-        return ApiFormatter::createApi(200, 'Register Berhasil');
+        return ApiFormatter::createApi(200, 'Success');
     }
     public function update(Request $request, $id_warga) {
         User::query()->find($id_warga)->update($request->all());
@@ -280,5 +281,51 @@ class AndroidController extends Controller {
             } else {
                 return ApiFormatter::createApi(400, 'Failed');
             }   
+    }
+    public function sanctum_store(Request $request) {
+        $rules = [
+            'name' => 'required',
+            'email' => 'required|email|unique:warga',
+            'password' => 'required|min:6',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $data = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
+        $token = $data->createToken('auth_token')->plainTextToken;
+        if($data) {
+            return response()
+            ->json(['data' => $data,'access_token' => $token, 'token_type' => 'Bearer' ]);
+        } else {
+            return response()->json(['message' => 'Gagal']);
+        }
+        // return response()
+        //     ->json(['data' => $data,'access_token' => $token, 'token_type' => 'Bearer' ]);
+        
+    }
+    public function sanctum(Request $request) {
+        if(!Auth::attempt($request->only('email', 'password'))){
+            return response()->json(['message' => 'Unauthorized'], 400);
+        }
+
+        $user = User::where('email', $request->email)->firstOrFail();
+
+        $token = $user->createToken('token')->plainTextToken;
+        return response()->json(['message' => 'Hi '.$user->name.' Selamat datang', 'access_token' => $token, 'token_type' => 'Bearer',]);
+    }
+    public function logout_sanctum(User $user) {
+        $user->tokens()->delete();
+        return [
+            'message' => 'You have successfully logged out and the token was successfully deleted'
+        ];
     }
 }
