@@ -347,7 +347,7 @@ form {
 
 .select-primary {
     font-family: var(--font-primary);
-    font-size: 18px;
+    font-size: 14px !important;
     font-weight: 400;
     /* border: 3px solid #ebeeff !important; */
 }
@@ -357,15 +357,16 @@ form {
     font-size: 18px;
 }
 
-.input-info {
+.input-primary {
+    border: 3px solid #9cb4cc !important;
+    font-size: 14px !important;
+}
+
+.textarea-primary {
     border: 3px solid #9cb4cc !important;
 }
 
-.textarea-info {
-    border: 3px solid #9cb4cc !important;
-}
-
-.file-input-info {
+.file-input-primary {
     border: 3px solid #9cb4cc !important;
 }
 
@@ -568,4 +569,9 @@ textarea:read-only {
     padding: 15px;
     color: #fff;
     font-weight: 400 !important;
+}
+
+.card-animation:hover #img {
+    transform: rotateY(180deg) !important;
+    transition: all 0.5s ease-in-out;
 }

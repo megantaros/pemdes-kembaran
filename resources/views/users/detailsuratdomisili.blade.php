@@ -21,7 +21,7 @@
                                     </a>
                                 </div>
                                 <div class="">
-                                    <a href="/profil" class="flex text-[#C6C6C6] hover:text-[#C6C6C6] hover:underline text-md">
+                                    <a href="{{ route('info.warga') }}" class="flex text-[#C6C6C6] hover:text-[#C6C6C6] hover:underline text-md">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-pencil-fill mr-2" viewBox="0 0 16 16">
                                             <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                                         </svg>
@@ -33,7 +33,7 @@
                         <div class="divider"></div>
                         <div class="grid grid-cols-1 gap-4">
                             <div>
-                                <a href="/profil" class="flex text-[#070b34] border-l-[6px] border-[#FFF] hover:text-[#070b34] hover:border-[#FFEBAD] text-lg">
+                                <a href="{{ route('info.warga') }}" class="flex text-[#070b34] border-l-[6px] border-[#FFF] hover:text-[#070b34] hover:border-[#FFEBAD] text-lg">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-person mx-2" viewBox="0 0 16 16">
                                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
                                     </svg>
@@ -41,7 +41,7 @@
                                 </a>
                             </div>
                             <div>
-                                <a href="/profil/suratsaya" class="flex text-[#070b34] border-l-[6px] border-[#fff] hover:border-[#FFEBAD] hover:text-[#070b34] text-lg">
+                                <a href="{{ route('surat.warga') }}" class="flex text-[#070b34] border-l-[6px] border-[#fff] hover:border-[#FFEBAD] hover:text-[#070b34] text-lg">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-envelope mx-2" viewBox="0 0 16 16">
                                         <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
                                     </svg>
@@ -69,7 +69,7 @@
                         </form>
                     </div>
                     <div class="basis-1/1 bg-white h-auto w-full rounded-lg p-6 shadow-lg">
-                        <div class="lg:text-3xl text-2xl">Detail Surat Keterangan Pindah</div>
+                        <div class="lg:text-3xl text-2xl">Detail Surat Keterangan Domisili</div>
                         <div class="lg:text-xl text-lg text-[#070b34] text-info-user">Pastikan identitas anda sesuai dengan yang tertera di e-KTP</div>
                         <div class="divider"></div>
                         <div class="overflow-x-auto">
@@ -93,98 +93,56 @@
                                     <th scope="row">Alamat</th>
                                     <td><textarea class="textarea textarea-info w-full" placeholder="Tulis disini..." readonly>{{ Auth::user()->alamat }}</textarea></td>
                                 </tr>
-                                <form action="/editsuratpindah/{{ $data->id_surat_ket_pindah }}" enctype="multipart/form-data" method="POST">
+                                <form action="{{ route('keterangan-domisili.update', ['keterangan_domisili' => $data->id_surat_ket_domisili]) }}" enctype="multipart/form-data" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <tr>
-                                        <th scope="row">No. KK</th>
-                                        <td>
-                                            <input type="text" placeholder="Tulis disini..." class="input input-bordered input-info w-full read-only:bg-[#9cb4cc]" value="{{ $data->kk }}"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nama Kepala Keluarga</th>
-                                        <td>
-                                            <input type="text" placeholder="Tulis disini..." class="input input-bordered input-info w-full read-only:bg-[#9cb4cc]" value="{{ $data->nama_kepala_keluarga }}"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Alasan Pindah</th>
-                                        <td>
-                                            <select class="select select-primary w-full show_form_lainnya" name="alasan_pindah">
-                                                <option value="{{ $data->alasan_pindah }}" selected disabled>{{ $data->alasan_pindah }}</option>
-                                                <option value="Pekerjaan">Pekerjaan</option>
-                                                <option value="Pendidikan">Pendidikan</option>
-                                                <option value="Keamanan">Keamanan</option>
-                                                <option value="Kesehatan">Kesehatan</option>
-                                                <option value="Perumahan">Perumahan</option>
-                                                <option value="Keluarga">Keluarga</option>
-                                                <option value="Lainnya">Lainnya</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr class="form_lainnya">
-                                        <th scope="row">Lainnya</th>
-                                        <td>
-                                            <input type="text" placeholder="Tulis disini..." class="input input-bordered input-info w-full read-only:bg-[#9cb4cc]" value="{{ $data->lainnya }}" name="lainnya"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Alamat Tujuan</th>
-                                        <td>
-                                            <textarea class="textarea textarea-info w-full" placeholder="Tulis disini..." name="alamat_tujuan">{{ $data->alamat_tujuan }}</textarea>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Jumlah Anggota Pindah</th>
-                                        <td>
-                                            <input type="number" placeholder="Tulis disini..." class="input input-bordered input-info w-full read-only:bg-[#9cb4cc]" value="{{ $data->jml_angg_pindah }}"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Status Hubungan Dalam Keluarga</th>
-                                        <td>
-                                            <select class="select select-primary w-full " name="shdk">
-                                                <option value="01">Kepala Keluarga</option>
-                                                <option value="02">Suami</option>
-                                                <option value="03">Istri</option>
-                                                <option value="04">Anak</option>
-                                                <option value="05">Menantu</option>
-                                                <option value="06">Cucu</option>
-                                                <option value="07">Orangtua</option>
-                                                <option value="08">Mertua</option>
-                                                <option value="09">Famili Lainnya</option>
-                                                <option value="10">Pembantu</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Pengantar RT</th>
-                                        <td>
-                                            <img src="{{ asset('berkaspemohon/'.$data->pengantar_rt) }}" class="w-50 border rounded" />
-                                            <div class="w-full h-full"><input type="file" class="file-input file-input-bordered file-input-primary w-full mt-2" accept="image/png, image/jpeg" name="pengantar_rt"/></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">KTP Asli</th>
-                                        <td>
-                                            <div class="w-50"><img src="{{ asset('berkaspemohon/'.$data->foto_ktp) }}" class="border rounded" /></div>
-                                            <div class="w-full h-full"><input type="file" class="file-input file-input-bordered file-input-primary w-full mt-2" accept="image/png, image/jpeg" name="foto_ktp"/></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">KK Asli</th>
-                                        <td>
-                                            <div class="w-50"><img src="{{ asset('berkaspemohon/'.$data->foto_kk) }}" class="border rounded" /></div>
-                                            <div class="w-full h-full"><input type="file" class="file-input file-input-bordered file-input-primary w-full mt-2" accept="image/png, image/jpeg" name="foto_kk"/></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Aksi</th>
-                                        <td class="flex justify-center">
-                                            <button type="submit" class="btn btn-warning lg:w-50 my-5 text-lg capitalize font-semibold"><i class="bi bi-pencil-fill me-2"></i>Edit</button>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <th scope="row">No. KK</th>
+                                    <td><input type="username" class="input input-bordered input-info w-full my-1 read-only:bg-[#9cb4cc]" value="{{ $data->kk }}" name="kk"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Alamat Domisili</th>
+                                    <td><input type="username" class="input input-bordered input-info w-full my-1 read-only:bg-[#9cb4cc]" value="{{ $data->alamat_domisili }}" name="alamat_domisili"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Fotokopi KTP</th>
+                                    <td>
+                                        <div class="w-50"><img src="{{ asset('berkaspemohon/'.$data->fc_ktp) }}" class="border rounded" /></div>
+                                        <div class="w-full h-full"><input type="file" class="file-input file-input-bordered file-input-primary w-full mt-2" accept="image/png, image/jpeg" value="{{ $data->fc_ktp }}" name="fc_ktp"/></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Fotokopi KK</th>
+                                    <td>
+                                        <img src="{{ asset('berkaspemohon/'.$data->fc_kk) }}" class="w-50 border rounded" />
+                                        <div class="w-full h-full"><input type="file" class="file-input file-input-bordered file-input-primary w-full mt-2" accept="image/png, image/jpeg" name="fc_kk"/></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Foto Lokasi</th>
+                                    <td>
+                                        <img src="{{ asset('berkaspemohon/'.$data->foto_lokasi) }}" class="w-50 border rounded" />
+                                        <div class="w-full h-full"><input type="file" class="file-input file-input-bordered file-input-primary w-full mt-2" accept="image/png, image/jpeg" name="foto_lokasi"/></div>
+                                    </td>
+                                </tr>
+                                {{-- <tr>
+                                    <th scope="row">Status Surat</th>
+                                    <td>
+                                        @if($data->status == 'Terkirim')
+                                        <div class="btn btn-warning">Terkirim</div>
+                                        @elseif(($data->status == 'Diterima'))
+                                        <div class="btn btn-success">Diterima</div>
+                                        @else
+                                        <div class="btn btn-danger">Ditolak</div>
+                                        @endif
+                                    </td>
+                                </tr> --}}
+                                <tr>
+                                    <th scope="row">Aksi</th>
+                                    <td class="flex justify-center">
+                                        <button type="submit" class="btn btn-warning lg:w-50 my-5 text-lg capitalize font-semibold"><i class="bi bi-pencil-fill me-2"></i>Edit</button>
+                                    </td>
+                                </tr>
                                 </form>
                                 </tbody>
                             </table>

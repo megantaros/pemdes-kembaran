@@ -21,7 +21,9 @@ return new class extends Migration
             $table->foreign('id_warga')->references('id_warga')->on('warga');
             $table->bigInteger('id_surat')->nullable();
             $table->string('jenis_surat');
-            $table->date('tanggal')->default(DB::raw('NOW()'));
+            // $table->date('tanggal')->NOW();
+            $table->string('keterangan_warga')->nullable();
+            $table->string('keterangan_admin')->nullable();
             $table->enum('status', ['Terkirim', 'Diterima', 'Ditolak'])->default('Terkirim');
             $table->timestamps();
         });

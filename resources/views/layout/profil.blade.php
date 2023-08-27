@@ -27,9 +27,15 @@
             </a>
             <div class="lg:flex-none lg:block hidden">
                 <ul class="menu menu-horizontal px-1">
-                    <li><a href="/" class="navLi {{ Route::is('beranda') ? 'active' : '' }}">Beranda</a></li>
-                    <li><a href="/layanan" class="navLi {{ Route::is('layanan') ? 'active' : '' }} @yield('active')">Layanan</a></li>
-                    <li><a href="/kontak" class="navLi {{ Route::is('kontak') ? 'active' : '' }}">Kontak</a></li>
+                    <li>
+                        <a href="{{ route('home') }}" class="navLi {{ Route::is('home') ? 'active' : '' }}">Beranda</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('layanan') }}" class="navLi {{ Route::is('layanan') ? 'active' : '' }} @yield('active')">Layanan</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('kontak') }}" class="navLi {{ Route::is('kontak') ? 'active' : '' }}">Kontak</a>
+                    </li>
                     @guest
                         <li tabindex="0">
                             <a class="btnAkun">
@@ -37,8 +43,8 @@
                                 <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
                             </a>
                             <ul class="p-2 text-[#06283D] navUl mt-1 bg-white">
-                                <li><a href="/login">Login</a></li>
-                                <li><a href="/daftar">Daftar</a></li>
+                                <li><a href="{{ route('login.warga') }}">Login</a></li>
+                                <li><a href="{{ route('register.warga') }}">Daftar</a></li>
                             </ul>
                         </li>
                     @endguest
@@ -49,7 +55,7 @@
                                 <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
                             </a>
                             <ul class="p-2 text-[#06283D] navUl mt-1 bg-white">
-                                <li><a href="/profil">Info Profil</a></li>
+                                <li><a href="{{ route('info.warga') }}">Info Profil</a></li>
                                 <li>
                                     <form action="/logout" method="POST">
                                         @csrf
@@ -69,10 +75,15 @@
                                 <i class="bi bi-list text-3xl text-white"></i>
                             </a>
                             <ul class="p-2 text-[#06283D] navUl mt-2 bg-white text-sm right-0 shadow-lg">
-                                <li><a href="/" class="navLi {{ Route::is('beranda') ? 'active' : '' }}">Beranda</a></li>
-                                <li><a href="/layanan" class="navLi {{ Route::is('layanan') ? 'active' : '' }}">Layanan</a></li>
-                                <li><a href="/kontak" class="navLi {{ Route::is('kontak') ? 'active' : '' }}">Kontak</a></li>
-                                <li><a href="/login" class="navLi bg-[#FFEBAD]">Masuk</a></li>
+                                <li>
+                                    <a href="{{ route('home') }}" class="navLi {{ Route::is('home') ? 'active' : '' }}">Beranda</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('layanan') }}" class="navLi {{ Route::is('layanan') ? 'active' : '' }} @yield('active')">Layanan</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('kontak') }}" class="navLi {{ Route::is('kontak') ? 'active' : '' }}">Kontak</a>
+                                </li>
                             </ul>
                         </li>
                     @endguest
@@ -82,7 +93,7 @@
                                 <i class="bi bi-list text-3xl text-white"></i>
                             </a>
                             <ul class="p-2 text-[#06283D] navUl mt-2 bg-white text-sm right-0 shadow-lg">
-                                <li><a href="{{ route('profil') }}" class="bg-[#FFEBAD]">Hi, {{ Auth::user()->name }}</a></li>
+                                <li><a href="{{ route('info.warga') }}" class="bg-[#FFEBAD]">Hi, {{ Auth::user()->name }}</a></li>
                                 <li><a href="/" class="navLi {{ Route::is('beranda') ? 'active' : '' }}">Beranda</a></li>
                                 <li><a href="/layanan" class="navLi {{ Route::is('layanan') ? 'active' : '' }}">Layanan</a></li>
                                 <li><a href="/kontak" class="navLi {{ Route::is('kontak') ? 'active' : '' }}">Kontak</a></li>

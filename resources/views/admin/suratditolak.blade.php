@@ -12,8 +12,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
+              <li class="breadcrumb-item"><a href="{{ route('suratkeluar') }}">Surat Keluar</a></li>
+              <li class="breadcrumb-item active">Admin</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -32,7 +32,7 @@
                   <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-search"></i></span>
                 </div> --}}
                 <input type="text" name="search" class="form-control rounded" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                <button type="submit" class="btn btn-primary ml-2">Cari Pemohon</button>
+                <button type="submit" class="btn btn-primary ml-2"><i class="fa fa-search mr-2" aria-hidden="true"></i>Cari Pemohon</button>
               </form>
           </div>
             <table class="table table-striped">

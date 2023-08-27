@@ -11,5 +11,5 @@ class SuratKetPindahDatang extends Model
     protected $guarded = [];
     protected $dates = ['created_at'];
     protected $table = 'surat_ket_pindah_datang';
-    protected $primaryKey = 'id_surat_ket_pindah';
+    protected $primaryKey = 'id_surat_ket_pindah_datang';
 }

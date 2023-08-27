@@ -31,7 +31,7 @@
             </div>
             <div class="card lg:card-side bg-base-100 shadow-xl border-none">
                 <div class="card-body">
-                <form action="/layanan/{{ $id_surat_pengajuan }}/surat_ket_domisili" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('keterangan-domisili.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                     <h1 class="card-title lg:text-3xl text-xl w-100 flex justify-center">Pengajuan Surat Keterangan Domisili</h1>
                     <p class="p-pengajuan lg:text-lg text-md font-medium">Isi form pengajuan surat di bawah ini!</p>

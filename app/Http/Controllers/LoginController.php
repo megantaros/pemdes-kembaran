@@ -15,11 +15,6 @@ class LoginController extends Controller
 {
     //
     public function login () {
-        // $auth = Auth::user();
-        // if( $auth ) {
-        //     return redirect('/');
-        // }
-        // return view('user.login');   
         if(Auth::check()){
             return redirect('/login');
         } else {

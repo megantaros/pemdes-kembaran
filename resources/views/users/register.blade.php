@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="lg:p-10 p-4 flex flex-col justify-start w-full bg-white">
-            <form action="/daftar" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('store.warga') }}" method="POST" enctype="multipart/form-data">
               @csrf
                 <h2 class="font-bold lg:text-4xl text-xl lg:mb-4 mb-3">Sign up</h2>
                 <div class="mb-3">
@@ -68,7 +68,7 @@
                 <div class="w-full mb-6"><a href="#" class="lg:text-md text-sm">Lupa password ?<a></div>
                 <input type="submit" class="btn-login rounded-md w-full" value="Daftar"/>
                 <div class="text-sm mt-5 text-center">Sudah punya akun ? 
-                <span><a href="/login" class="font-semibold">Login disini!<a></span></div>
+                <span><a href="{{ route('login.warga') }}" class="font-semibold">Login disini!<a></span></div>
             </form>
           </div>
         </div>

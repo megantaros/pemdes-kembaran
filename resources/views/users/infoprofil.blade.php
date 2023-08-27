@@ -33,7 +33,7 @@
                         <div class="divider"></div>
                         <div class="grid grid-cols-1 gap-4">
                             <div>
-                                <a href="/profil" class="flex text-[#070b34] border-l-[6px] border-[#FFEBAD] hover:text-[#070b34] text-lg">
+                                <a href="{{ route('info.warga') }}" class="flex text-[#070b34] border-l-[6px] border-[#FFEBAD] hover:text-[#070b34] text-lg">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-person-fill mx-2" viewBox="0 0 16 16">
                                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
                                     </svg>
@@ -41,7 +41,7 @@
                                 </a>
                             </div>
                             <div>
-                                <a href="profil/suratsaya" class="flex text-[#070b34] border-l-[6px] border-[#fff] hover:border-[#FFEBAD] hover:text-[#070b34] text-lg">
+                                <a href="{{ route('surat.warga') }}" class="flex text-[#070b34] border-l-[6px] border-[#fff] hover:border-[#FFEBAD] hover:text-[#070b34] text-lg">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-envelope mx-2" viewBox="0 0 16 16">
                                         <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
                                     </svg>
@@ -72,7 +72,7 @@
                         <div class="text-3xl">Profil Saya</div>
                         <div class="text-xl text-[#070b34] text-info-user">Pastikan identitas Anda sesuai dengan yang tertera di e-KTP</div>
                         <div class="divider"></div> 
-                        <form action="/profil/updateprofil/{{ Auth::user()->id }}" method="POST">
+                        <form action="{{ route('warga.update', ['warga' => Auth::user()->id_warga]) }}" method="POST">
                             @csrf
                             @method('PUT')
                                 <div class="text-label">Nama Lengkap</div>

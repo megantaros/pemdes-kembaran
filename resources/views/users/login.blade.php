@@ -11,6 +11,7 @@
     @vite('resources/js/app.js')
   </head>
   <body class="lg:h-screen h-[140vh] relative bg-[#F0F4F4]">
+
     <section id="login">
       <div class="flex justify-center">
         <div class="flex lg:flex-row flex-col shadow-lg form-login lg:w-4/5 w-4/5 lg:h-[60vh] rounded-lg overflow-hidden">
@@ -22,11 +23,11 @@
             </div>
           </div>
           <div class="lg:p-10 p-4 flex flex-col justify-start w-full bg-white">
-            <form action="/login" method="POST">
+            <form action="{{ route('attempt.warga') }}" method="POST">
               @csrf
                 <h2 class="font-bold lg:text-4xl text-xl lg:mb-4 mb-3">Login</h2> 
                 <div class="mb-2">
-                  <input type="text" placeholder="Masukkan Email Anda" class="lg:input-md input-sm lg:placeholder:text-lg placeholder:text-sm bg-[#F0F4F4] w-full rounded my-1 lg:text-md text-sm" name="email"/>
+                  <input type="text" placeholder="Masukkan Email Anda" class="lg:input-md input-sm placeholder:text-sm bg-[#F0F4F4] w-full rounded my-1 lg:text-md text-sm" name="email"/>
                   @error('email')
                   <div class="alert alert-error shadow-lg text-white w-full m-auto my-2">
                     <div>
@@ -36,7 +37,7 @@
                     </div>
                   </div>
                   @enderror
-                  <input type="password" placeholder="Masukkan Password Anda" class="lg:input-md input-sm lg:placeholder:text-lg placeholder:text-sm bg-[#F0F4F4] w-full rounded my-1 lg:text-md text-sm" name="password"/>
+                  <input type="password" placeholder="Masukkan Password Anda" class="lg:input-md input-sm placeholder:text-sm bg-[#F0F4F4] w-full rounded my-1 lg:text-md text-sm" name="password"/>
                   @error('password')
                   <div class="alert alert-error shadow-lg text-white w-full m-auto my-2">
                     <div>
@@ -48,17 +49,20 @@
                   @enderror
                 </div>
                 <div class="max-w-xs w-full mb-6"><a href="#" class="lg:text-md text-sm">Lupa password ?<a></div>
-                <input type="submit" class="btn-login rounded-md w-full text-md py-2" value="Masuk"/>
+                <button type="submit" class="btn-login rounded-md w-full text-md py-3">Masuk</button>
                 <div class="text-sm mt-5 text-center">Belum punya akun ? 
-                <span><a href="/daftar" class="font-semibold">Daftar disini!<a></span></div>
+                <span><a href="{{ route('register.warga') }}" class="font-semibold">Daftar disini!<a></span></div>
             </form>
           </div>
         </div>
       </div>
     </section>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
   </body>
+
   <script>
     @if (Session::has('success'))
       swal("{{ Session::get('success') }}", "Terima Kasih", "success");
@@ -69,4 +73,5 @@
       swal("Mohon Maaf", "{{ Session::get('error') }}", "error");
     @endif
   </script>
+
 </html>

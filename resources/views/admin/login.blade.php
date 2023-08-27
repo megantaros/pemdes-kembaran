@@ -26,7 +26,7 @@
               @csrf
                 <h2 class="font-bold lg:text-4xl text-xl lg:mb-4 mb-3">Login Admin</h2> 
                 <div class="mb-2">
-                  <input type="text" placeholder="Masukkan Email Anda" class="lg:input-md input-sm lg:placeholder:text-lg placeholder:text-sm bg-[#F0F4F4] w-full rounded my-1 lg:text-md text-sm" name="email"/>
+                  <input type="text" placeholder="Masukkan Email Anda" class="lg:input-md input-sm placeholder:text-sm bg-[#F0F4F4] w-full rounded my-1 lg:text-md text-sm" name="email"/>
                   @error('email')
                   <div class="alert alert-error shadow-lg text-white w-full m-auto my-2">
                     <div>
@@ -36,7 +36,7 @@
                     </div>
                   </div>
                   @enderror
-                  <input type="password" placeholder="Masukkan Password Anda" class="lg:input-md input-sm lg:placeholder:text-lg placeholder:text-sm bg-[#F0F4F4] w-full rounded my-1 lg:text-md text-sm" name="password"/>
+                  <input type="password" placeholder="Masukkan Password Anda" class="lg:input-md input-sm placeholder:text-sm bg-[#F0F4F4] w-full rounded my-1 lg:text-md text-sm" name="password"/>
                   @error('password')
                   <div class="alert alert-error shadow-lg text-white w-full m-auto my-2">
                     <div>
@@ -47,7 +47,7 @@
                   </div>
                   @enderror
                 </div>
-                <input type="submit" class="btn-login rounded-md w-full text-md py-2 mt-5" value="Masuk"/>
+                <button type="submit" class="btn-login rounded-md w-full text-md py-3 mt-5">Masuk</button>
             </form>
           </div>
         </div>

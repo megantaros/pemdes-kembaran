@@ -8,7 +8,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset('template/plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
@@ -32,10 +32,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@400;600&family=Viga&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/styleadmin.css') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@400;600&family=Viga&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@400;600&family=Viga&display=swap" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed font-weight-light">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -45,16 +45,19 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('dashboard') }}">Pemdes Kembaran</a>
+      </li>
+      {{-- <li class="nav-item d-none d-sm-inline-block">
         <a href="index3.html" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
-      </li>
+      </li> --}}
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+    {{-- <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
@@ -63,10 +66,10 @@
           </button>
         </div>
       </div>
-    </form>
+    </form> --}}
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
+    {{-- <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -157,14 +160,14 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li>
-    </ul>
+    </ul> --}}
   </nav>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ route('dashboard') }}" class="brand-link d-flex justify-content-start align-items-center">
         {{-- <div class="row">
             <div class="col-lg-3 text-center">
                 <img src="{{asset('assets/logo-kebumen.png')}}" alt="AdminLTE Logo">
@@ -174,8 +177,8 @@
                 <div class="brand text">Pemdes Kembaran</div>
             </div>
         </div> --}}
-        <img src="{{asset('assets/logo-kebumen.png')}}" alt="AdminLTE Logo" class="text-center">
-        <span class="brand-text font-weight-light">Admin Pelayanan</span>
+        <img src="{{asset('assets/logo-kebumen.png')}}" alt="AdminLTE Logo" class="text-center px-3">
+        <span class="brand-text font-weight-light text-md">Admin Pelayanan</span>
     </a>
 
     <!-- Sidebar -->
@@ -183,10 +186,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('template/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{asset('assets/asn.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block text-white">{{ Auth::guard('admin')->user()->name }}</a>
+          <a href="#" class="d-block text-white">Hi, {{ Auth::guard('admin')->user()->name }}</a>
         </div>
       </div>
 
@@ -232,7 +235,7 @@
           </li>
           <li class="nav-item">
             <a href="/logoutadmin" class="nav-link bg-danger">
-              <i class="nav-icon fa fa-sign"></i>
+              <i class="nav-icon fa fa-sign-out"></i>
               {{-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right text-xl" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
                 <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
@@ -252,11 +255,10 @@
 
   @yield('content')
   
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
+  <footer class="main-footer font-weight-light">
+    <strong>Copyright &copy; 2023 <a href="https://github.com/megantaros/pemdes-kembaran">Gita Megantara</a>.</strong>
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.4
+      <b>Pemdes Kembaran</b>
     </div>
   </footer>
 
