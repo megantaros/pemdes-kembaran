@@ -29,14 +29,11 @@ Route::prefix('auth')->group(function() {
 Route::middleware(['auth', 'web'])->group(function () {
     
     Route::prefix('auth-session')->group(function() {
-
+        
         Route::resource('warga', \App\Http\Controllers\Auth\WargaController::class);
-        Route::get('/lengkapi-profil', [\App\Http\Controllers\FrontendController::class, 'updateProfile'])->name('update.profile');
         Route::get('/permohonan-surat', [\App\Http\Controllers\FrontendController::class, 'suratWarga'])->name('surat.warga');
         Route::get('/info-akun', [\App\Http\Controllers\FrontendController::class, 'infoAkun'])->name('info.warga');
-        Route::get('/logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout.warga');
-
-        Route::resource('pengajuan-surat', \App\Http\Controllers\Auth\PengajuanSuratController::class);
+        Route::resource('pengajuan-surat', \App\Http\Controllers\Letters\PengajuanSuratController::class);
         Route::resource('pengantar-ktp', \App\Http\Controllers\Letters\SuratPengKtpController::class);
         Route::resource('pengantar-kk', App\Http\Controllers\Letters\SuratPengKkController::class);
         Route::resource('pengantar-skck', App\Http\Controllers\Letters\SuratPengSkckController::class);
@@ -45,6 +42,7 @@ Route::middleware(['auth', 'web'])->group(function () {
         Route::resource('keterangan-pindah', App\Http\Controllers\Letters\SuratKetPindahController::class);
         Route::resource('keterangan-datang', App\Http\Controllers\Letters\SuratKetDatangController::class);
         
+        Route::post('/logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout.warga');
     });
 
 });

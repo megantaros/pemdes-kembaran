@@ -8,6 +8,7 @@
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> --}}
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@400;600&family=Viga&display=swap" rel="stylesheet">
@@ -39,7 +40,7 @@
                     </li>
 
                     @guest
-                    <li tabindex="0">
+                    <li tabindex="0" class="z-10">
                         <a class="text-sm text-primary" style="background: #FFEBAD">
                             Masuk
                             <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
@@ -52,7 +53,7 @@
                     @endguest
 
                     @auth
-                    <li tabindex="0">
+                    <li tabindex="0" class="z-10">
                         <a class="text-sm text-primary" style="background: #FFEBAD">
                             Hi, {{ Auth::user()->name }}
                             <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
@@ -60,9 +61,10 @@
                         <ul class="p-2 text-[#06283D] navUl mt-1 bg-white">
                             <li><a href="{{ route('info.warga') }}">Info Profil</a></li>
                             <li>
-                                <form action="/logout" method="POST">
+                                <form action="{{ route('logout.warga') }}" method="POST">
                                     @csrf
-                                    <input type="submit" value="Logout"/>
+                                    @method('POST')
+                                    <button type="submit">Logout</button>
                                 </form>
                             </li>
                         </ul>
@@ -74,7 +76,7 @@
             <div class="flex-none lg:hidden block">
                 <ul class="menu menu-horizontal">
                     @guest
-                        <li tabindex="0">
+                        <li tabindex="0" class="z-10">
                             <a class="btn-ghost rounded-md">
                                 <i class="fa fa-bars text-2xl text-white"></i>
                             </a>
@@ -99,7 +101,7 @@
                     @endguest
 
                     @auth
-                    <li tabindex="0">
+                    <li tabindex="0" class="z-10">
                         <a>
                             <i class="fa fa-bars" aria-hidden="true"></i>
                         </a>
@@ -109,9 +111,10 @@
                             <li><a href="/layanan" class="navLi {{ Route::is('layanan') ? 'active' : '' }}">Layanan</a></li>
                             <li><a href="/kontak" class="navLi {{ Route::is('kontak') ? 'active' : '' }}">Kontak</a></li>
                             <li>
-                                <form action="/logout" class="navLi" method="POST">
+                                <form action="{{ route('logout.warga') }}" class="navLi" method="POST">
                                     @csrf
-                                    <input type="submit" value="Logout"/>
+                                    @method('POST')
+                                    <button type="submit">Logout</button>
                                 </form>
                             </li>
                         </ul>

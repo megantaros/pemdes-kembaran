@@ -22,9 +22,6 @@ class FrontendController extends Controller
     public function registerWarga() {
         return view('users.register');
     }
-    public function updateProfile() {
-        return view('users.updateprofile');
-    }
     public function suratWarga() {
         $id_warga = \Illuminate\Support\Facades\Auth::user()->id_warga;
         $data = \App\Models\User::join('surat_pengajuan', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')

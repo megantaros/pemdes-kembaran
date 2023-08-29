@@ -3,16 +3,27 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class WargaController extends Controller
 {
     //
-    public function update(Request $request, $id_warga) {
-        $data = User::find($id_warga)->first();
-        $data->update($request->all());
+    public function edit($id_warga) {
+        $data = \App\Models\User::find($id_warga);
 
-        return redirect()->route('info.warga')->with('success', 'Data Berhasil Diupdate !');
+        return view('users.updateprofile', ['id_warga' => $data->id_warga]);
+    }
+    public function update(Request $request, $id_warga) {
+        $data = \App\Models\User::find($id_warga);
+        $data->update($request->except(['password', 'conf_pass']));
+
+        if ($request->password != $request->conf_pass) {
+            return redirect()->back()->with('error', 'Password Tidak Sama !');
+        } else{
+            $data->password = bcrypt($request->password);
+            $data->save();
+        }
+        
+        return redirect()->back()->with('success', 'Data Berhasil Diupdate !');
     }
 }

@@ -57,13 +57,24 @@ class SuratPengKkController extends Controller
         return redirect()->route('surat.warga')->with('success', 'Data Berhasil Dikirim');   
     }
     public function show($id) {
-        $data = \App\Models\SuratPengKk::find($id)->firstOrFail();
+
+        $data = \App\Models\SuratPengajuan::where('id_surat', $id)
+            ->join('surat_peng_kk', 'surat_pengajuan.id_surat', '=', 'surat_peng_kk.id_surat_peng_kk')
+            ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
+            ->where('surat_pengajuan.jenis_surat', 'Surat Pengantar KK')
+            ->select('surat_pengajuan.*', 'surat_peng_kk.*', 'warga.name', 'warga.nik', 'warga.alamat')
+            ->first();    
+
+        // $data->tanggal_surat = date('d-m-Y', strtotime($data->tanggal_surat));
         return view('users.detailsuratkk', compact('data'));
         // dd($data);
     }
-    public function edit(Request $request, $id){
+    public function update(Request $request, $id){
         $data = \App\Models\SuratPengKk::find($id);
-        $data->update($request->all());
+        $data->update($request->except([
+            'keterangan_warga'
+        ]));
+
         if ($request->hasFile('foto_ktp'))
             {
             $request->file('foto_ktp')->move('berkaspemohon/', $request->file('foto_ktp')->getClientOriginalName());
@@ -88,6 +99,22 @@ class SuratPengKkController extends Controller
             $data->fc_buku_nikah = $request->file('fc_buku_nikah')->getClientOriginalName();
             $data->save();
             };
-        return redirect('/profil/suratsaya')->with('success', 'Sukses Edit Data Surat!');
+
+
+        $keteranganWarga = $request->input('keterangan_warga');
+
+        if ($keteranganWarga != null) {
+
+            $suratPengajuan = \App\Models\SuratPengajuan::where('id_surat', $id)
+                ->where('jenis_surat', 'Surat Pengantar KK')
+                ->first();
+                
+            $suratPengajuan->update([
+                'keterangan_warga' => $request->keterangan_warga,
+            ]);
+
+        }
+
+        return redirect()->back()->with('success', 'Sukses Edit Data Surat!');
     }
 }

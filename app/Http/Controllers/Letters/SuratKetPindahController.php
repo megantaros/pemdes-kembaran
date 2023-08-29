@@ -56,12 +56,19 @@ class SuratKetPindahController extends Controller
         return redirect()->route('surat.warga')->with('success', 'Data Berhasil Dikirim');   
     }
     public function show($id) {
-        $data = \App\Models\SuratKetPindah::find($id);
+        $data = \App\Models\SuratPengajuan::where('id_surat', $id)
+            ->join('surat_ket_pindah', 'surat_pengajuan.id_surat', '=', 'surat_ket_pindah.id_surat_ket_pindah')
+            ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
+            ->where('surat_pengajuan.jenis_surat', 'Surat Keterangan Pindah')
+            ->select('surat_pengajuan.*', 'surat_ket_pindah.*', 'warga.name', 'warga.nik', 'warga.alamat')
+            ->first();   
+
         return view('users.detailsuratpindah', compact('data'));
     }
     public function update(Request $request, $id) {
         $data = \App\Models\SuratKetPindah::find($id);
-        $data->update($request->all());
+        $data->update($request->except(['keterangan_warga']));
+
         if($request->hasFile('foto_ktp')){
             $request->file('foto_ktp')->move('berkaspemohon/', $request->file('foto_ktp')->getClientOriginalName());
             $data->foto_ktp = $request->file('foto_ktp')->getClientOriginalName();
@@ -83,6 +90,20 @@ class SuratKetPindahController extends Controller
                 'lainnya' => null
             ]);
         }
-        return redirect()->route('surat.warga')->with('success', 'Sukses Edit Data Surat!');
+
+        $keteranganWarga = $request->input('keterangan_warga');
+
+        if ($keteranganWarga != null) {
+
+            $suratPengajuan = \App\Models\SuratPengajuan::where('id_surat', $id)
+                ->where('jenis_surat', 'Surat Keterangan Pindah')
+                ->first();
+                
+            $suratPengajuan->update([
+                'keterangan_warga' => $request->keterangan_warga,
+            ]);
+
+        }
+        return redirect()->back()->with('success', 'Sukses Edit Data Surat!');
     }
 }

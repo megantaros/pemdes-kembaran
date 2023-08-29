@@ -1,8 +1,10 @@
 
 @extends('layout.profil')
 
+@section('title', 'Surat Keterangan Pindah Datang')
+
 @section('content')
-    <section id="headerService">
+    {{-- <section id="headerService">
         <div class="lg:h-[400px] h-[200px] relative" style="background: #022E57; color: #06283D;">
             <div class="container absolute py-14 left-1/2 transform -translate-x-1/2">
                 <div class="flex lg:flex-row flex-col gap-4">
@@ -117,5 +119,106 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
+<div class="lg:col-span-3">
+    <div class="card bg-white min-h-screen shadow-lg">
+        <div class="card-body">
+
+            <div>
+                <h2 class="lg:text-lg md:text-sm text-sm font-semibold">Detail Surat Keterangan Domisili</h2>
+                <div class="flex">
+                    <p class="lg:text-md md:text-sm text-sm" style="font-family: Poppins">Pastikan identitas Anda sesuai dengan yang tertera di e-KTP</p>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            @php
+            $statusSurat = $data->status;
+            @endphp
+
+            <form action="{{ route('keterangan-datang.update', ['keterangan_datang' => $data->id_surat_ket_pindah_datang]) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+
+                <div class="p-4 bg-slate-200 rounded-lg gap-1 grid lg:grid-cols-2">
+
+                    <div>
+                        <div class="text-label text-sm">Nama Lengkap *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->name }}" readonly/>
+                    </div>
+
+                    <div>
+                        <div class="text-label text-sm">NIK *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" readonly/>
+                    </div>
+
+                    <div class="lg:col-span-2">
+                        <div class="text-label text-sm">Alamat *</div>
+                        <textarea class="textarea textarea-primary w-full placeholder:text-sm" readonly>{{ $data->alamat }}</textarea>
+                    </div>
+
+                    <div class="p-4 bg-white rounded-lg relative lg:col-span-2 flex items-center border-[#9CB4CC] border-2 my-1">
+    
+                        <div class="flex-1">
+    
+                            <label for="fileUpload1" class="text-label text-sm custom-file-upload cursor-pointer flex gap-2 items-center hover:underline">
+                                <i class="fa fa-upload" aria-hidden="true"></i>
+                                <span>Upload Surat Keterangan Datang dari Capil</span>
+                            </label>
+                            <input type="file" id="fileUpload1" class="hidden" accept="image/png, image/jpeg" name="foto_surat_ket_pindah_capil" />
+
+                            <p class="text-sm font-semibold mt-2">{{ $data->foto_surat_ket_pindah_capil != null ? $data->foto_surat_ket_pindah_capil : 'Belum Upload File' }}</p>
+                        </div>
+    
+                        <a href="{{ url('berkaspemohon/'. $data->foto_surat_ket_pindah_capil ) }}" target="__blank" class="text-sm hover:underline text-blue-600">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            <span>Lihat Gambar</span>
+                        </a>
+    
+                    </div>
+
+                    <div class="p-4 bg-white rounded-lg relative lg:col-span-2 flex items-center border-[#9CB4CC] border-2 my-1">
+    
+                        @php
+                            $keteranganAdmin = $data->keterangan_admin;
+
+                            if($keteranganAdmin == null) {
+                                $keteranganAdmin = 'Belum ada keterangan dari admin';
+                            }
+                        @endphp
+
+                        <div class="text-label text-sm">Keterangan Admin *</div>
+                        <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1" readonly>{{ $keteranganAdmin  }}</textarea>
+
+                    </div>
+
+                    <div class="p-4 bg-white rounded-lg relative lg:col-span-2 flex items-center border-[#9CB4CC] border-2 my-1">
+
+                        <div class="text-label text-sm">Keterangan Warga *</div>
+                        <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1" placeholder="Tambah Keterangan (Optional)" name="keterangan_warga">{{ $data->keterangan_warga }}</textarea>
+
+                    </div>
+
+                    <div class="lg:col-span-2">
+                        <button type="submit" class="{{ $statusSurat == 'Diterima' || $statusSurat == 'Ditolak' ? 'hidden' : 'btn btn-warning w-full text-white font-normal capitalize' }}">Update</button>
+                    </div>
+
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('script')
+<script>
+    $('#fileUpload1').change(function() {
+        var i = $(this).prev('label').clone();
+        var file = $('#fileUpload1')[0].files[0].name;
+        $(this).prev('label').text('File yang ingin anda upload : ' + file).css("color", "orange");
+    });
+</script>
 @endsection

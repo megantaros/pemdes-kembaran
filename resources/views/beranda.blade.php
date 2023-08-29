@@ -154,13 +154,26 @@
         <dialog class="modal w-full h-full" id="my_modal_1">
             <div class="modal-box font-normal">
                 <div class="flex flex-col gap-4">
-                    <div class="alert alert-info justify-start">
+                    {{-- <div class="alert alert-info justify-start">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <span>Dokumen yang dibutuhkan:</span>
+                    </div> --}}
+
+                    <div class="p-4 rounded-lg bg-info text-center text-primary">
+                        <h2 class="text-lg font-semibold">
+                            <i class="fas fa-file"></i>
+                            <span>
+                                Info Dokumen
+                            </span>
+                        </h2>
+                        <p class="text-sm mt-2" style="font-family: Poppins">
+                            Pastikan dokumen yang Anda lampirkan sesuai dengan persyaratan
+                        </p>
                     </div>
+
                     <div class="card bg-white text-left border-0">
-                        <div class="card-body bg-slate-200 rounded-lg text-sm" style="font-family: Poppins">
-                            <ul>
+                        <div class="card-body bg-slate-200 rounded-lg" style="font-family: Poppins">
+                            <ul class="leading-6">
                                 <li>Surat Pengantar RT</li>
                                 <li>KTP Asli</li>
                                 <li>KK Asli</li>
@@ -178,13 +191,26 @@
         <dialog class="modal w-full h-full" id="my_modal_2">
             <div class="modal-box font-normal">
                 <div class="flex flex-col gap-4">
-                    <div class="alert alert-info justify-start">
+                    {{-- <div class="alert alert-info justify-start">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <span>Dokumen yang dibutuhkan:</span>
+                    </div> --}}
+
+                    <div class="p-4 rounded-lg bg-info text-center text-primary">
+                        <h2 class="text-lg font-semibold">
+                            <i class="fas fa-file"></i>
+                            <span>
+                                Info Dokumen
+                            </span>
+                        </h2>
+                        <p class="text-sm mt-2" style="font-family: Poppins">
+                            Pastikan dokumen yang Anda lampirkan sesuai dengan persyaratan
+                        </p>
                     </div>
+
                     <div class="card bg-white text-left border-0">
-                        <div class="card-body bg-slate-200 rounded-lg text-sm" style="font-family: Poppins">
-                            <ul>
+                        <div class="card-body bg-slate-200 rounded-lg" style="font-family: Poppins">
+                            <ul class="leading-6">
                                 <li>Surat Pengantar RT</li>
                                 <li>Fotokopi KTP</li>
                                 <li>Fotokopi KK</li>
@@ -202,13 +228,26 @@
         <dialog class="modal w-full h-full" id="my_modal_3">
             <div class="modal-box font-normal">
                 <div class="flex flex-col gap-4">
-                    <div class="alert alert-info justify-start">
+                    {{-- <div class="alert alert-info justify-start">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <span>Dokumen yang dibutuhkan:</span>
+                    </div> --}}
+
+                    <div class="p-4 rounded-lg bg-info text-center text-primary">
+                        <h2 class="text-lg font-semibold">
+                            <i class="fas fa-file"></i>
+                            <span>
+                                Info Dokumen
+                            </span>
+                        </h2>
+                        <p class="text-sm mt-2" style="font-family: Poppins">
+                            Pastikan dokumen yang Anda lampirkan sesuai dengan persyaratan
+                        </p>
                     </div>
+
                     <div class="card bg-white text-left border-0">
-                        <div class="card-body bg-slate-200 rounded-lg text-sm" style="font-family: Poppins">
-                            <ul>
+                        <div class="card-body bg-slate-200 rounded-lg" style="font-family: Poppins">
+                            <ul class="leading-6">
                                 <li>Surat Pengantar RT</li>
                                 <li>Fotokopi KTP</li>
                             </ul>
@@ -224,13 +263,26 @@
         <dialog class="modal w-full h-full" id="my_modal_4">
             <div class="modal-box font-normal">
                 <div class="flex flex-col gap-4">
-                    <div class="alert alert-info justify-start">
+                    {{-- <div class="alert alert-info justify-start">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <span>Dokumen yang dibutuhkan:</span>
+                    </div> --}}
+
+                    <div class="p-4 rounded-lg bg-info text-center text-primary">
+                        <h2 class="text-lg font-semibold">
+                            <i class="fas fa-file"></i>
+                            <span>
+                                Info Dokumen
+                            </span>
+                        </h2>
+                        <p class="text-sm mt-2" style="font-family: Poppins">
+                            Pastikan dokumen yang Anda lampirkan sesuai dengan persyaratan
+                        </p>
                     </div>
+
                     <div class="card bg-white text-left border-0">
-                        <div class="card-body bg-slate-200 rounded-lg text-sm" style="font-family: Poppins">
-                            <ul>
+                        <div class="card-body bg-slate-200 rounded-lg" style="font-family: Poppins">
+                            <ul class="leading-6">
                                 <li>Surat Pengantar RT</li>
                                 <li>Fotokopi KTP</li>
                                 <li>Fotokopi KK</li>
@@ -248,13 +300,26 @@
         <dialog class="modal w-full h-full" id="my_modal_5">
             <div class="modal-box font-normal">
                 <div class="flex flex-col gap-4">
-                    <div class="alert alert-info justify-start">
+                    {{-- <div class="alert alert-info justify-start">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <span>Dokumen yang dibutuhkan:</span>
+                    </div> --}}
+
+                    <div class="p-4 rounded-lg bg-info text-center text-primary">
+                        <h2 class="text-lg font-semibold">
+                            <i class="fas fa-file"></i>
+                            <span>
+                                Info Dokumen
+                            </span>
+                        </h2>
+                        <p class="text-sm mt-2" style="font-family: Poppins">
+                            Pastikan dokumen yang Anda lampirkan sesuai dengan persyaratan
+                        </p>
                     </div>
+
                     <div class="card bg-white text-left border-0">
-                        <div class="card-body bg-slate-200 rounded-lg text-sm" style="font-family: Poppins">
-                            <ul>
+                        <div class="card-body bg-slate-200 rounded-lg" style="font-family: Poppins">
+                            <ul class="leading-6">
                                 <li>Surat Pengantar RT</li>
                                 <li>KTP Asli</li>
                                 <li>KK Asli</li>
@@ -271,13 +336,26 @@
         <dialog class="modal w-full h-full" id="my_modal_6">
             <div class="modal-box font-normal">
                 <div class="flex flex-col gap-4">
-                    <div class="alert alert-info justify-start">
+                    {{-- <div class="alert alert-info justify-start">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <span>Dokumen yang dibutuhkan:</span>
+                    </div> --}}
+
+                    <div class="p-4 rounded-lg bg-info text-center text-primary">
+                        <h2 class="text-lg font-semibold">
+                            <i class="fas fa-file"></i>
+                            <span>
+                                Info Dokumen
+                            </span>
+                        </h2>
+                        <p class="text-sm mt-2" style="font-family: Poppins">
+                            Pastikan dokumen yang Anda lampirkan sesuai dengan persyaratan
+                        </p>
                     </div>
+
                     <div class="card bg-white text-left border-0">
-                        <div class="card-body bg-slate-200 rounded-lg text-sm" style="font-family: Poppins">
-                            <ul>
+                        <div class="card-body bg-slate-200 rounded-lg" style="font-family: Poppins">
+                            <ul class="leading-6">
                                 <li>Surat Keterangan Pindah yang dikeluarkan oleh Kantor Capil</li>
                             </ul>
                         </div>
@@ -315,7 +393,7 @@
             </div>
             <div class="h-16 w-full mb-7"></div>
             <div class="rowMission lg:px-12 px-6">
-                <ul>
+                <ul class="leading-6">
                     <li>Meningkatkan sarana pertanian dan perekonomian yang ada di desa.</li>
                     <li>Menyelenggarakan sistem pelayanan dasar dalam Bidang Pemerintahan, Pembangunan dan Kemasyarakatan secara adil dan transparan.</li>
                     <li>Mendorong tercapainya Lembaga Perekonomian Desa yang profesional dan meningkatkan derajat kehidupan masyarakat.</li>

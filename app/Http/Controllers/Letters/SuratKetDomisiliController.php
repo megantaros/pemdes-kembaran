@@ -59,12 +59,19 @@ class SuratKetDomisiliController extends Controller
     }
 
     public function show($id) {
-        $data = \App\Models\Domisili::findOrFail($id);
+        $data = \App\Models\SuratPengajuan::where('id_surat', $id)
+            ->join('surat_ket_domisili', 'surat_pengajuan.id_surat', '=', 'surat_ket_domisili.id_surat_ket_domisili')
+            ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
+            ->where('surat_pengajuan.jenis_surat', 'Surat Keterangan Domisili')
+            ->select('surat_pengajuan.*', 'surat_ket_domisili.*', 'warga.name', 'warga.nik', 'warga.alamat')
+            ->first();   
+
         return view('users.detailsuratdomisili', compact('data'));
     }
     public function update(Request $request, $id) {
         $data = \App\Models\Domisili::find($id);
-        $data->update($request->all());
+        $data->update($request->except(['keterangan_warga']));
+
         if ($request->hasFile('fc_ktp'))
             {
             $request->file('fc_ktp')->move('berkaspemohon/', $request->file('fc_ktp')->getClientOriginalName());
@@ -90,6 +97,20 @@ class SuratKetDomisiliController extends Controller
             $data->save();
             };
 
-        return redirect()->route('surat.warga')->with('success', 'Sukses Edit Data Surat!');
+        $keteranganWarga = $request->input('keterangan_warga');
+
+        if ($keteranganWarga != null) {
+
+            $suratPengajuan = \App\Models\SuratPengajuan::where('id_surat', $id)
+                ->where('jenis_surat', 'Surat Keterangan Domisili')
+                ->first();
+                
+            $suratPengajuan->update([
+                'keterangan_warga' => $request->keterangan_warga,
+            ]);
+
+        }
+        
+        return redirect()->back()->with('success', 'Sukses Edit Data Surat!');
     }
 }

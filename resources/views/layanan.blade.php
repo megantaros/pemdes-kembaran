@@ -94,15 +94,15 @@
 
                     <div>
                         <div class="text-label text-sm">Nama *</div>
-                        <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-info w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ Auth::user()->name }}"/>
+                        <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ Auth::user()->name }}" readonly/>
 
                         <div class="text-label text-sm">NIK *</div>
-                        <input type="text" placeholder="Masukkan NIK" class="input input-bordered input-info w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ Auth::user()->nik }}"/>
+                        <input type="text" placeholder="Masukkan NIK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ Auth::user()->nik }}" readonly/>
                     </div>
 
                     <div>
                         <div class="text-label text-sm">Nomor HP *</div>
-                        <input type="text" placeholder="Masukkan Nomor Telephone" class="input input-bordered input-info w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm"/>
+                        <input type="text" placeholder="Masukkan Nomor Telephone" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ Auth::user()->notelpon }}" readonly/>
 
                         <div class="text-label text-sm">Pilih Jenis Surat *</div>
                         <select class="select select-primary w-full my-1" name="jenis_surat">
@@ -123,42 +123,6 @@
                 </form>
             </div>
         </div>
-        {{-- <div class="card lg:card-side bg-base-100 shadow-xl border-none">
-            <div class="card-body">
-            <form action="{{ route('pengajuan-surat.store') }}" method="POST">
-                @csrf
-                @method('POST')
-                <h1 class="card-title lg:text-3xl text-2xl  w-100 flex justify-center">Pengajuan Surat Online</h1>
-                <p class="p-pengajuan lg:text-lg text-md font-medium">Isi form pengajuan surat di bawah ini!</p>
-                <div class="grid lg:grid-cols-2 text-left gap-4 mt-8">
-                    <div>
-                        <div class="text-label">Nama *</div>
-                        <input type="hidden" placeholder="Masukkan Nama" class="input input-bordered input-info w-full my-1 read-only:bg-[#9cb4cc]" value="{{ Auth::user()->id_warga }}" readonly name="id_warga"/>
-                        <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-info w-full my-1 read-only:bg-[#9cb4cc]" value="{{ Auth::user()->name }}" readonly/>
-                        <div class="text-label">NIK *</div>
-                        <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-info w-full my-1 read-only:bg-[#9cb4cc]" value="{{ Auth::user()->nik }}" readonly/>
-                    </div>
-                    <div>
-                        <div class="text-label">Nomor HP *</div>
-                        <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-info w-full my-1 read-only:bg-[#9cb4cc]" value="{{ Auth::user()->notelpon }}" readonly/>
-                        <div class="text-label">Pilih Jenis Surat *</div>
-                        <select class="select select-primary w-full my-1" name="jenis_surat">
-                            <option value="Surat Pengantar KTP">Surat Pengantar KTP</option>
-                            <option value="Surat Pengantar KK">Surat Pengantar KK</option>
-                            <option value="Surat Pengantar SKCK">Surat Pengantar SKCK</option>
-                            <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
-                            <option value="Surat Keterangan Usaha">Surat Keterangan Usaha</option>
-                            <option value="Surat Keterangan Pindah">Surat Keterangan Pindah</option>
-                            <option value="Surat Keterangan Pindah Datang">Surat Keterangan Pindah Datang</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="card-actions justify-end mt-8">
-                    <button type="submit" class="btn btn-primary w-25 text-white font-normal capitalize text-xl">Buat</button>
-                </div>
-            </form>
-            </div>
-        </div> --}}
         @endauth
     </div>
 </section>

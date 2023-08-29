@@ -45,14 +45,24 @@ class SuratPengSkckController extends Controller
     }
 
     public function show($id) {
-        $data = \App\Models\Skck::findOrFail($id);
-        // dd($id_warga);
+
+        $data = \App\Models\SuratPengajuan::where('id_surat', $id)
+            ->join('surat_peng_skck', 'surat_pengajuan.id_surat', '=', 'surat_peng_skck.id_surat_peng_skck')
+            ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
+            ->where('surat_pengajuan.jenis_surat', 'Surat Pengantar SKCK')
+            ->select('surat_pengajuan.*', 'surat_peng_skck.*', 'warga.name', 'warga.nik', 'warga.alamat')
+            ->first();    
+
         return view('users.detailsuratskck', compact('data'));
+        // $data->tanggal_surat = date('d-m-Y', strtotime($data->tanggal_surat));
+        // dd($data);
     }
 
-    public function update(Request $request, $id_surat_peng_skck) {
-        $data = \App\Models\Skck::find($id_surat_peng_skck);
-        $data->update($request->all());
+    public function update(Request $request, $id) {
+        $data = \App\Models\Skck::find($id);
+        $data->update($request->except(['keterangan_warga']));
+
+
         if ($request->hasFile('fc_ktp'))
             {
             $request->file('fc_ktp')->move('berkaspemohon/', $request->file('fc_ktp')->getClientOriginalName());
@@ -66,7 +76,21 @@ class SuratPengSkckController extends Controller
             $data->save();
             };
 
+        $keteranganWarga = $request->input('keterangan_warga');
+
+        if ($keteranganWarga != null) {
+
+            $suratPengajuan = \App\Models\SuratPengajuan::where('id_surat', $id)
+                ->where('jenis_surat', 'Surat Pengantar SKCK')
+                ->first();
+                
+            $suratPengajuan->update([
+                'keterangan_warga' => $request->keterangan_warga,
+            ]);
+
+        }
+
             // dd($data);
-        return redirect()->route('surat.warga')->with('success', 'Sukses Edit Data Surat!');
+        return redirect()->back()->with('success', 'Sukses Edit Data Surat!');
     }
 }
