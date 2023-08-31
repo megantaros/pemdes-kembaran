@@ -1,78 +1,107 @@
 
 @extends('layout.admin')
 
-@section('content')
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Detail Surat Keterangan Pindah Datang</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="dashboardadmin">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+@section('title', 'Detail Surat Keterangan Pindah Datang')
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="card p-4">
-                <div class="text-lg mb-2">Blanko Pemohon Surat Keterangan Pindah Datang</div>
-                <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">Form</th>
-                        <th scope="col">Identitas Pemohon</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">Nama</th>
-                        <td><input type="username" class="form-control" id="exampleInputEmail1" value="{{$data->name}}" readonly></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">NIK</th>
-                        <td><input type="username" class="form-control" id="exampleInputEmail1" value="{{ $data->nik }}" readonly></td>
-                      </tr>
-                        <th scope="row">Foto Surat Keterangan Pindah yang Dikeluarkan oleh CAPIL</th>
-                        <td>
-                            <img src="{{ asset('berkaspemohon/'.$data->foto_surat_ket_pindah_capil) }}" class="w-50 border rounded" />
-                        </td>
-                      </tr>
-                      {{-- <tr>
-                        <th scope="row">Status Surat</th>
-                        <td><input type="username" class="form-control" id="exampleInputEmail1" value="{{$domisili->status}}" readonly></td>
-                      </tr> --}}
-                      <tr>
-                        <th scope="row">Aksi</th>
-                        @if( $data->jenis_surat == 'Surat Keterangan Pindah Datang' )
-                        <td>
-                            <form class="d-flex justify-content-center my-3" action="/dashboard/detailsurat/{{ $data->id }}/update" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <button type="submit" class="btn btn-success mx-1 px-3 py-2 text-md text-white shadow" name="status" value="Diterima"><i class="ion-checkmark-round mr-3"></i>Terima</button>
-                                <button type="submit" name="status" value="Ditolak" class="btn btn-danger mx-1 px-3 py-2 text-md text-white shadow"><i class="ion-close mr-3"></i>Tolak</button>
-                                <a href="" class="btn btn-info mx-1 px-3 py-2 text-md text-white shadow"><i class="ion-printer mr-3"></i>Cetak</a>
-                            </form>
-                        </td>
-                        @endif
-                      </tr>
-                    </tbody>
-                </table>
+@section('content')
+<div class="grid lg:grid-cols-6 gap-4">
+
+  <div class="lg:col-span-4 md:col-span-6 col-span-6">
+    <div class="card bg-white shadow-lg">
+      <div class="card-body p-4">
+        
+        <div class="bg-slate-200 p-4 rounded-lg">
+          <div class="gap-1 grid lg:grid-cols-2">
+  
+            <div>
+                <div class="text-label text-sm">Nama Lengkap *</div>
+                <input type="text" class="input input-bordered input-primary w-full my-1 placeholder:text-sm read-only:bg-white" value="{{ $data->name }}" disabled/>
             </div>
-        </div><!-- /.container-fluid -->
-      </section>
-    </section>
-    <!-- /.content -->
+  
+            <div>
+                <div class="text-label text-sm">NIK *</div>
+                <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" disabled/>
+            </div>
+  
+            <div class="lg:col-span-2">
+                <div class="text-label text-sm">Alamat *</div>
+                <textarea class="textarea textarea-primary w-full placeholder:text-sm">{{ $data->alamat }}</textarea>
+            </div>
+  
+            <div class="p-4 bg-white rounded-lg relative lg:col-span-2 flex items-center border-[#9CB4CC] border-2 my-1">
+  
+                <div class="flex flex-1 items-center gap-4">
+  
+                  <div class="h-20 border-2 bg-primary rounded-lg p-2 overflow-hidden w-32">
+                    <img src="{{ url('berkaspemohon/'. $data->foto_surat_ket_pindah_capil ) }}" alt="Surat Keterangan Pindah dari Capil" class="rounded-sm h-20 object-cover m-auto">
+                  </div>
+  
+                  <div>
+                    <h2 class="font-semibold">Surat Keterangan Pindah dari Capil</h2>
+                    <p class="text-sm font-semibold text-gray-500">{{ $data->foto_surat_ket_pindah_capil != null ? $data->foto_surat_ket_pindah_capil : 'Belum Upload File' }}</p>
+                  </div>
+  
+                </div>
+  
+                <a href="{{ url('berkaspemohon/'. $data->foto_surat_ket_pindah_capil ) }}" target="__blank" class="text-sm hover:underline text-blue-600">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    <span>Lihat Gambar</span>
+                </a>
+  
+            </div>
+  
+            <div class="p-4 bg-white rounded-lg relative lg:col-span-2 flex items-center border-[#9CB4CC] border-2 my-1">
+  
+                @php
+                    $keteranganWarga = $data->keterangan_warga;
+  
+                    if($keteranganWarga == null) {
+                        $keteranganWarga = 'Belum ada keterangan dari warga';
+                    }
+                @endphp
+  
+                <div class="text-label text-sm">Keterangan Warga *</div>
+                <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1 disabled:bg-white">{{ $keteranganWarga  }}</textarea>
+  
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
   </div>
-  <!-- /.content-wrapper -->
+
+  <div class="col-span-2">
+    <div class="card bg-white">
+      <div class="card-body p-4">
+
+        <form action="{{ route('validasi-surat.update', ['validasi_surat' => $data->id]) }}" method="POST" class="p-4 bg-slate-200 rounded-md">
+          @csrf
+          @method('PUT')
+          
+          <div class="text-label text-sm">Tambah Keterangan *</div>
+          <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1" placeholder="Tambah Keterangan (Optional)" name="keterangan_admin">{{ $data->keterangan_admin }}</textarea>
+  
+          <div class="text-label text-sm">Status Surat *</div>
+          <select class="select select-bordered w-full select-primary" name="status">
+            <option value="{{ $data->status }}" selected disabled>{{ $data->status }}</option>
+            <option value="Diterima">Diterima</option>
+            <option value="Ditolak">Ditolak</option>
+          </select>
+
+          <div class="mt-4">
+            <button type="submit" class="btn btn-success capitalize font-normal w-full flex items-center gap-2">
+              <i class="fa fa-check" aria-hidden="true"></i>
+              <span>Simpan</span>
+            </button>
+          </div>
+
+        </form>
+        
+      </div>
+    </div>
+  </div>
+
+</div>
 @endsection

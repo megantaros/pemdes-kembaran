@@ -9,7 +9,8 @@ class PengajuanSuratController extends Controller
 {
     //
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         $jenisSurat = $request->jenis_surat;
 
@@ -43,19 +44,22 @@ class PengajuanSuratController extends Controller
 
     }
 
-    public function edit($id) {
-        $data = \App\Models\SuratPengajuan::find($id);
-        return view('users.editsuratpengajuan', compact('data'));
-    }
+    // public function edit($id)
+    // {
+    //     $data = \App\Models\SuratPengajuan::find($id);
+    //     return view('users.editsuratpengajuan', compact('data'));
+    // }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $data = \App\Models\SuratPengajuan::find($id);
         $data->update($request->all());
 
         return redirect()->back()->with('success', 'Data Berhasil Diubah');
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $data = \App\Models\SuratPengajuan::find($id);
         $data->delete();
 
@@ -93,7 +97,7 @@ class PengajuanSuratController extends Controller
             $datang = \App\Models\SuratKetPindahDatang::find($data->id_surat);
             $datang->delete();
         }
-        
+
         return redirect()->route('surat.warga')->with('success', 'Data Berhasil Dihapus');
     }
 }

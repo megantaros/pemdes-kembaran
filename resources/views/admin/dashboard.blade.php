@@ -1,200 +1,53 @@
 @extends('layout.admin')
 
+@section('title', 'Dashboard')
+
+@section('dashboardActive', 'bg-[#e5e7eb] bg-opacity-20')
+
 @section('content')
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-              <li class="breadcrumb-item active">Admin</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+<div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 gap-4">
+
+  <div class="card bg-white rounded-none border-l-4 border-primary shadow-lg">
+    <div class="card-body p-4">
+      <div class="card-title">Surat Masuk</div>
+      <div class="p-4 bg-slate-200 rounded-md flex items-center justify-between">
+        <i class="fas fa-inbox fa-2x text-slate-500"></i>
+        <h2 class="font-bold text-xl">{{ $suratMasuk }}</h2>
+      </div>
     </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-4 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>{{ $surat_masuk }}</h3>
-
-                <p>Surat Masuk</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-archive"></i>
-              </div>
-              <a href="{{ route('suratmasuk') }}" class="small-box-footer">Lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-4 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>{{ $surat_keluar }}</h3>
-
-                <p>Surat Keluar</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-android-print"></i>
-              </div>
-              <a href="{{ route('suratkeluar') }}" class="small-box-footer">Lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-4 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>{{ $surat_ditolak }}</h3>
-
-                <p>Surat Ditolak</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-paper-airplane"></i>
-              </div>
-              <a href="{{ route('suratditolak') }}" class="small-box-footer">Lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          {{-- <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
-
-                <p>Unique Visitors</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div> --}}
-          <!-- ./col -->
-        </div>
-        <!-- /.row -->
-        <!-- Main row -->
-        <div class="row">
-          <div class="container-fluid">
-            <div class="card p-4">
-              <div class="text-xl mb-2">Daftar Pemohon Surat</div>
-                <form action="/dashboard">
-                  <div class="input-group mb-3 w-50">
-                    {{-- <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-search"></i></span>
-                    </div> --}}
-                    <input type="text" name="search" class="form-control rounded" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                    <button type="submit" class="btn btn-primary ml-2"><i class="fa fa-search mr-2" aria-hidden="true"></i>Cari Pemohon</button>
-                  </form>
-                </div>
-                <table class="table table-striped">
-                    <thead>
-                      <tr class="text-center">
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">NIK</th>
-                        <th scope="col">Jenis Surat</th>
-                        <th scope="col">Alamat</th>
-                        <th scope="col">Tanggal Pengajuan</th>
-                        <th scope="col">Status Surat</th>
-                        <th scope="col">Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        {{-- <?php $no=1 ?> --}}
-                        @foreach ($data as $index => $surat)
-                        <tr>
-                            <th scope="row"><div class="text-md py-2">{{ $index + $data->firstItem() }}</div></th>
-                            <td><div class="text-md py-2">{{ $surat->name }}</div></td>
-                            <td><div class="text-md py-2 text-center">{{ $surat->nik }}</div></td>
-                            <td><div class="text-md py-2">{{ $surat->jenis_surat }}</div></td>
-                            <td><div class="text-md py-2">{{ $surat->alamat }}</div></td>
-                            <td><div class="text-md py-2 text-center">{{ $surat->tanggal }}</div></td>
-                            <td class="text-center">
-                              @if ( $surat->status == 'Terkirim' )
-                              <button class="btn btn-info text-md">Terkirim</button>
-                              @elseif ( $surat->status == 'Diterima' )
-                              <button class="btn btn-success text-md">Diterima</button>
-                              @else
-                              <button class="btn btn-danger text-md">Ditolak</button>
-                              @endif
-                              {{-- <form action="/dashboard/{{ $surat->id }}/update"></form>
-                                <select class="form-control">
-                                  <option selected>{{ $surat->status }}</option>
-                                  <option value="Diterima">Diterima</option>
-                                  <option value="Ditolak">Ditolak</option>
-                                </select>
-                              </form> --}}
-                            </td>
-                            <td class="d-flex justify-content-center">
-                              @if( $surat->jenis_surat == 'Surat Pengantar KTP' )
-                              <a href="/dashboard/detailsuratktp/{{ $surat->id_warga }}" class="btn btn-warning d-flex justify-content-center align-items-center text-lg mr-2 text-white px-3 py-0">
-                                <i class="ion-ios-email-outline mr-2 text-xl"></i>
-                                <span class="text-md">Detail Surat</span>
-                              </a>
-                              @elseif( $surat->jenis_surat == 'Surat Pengantar KK' )
-                              <a href="/dashboard/detailsuratkk/{{ $surat->id_warga }}" class="btn btn-warning d-flex justify-content-center align-items-center text-lg mr-2 text-white px-3 py-0">
-                                <i class="ion-ios-email-outline mr-2 text-xl"></i>
-                                <span class="text-md">Detail Surat</span>
-                              </a>
-                              @elseif( $surat->jenis_surat == 'Surat Pengantar SKCK' )
-                              <a href="/dashboard/detailsuratskck/{{ $surat->id_warga }}" class="btn btn-warning d-flex justify-content-center align-items-center text-lg mr-2 text-white px-3 py-0">
-                                <i class="ion-ios-email-outline mr-2 text-xl"></i>
-                                <span class="text-md">Detail Surat</span>
-                              </a>
-                              @elseif( $surat->jenis_surat == 'Surat Keterangan Domisili' )
-                              <a href="/dashboard/detailsuratdomisili/{{ $surat->id_warga }}" class="btn btn-warning d-flex justify-content-center align-items-center text-lg mr-2 text-white px-3 py-0">
-                                <i class="ion-ios-email-outline mr-2 text-xl"></i>
-                                <span class="text-md">Detail Surat</span>
-                              </a>
-                              @elseif( $surat->jenis_surat == 'Surat Keterangan Usaha' )
-                              <a href="/dashboard/detailsuratusaha/{{ $surat->id_warga }}" class="btn btn-warning d-flex justify-content-center align-items-center text-lg mr-2 text-white px-3 py-0">
-                                <i class="ion-ios-email-outline mr-2 text-xl"></i>
-                                <span class="text-md">Detail Surat</span>
-                              </a>
-                              @elseif( $surat->jenis_surat == 'Surat Keterangan Pindah' )
-                              <a href="/dashboard/detailsuratpindah/{{ $surat->id_warga }}" class="btn btn-warning d-flex justify-content-center align-items-center text-lg mr-2 text-white px-3 py-0">
-                                <i class="ion-ios-email-outline mr-2 text-xl"></i>
-                                <span class="text-md">Detail Surat</span>
-                              </a>
-                              @elseif( $surat->jenis_surat == 'Surat Keterangan Pindah Datang' )
-                              <a href="/dashboard/detailsuratpindah_datang/{{ $surat->id_warga }}" class="btn btn-warning d-flex justify-content-center align-items-center text-lg mr-2 text-white px-3 py-0">
-                                <i class="ion-ios-email-outline mr-2 text-xl"></i>
-                                <span class="text-md">Detail Surat</span>
-                              </a>
-                              @endif
-                              <a class="btn btn-danger d-flex justify-content-center align-items-center text-lg text-white px-3 py-0 hapus-surat" data-id="{{ $surat->id }}" data-surat="{{ $surat->jenis_surat }}">
-                                <i class="ion-ios-trash-outline mr-2 text-xl"></i>
-                                <span class="text-md">Hapus</span>
-                              </a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                  </table>
-                  {{ $data->links() }}
-              </div>
-          </div>    
-        </div>
-      </section>
-    </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
+
+  <div class="card bg-white rounded-none border-l-4 border-success shadow-lg">
+    <div class="card-body p-4">
+      <div class="card-title text-green-900">Surat Keluar</div>
+      <div class="p-4 bg-green-200 rounded-md flex items-center justify-between">
+        <i class="fas fa-list-alt fa-2x text-success"></i>
+        <h2 class="font-bold text-xl text-success">{{ $suratKeluar }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-white rounded-none border-l-4 border-error shadow-lg">
+    <div class="card-body p-4">
+      <div class="card-title text-red-900">Surat Ditolak</div>
+      <div class="p-4 bg-red-200 rounded-md flex items-center justify-between">
+        <i class="fas fa-times fa-2x text-error"></i>
+        <h2 class="font-bold text-xl text-error">{{ $suratDitolak }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-white rounded-none border-l-4 border-warning shadow-lg">
+    <div class="card-body p-4">
+      <div class="card-title text-yellow-900">Warga</div>
+      <div class="p-4 bg-yellow-200 rounded-md flex items-center justify-between">
+        <i class="fas fa-users fa-2x text-warning"></i>
+        <h2 class="font-bold text-xl text-warning">{{ $warga }}</h2>
+      </div>
+    </div>
+  </div>
+
+
+</div>
 @endsection
 

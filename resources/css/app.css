@@ -511,6 +511,14 @@ input[type="text"]:read-only {
     background: #dddddd;
 }
 
+input[type="text"]:disabled {
+    background: #fff;
+}
+
+textarea.textarea-primary:disabled {
+    background: #fff;
+}
+
 input[type="email"]:read-only {
     background: #dddddd;
 }
@@ -588,3 +596,31 @@ textarea:read-only {
         transform: translateY(-20px);
     }
 }
+
+/* .table-zebra {
+    font-family: var(--font-secondary);
+    font-weight: 600;
+}
+
+.table-zebra > thead > tr > th {
+    text-transform: capitalize !important;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    background-color: #cbd5e1;
+    padding: 15px;
+    color: var(--primary-color);
+    font-weight: 600 !important;
+}
+
+.table-zebra > tbody > tr > td {
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    background-color: #f0f4f4;
+    padding: 15px;
+    color: var(--primary-color);
+    font-weight: 600 !important;
+}
+
+.table-zebra > tbody > tr > td > a {
+    color: var(--primary-color);
+} */

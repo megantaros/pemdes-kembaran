@@ -39,6 +39,8 @@
     } elseif ($alasanPermohonan == '3') {
         $alasanPermohonan = 'Lainnya';
     }
+
+    $statusSurat = $data->status;
 @endphp
 
 <div class="lg:col-span-3">
@@ -54,9 +56,9 @@
 
             <hr class="my-4">
 
-            @php
+            {{-- @php
             $statusSurat = $data->status;
-            @endphp
+            @endphp --}}
 
             <form action="{{ route('pengantar-kk.update', ['pengantar_kk' => $data->id_surat_peng_kk]) }}" method="POST" enctype="multipart/form-data">
                 @csrf

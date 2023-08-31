@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     //
-    public function register(Request $request) {
+    public function register(Request $request)
+    {
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required',
@@ -23,18 +24,19 @@ class AuthController extends Controller
         ]);
         return redirect()->route('login.warga')->with('success', 'Register Berhasil !');
     }
-    
-    public function loginWarga(Request $request) {
+
+    public function loginWarga(Request $request)
+    {
         $this->validate($request, [
             'email' => 'required',
             'password' => 'required',
         ]);
-        if(\Illuminate\Support\Facades\Auth::attempt($request->only('email', 'password'))){
+        if (\Illuminate\Support\Facades\Auth::attempt($request->only('email', 'password'))) {
             $user = $request->user();
-            if (!$user->jenis_kelamin && !$user->notelpon && !$user->alamat){
+            if (!$user->jenis_kelamin && !$user->notelpon && !$user->alamat) {
                 return redirect()->route('warga.edit', ['warga' => $user->id_warga])->with('success', 'Anda Berhasil Login !');
             }
-            
+
             return redirect()->route('surat.warga')->with('success', 'Anda Berhasil Login');
         }
         $this->validate($request, [
@@ -44,16 +46,14 @@ class AuthController extends Controller
         return redirect()->back()->with('error', 'Email atau Password Salah !');
     }
 
-    public function loginAdmin(Request $request) {
+    public function loginAdmin(Request $request)
+    {
         $this->validate($request, [
             'email' => 'required',
             'password' => 'required',
         ]);
-        if(\Illuminate\Support\Facades\Auth::attempt($request->only('email', 'password'))){
-            $user = $request->user();
-            if (!$user->jenis_kelamin && !$user->notelpon && !$user->alamat){
-                return redirect('/lengkapiprofil')->with('success', 'Anda Berhasil Login !');
-            }
+        if (\Illuminate\Support\Facades\Auth::attempt($request->only('email', 'password'))) {
+
             // dd($request->all());
             return redirect('/')->with('success', 'Anda Berhasil Login');
         }
@@ -64,7 +64,8 @@ class AuthController extends Controller
         return redirect('/login')->with('error', 'Email atau Password Salah !');
     }
 
-    public function logout() {
+    public function logout()
+    {
         \Illuminate\Support\Facades\Auth::logout();
         return redirect()->route('home')->with('success', 'Anda Berhasil Logout !');
     }

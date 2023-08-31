@@ -17,22 +17,21 @@ Route::get('/', [\App\Http\Controllers\FrontendController::class, 'beranda'])->n
 Route::get('/layanan', [\App\Http\Controllers\FrontendController::class, 'layanan'])->name('layanan');
 Route::get('/kontak', [\App\Http\Controllers\FrontendController::class, 'kontak'])->name('kontak');
 
-Route::prefix('auth')->group(function() {
+Route::prefix('auth')->group(function () {
 
     Route::get('/register', [\App\Http\Controllers\FrontendController::class, 'registerWarga'])->name('register.warga');
     Route::post('/register', [\App\Http\Controllers\Auth\AuthController::class, 'register'])->name('store.warga');
     Route::get('/login', [\App\Http\Controllers\FrontendController::class, 'loginWarga'])->name('login.warga');
     Route::post('/login', [\App\Http\Controllers\Auth\AuthController::class, 'loginWarga'])->name('attempt.warga');
-
 });
 
 Route::middleware(['auth', 'web'])->group(function () {
-    
-    Route::prefix('auth-session')->group(function() {
-        
+
+    Route::prefix('auth-session')->group(function () {
+
         Route::resource('warga', \App\Http\Controllers\Auth\WargaController::class);
-        Route::get('/permohonan-surat', [\App\Http\Controllers\FrontendController::class, 'suratWarga'])->name('surat.warga');
-        Route::get('/info-akun', [\App\Http\Controllers\FrontendController::class, 'infoAkun'])->name('info.warga');
+        Route::get('/permohonan-surat', [\App\Http\Controllers\Auth\WargaController::class, 'suratWarga'])->name('surat.warga');
+        Route::get('/info-akun', [\App\Http\Controllers\Auth\WargaController::class, 'infoAkun'])->name('info.warga');
         Route::resource('pengajuan-surat', \App\Http\Controllers\Letters\PengajuanSuratController::class);
         Route::resource('pengantar-ktp', \App\Http\Controllers\Letters\SuratPengKtpController::class);
         Route::resource('pengantar-kk', App\Http\Controllers\Letters\SuratPengKkController::class);
@@ -41,9 +40,19 @@ Route::middleware(['auth', 'web'])->group(function () {
         Route::resource('keterangan-usaha', App\Http\Controllers\Letters\SuratKetUsahaController::class);
         Route::resource('keterangan-pindah', App\Http\Controllers\Letters\SuratKetPindahController::class);
         Route::resource('keterangan-datang', App\Http\Controllers\Letters\SuratKetDatangController::class);
-        
+
         Route::post('/logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout.warga');
     });
+
+});
+
+Route::prefix('admin')->group(function () {
+
+    Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/daftar-surat/{status_surat}', [\App\Http\Controllers\Admin\AdminController::class, 'surat'])->name('daftar.surat');
+    Route::get('/daftar-surat/{status_surat}/cetak', [\App\Http\Controllers\Admin\AdminController::class, 'cetakSurat'])->name('cetak.surat');
+    Route::resource('validasi-surat', \App\Http\Controllers\Letters\PengajuanSuratController::class);
+    Route::resource('permohonan-kk', \App\Http\Controllers\Letters\SuratPengKkController::class);
 
 });
 
@@ -53,7 +62,7 @@ Route::middleware(['auth', 'web'])->group(function () {
 // });
 
 // Route::group(['middleware' => ['auth', 'hakakses:user']], function(){
-    
+
 //     Route::controller(LoginController::class)->group(function() {
 //         Route::get('/lengkapiprofil', 'get');
 //         Route::put('/lengkapiprofil', 'update');
@@ -155,7 +164,7 @@ Route::middleware(['auth', 'web'])->group(function () {
 //     Route::controller(SuratPengSKCKController::class)->group(function() {
 //         Route::get('/dashboard/detailsuratskck/{id_warga}', 'get_admin')->name('kk');
 //     });
-    
+
 //     Route::controller(SuratKetPindahController::class)->group(function() {
 //         Route::get('/dashboard/detailsuratpindah/{id_warga}', 'get_admin')->name('kk');
 //     });

@@ -32,19 +32,19 @@
                 $jenisSurat = $row->jenis_surat;
 
                 if($jenisSurat == "Surat Pengantar KTP") {
-                    $jenisSurat = route("pengantar-ktp.show", ['pengantar_ktp' => $row->id_surat]);
+                    $jenisSurat = route("pengantar-ktp.edit", ['pengantar_ktp' => $row->id_surat]);
                 } elseif($jenisSurat == "Surat Pengantar KK") {
-                    $jenisSurat = route("pengantar-kk.show", ['pengantar_kk' => $row->id_surat]);
+                    $jenisSurat = route("pengantar-kk.edit", ['pengantar_kk' => $row->id_surat]);
                 } elseif($jenisSurat == "Surat Pengantar SKCK") {
-                    $jenisSurat = route("pengantar-skck.show", ['pengantar_skck' => $row->id_surat]);
+                    $jenisSurat = route("pengantar-skck.edit", ['pengantar_skck' => $row->id_surat]);
                 } elseif($jenisSurat == "Surat Keterangan Domisili") {
-                    $jenisSurat = route("keterangan-domisili.show", ['keterangan_domisili' => $row->id_surat]);
+                    $jenisSurat = route("keterangan-domisili.edit", ['keterangan_domisili' => $row->id_surat]);
                 } elseif($jenisSurat == "Surat Keterangan Pindah") {
-                    $jenisSurat = route("keterangan-pindah.show", ['keterangan_pindah' => $row->id_surat]);;
+                    $jenisSurat = route("keterangan-pindah.edit", ['keterangan_pindah' => $row->id_surat]);;
                 } elseif($jenisSurat == "Surat Keterangan Pindah Datang") {
-                    $jenisSurat = route("keterangan-datang.show", ['keterangan_datang' => $row->id_surat]);;
+                    $jenisSurat = route("keterangan-datang.edit", ['keterangan_datang' => $row->id_surat]);;
                 } elseif($jenisSurat == "Surat Keterangan Usaha") {
-                    $jenisSurat = route("keterangan-usaha.show", ['keterangan_usaha' => $row->id_surat]);
+                    $jenisSurat = route("keterangan-usaha.edit", ['keterangan_usaha' => $row->id_surat]);
                 }
 
             @endphp
