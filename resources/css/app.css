@@ -338,18 +338,17 @@ form {
     font-family: var(--font-primary) !important;
 }
 
-.select-info {
-    font-family: var(--font-secondary);
-    font-size: 18px;
-    font-weight: 400;
-    border: 3px solid #ebeeff !important;
-}
-
 .select-primary {
     font-family: var(--font-primary);
-    font-size: 18px;
+    font-size: 14px !important;
     font-weight: 400;
     /* border: 3px solid #ebeeff !important; */
+}
+
+select:disabled {
+    background: #dddddd !important;
+    border: 2px solid #9cb4cc !important;
+    color: var(--primary-color) !important;
 }
 
 ::placeholder {
@@ -357,16 +356,17 @@ form {
     font-size: 18px;
 }
 
-.input-info {
-    border: 3px solid #9cb4cc !important;
+.input-primary {
+    border: 2px solid #9cb4cc !important;
+    font-size: 14px !important;
 }
 
-.textarea-info {
-    border: 3px solid #9cb4cc !important;
+.textarea-primary {
+    border: 2px solid #9cb4cc !important;
 }
 
-.file-input-info {
-    border: 3px solid #9cb4cc !important;
+.file-input-primary {
+    border: 2px solid #9cb4cc !important;
 }
 
 .file-upload-button {
@@ -411,7 +411,7 @@ input[type="file"]::-webkit-file-upload-button {
 }
 
 .select-primary {
-    border: 3px solid #9cb4cc;
+    border: 2px solid #9cb4cc;
     font-size: 18px;
 }
 
@@ -511,6 +511,14 @@ input[type="text"]:read-only {
     background: #dddddd;
 }
 
+input[type="text"]:disabled {
+    background: #fff;
+}
+
+textarea.textarea-primary:disabled {
+    background: #fff;
+}
+
 input[type="email"]:read-only {
     background: #dddddd;
 }
@@ -569,3 +577,50 @@ textarea:read-only {
     color: #fff;
     font-weight: 400 !important;
 }
+
+.card-animation:hover #img {
+    transform: rotateY(180deg) !important;
+    transition: all 0.5s ease-in-out;
+}
+
+#logoAuth {
+    transition: all 0.5s ease-in-out;
+    animation: updown 3s ease-in-out infinite alternate;
+}
+
+@keyframes updown {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}
+
+/* .table-zebra {
+    font-family: var(--font-secondary);
+    font-weight: 600;
+}
+
+.table-zebra > thead > tr > th {
+    text-transform: capitalize !important;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    background-color: #cbd5e1;
+    padding: 15px;
+    color: var(--primary-color);
+    font-weight: 600 !important;
+}
+
+.table-zebra > tbody > tr > td {
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    background-color: #f0f4f4;
+    padding: 15px;
+    color: var(--primary-color);
+    font-weight: 600 !important;
+}
+
+.table-zebra > tbody > tr > td > a {
+    color: var(--primary-color);
+} */

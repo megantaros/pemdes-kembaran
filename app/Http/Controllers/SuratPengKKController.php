@@ -75,6 +75,30 @@ class SuratPengKKController extends Controller
     public function edit(Request $request, $id){
         $data = SuratPengKk::find($id);
         $data->update($request->all());
+        if ($request->hasFile('foto_ktp'))
+            {
+            $request->file('foto_ktp')->move('berkaspemohon/', $request->file('foto_ktp')->getClientOriginalName());
+            $data->foto_ktp = $request->file('foto_ktp')->getClientOriginalName();
+            $data->save();
+            }
+        if ($request->hasFile('foto_kk'))
+            {
+            $request->file('foto_kk')->move('berkaspemohon/', $request->file('foto_kk')->getClientOriginalName());
+            $data->foto_kk = $request->file('foto_kk')->getClientOriginalName();
+            $data->save();
+            };
+        if ($request->hasFile('pengantar_rt'))
+            {
+            $request->file('pengantar_rt')->move('berkaspemohon/', $request->file('pengantar_rt')->getClientOriginalName());
+            $data->pengantar_rt = $request->file('pengantar_rt')->getClientOriginalName();
+            $data->save();
+            };
+        if ($request->hasFile('fc_buku_nikah'))
+            {
+            $request->file('fc_buku_nikah')->move('berkaspemohon/', $request->file('fc_buku_nikah')->getClientOriginalName());
+            $data->fc_buku_nikah = $request->file('fc_buku_nikah')->getClientOriginalName();
+            $data->save();
+            };
         return redirect('/profil/suratsaya')->with('success', 'Sukses Edit Data Surat!');
     }
     
