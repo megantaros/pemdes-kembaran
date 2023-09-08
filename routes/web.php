@@ -48,6 +48,7 @@ Route::middleware(['auth', 'web'])->group(function () {
 
 Route::prefix('admin')->group(function () {
 
+    Route::resource('warga', \App\Http\Controllers\Auth\WargaController::class);
     Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/daftar-surat/{status_surat}', [\App\Http\Controllers\Admin\AdminController::class, 'surat'])->name('daftar.surat');
     Route::get('/daftar-surat/{status_surat}/cetak', [\App\Http\Controllers\Admin\AdminController::class, 'cetakSurat'])->name('cetak.surat');

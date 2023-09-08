@@ -46,7 +46,7 @@
       <div class="container p-6">
         <div class="flex items-center p-4 bg-white rounded-lg mb-4">
           <div class="flex-1">
-            <h2 class="text-xl font-semibold">@yield('title')</h2>
+            <h2 class="text-xl font-semibold">Halaman @yield('title')</h2>
             <p class="text-sm" style="font-family: Poppins;">
               Selamat datang di Portal Pelayanan Pemdes Kembaran. Silahkan kelola data warga, surat, dan pengaturan akun anda.
             </p>
@@ -84,7 +84,7 @@
         </li>
 
         <li>
-          <a class="p-4 @yield('wargaActive')">
+          <a href="{{ route('warga.index') }}" class="p-4 @yield('wargaActive')">
             <i class="fas fa-users"></i>
             Data Warga   
           </a>
@@ -146,45 +146,52 @@
   {{-- <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script> --}}
 
 </body>
-  <script>
-      @if (Session::has('success'))
-          swal("{{ Session::get('success') }}", "Terima Kasih", "success");
-      @endif
+<script>
+  @if (Session::has('success'))
+      swal("{{ Session::get('success') }}", "Terima Kasih", "success");
+  @endif
 
-      const myDrawer = document.getElementById('my-drawer-2').addEventListener('click', (e) => {
-        e.preventDefault();
+  const myDrawer = document.getElementById('my-drawer-2').addEventListener('click', (e) => {
+    e.preventDefault();
 
-        const sideBar = document.getElementById('sideBar');
-        sideBar.classList.toggle('drawer-mobile');
-      })
+    const sideBar = document.getElementById('sideBar');
+    sideBar.classList.toggle('drawer-mobile');
+  })
 
-      const handleLetter = () => {
-        const letter = document.querySelector('.fa-chevron-up');
-        letter.classList.toggle('rotate-180');
+  const handleLetter = () => {
+    const letter = document.querySelector('.fa-chevron-up');
+    letter.classList.toggle('rotate-180');
 
-        const letters = document.getElementById('letters');
-        letters.classList.toggle('hidden');
-      }
+    const letters = document.getElementById('letters');
+    letters.classList.toggle('hidden');
+  }
 
-      $(function() {
-        $('input[name="daterange"]').daterangepicker({
-          opens: 'left'
-        }, function(start, end, label) {
+  $(function() {
+    $('input[name="daterange"]').daterangepicker({
+      opens: 'left'
+    }, function(start, end, label) {
 
-          $('input[name="startDate"]').val(start.format('YYYY-MM-DD'));
-          $('input[name="endDate"]').val(end.format('YYYY-MM-DD'));
+      $('input[name="startDate"]').val(start.format('YYYY-MM-DD'));
+      $('input[name="endDate"]').val(end.format('YYYY-MM-DD'));
 
-          // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-        });
+      // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+    });
+  });
+
+  $(document).ready(function(){
+    $("#search").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#listLetters tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
       });
+    });
 
-      $(document).ready(function(){
-        $("#search").on("keyup", function() {
-          var value = $(this).val().toLowerCase();
-          $("#listLetters tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-          });
-        });
+    $("#searchWarga").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#listWarga tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
       });
-  </script>
+    });
+  });
+</script>
 </html>

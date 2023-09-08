@@ -8,6 +8,18 @@ use Illuminate\Http\Request;
 class WargaController extends Controller
 {
     //
+    public function index()
+    {
+        $data = \App\Models\User::all();
+        return view('admin.daftar-warga', compact('data'));
+    }
+    public function show($id_warga)
+    {
+        $data = \App\Models\User::find($id_warga);
+        $pengajuanSurat = \App\Models\SuratPengajuan::where('id_warga', $id_warga)->get();
+
+        return view('admin.detail-warga', ['data' => $data, 'pengajuanSurat' => $pengajuanSurat]);
+    }
     public function suratWarga()
     {
         $id_warga = \Illuminate\Support\Facades\Auth::user()->id_warga;

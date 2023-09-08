@@ -61,10 +61,13 @@
 <div class="card bg-white shadow-lg">
   <div class="card-body p-4 gap-4">
 
-    <div class="card-title p-4 bg-primary text-white rounded-lg font-normal">
+    <div class="card-title p-4 bg-primary text-white rounded-lg font-normal block text-center">
       <h2 class="m-auto">
         Daftar Surat Masuk
       </h2>
+      <p class="font-normal text-sm" style="font-family: Poppins;">
+        Berikut adalah daftar surat masuk yang telah dikirimkan oleh warga
+      </p>
     </div>
 
     <hr class="border-2">
