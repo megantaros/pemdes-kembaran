@@ -27,4 +27,8 @@ class FrontendController extends Controller
     {
         return view('users.register');
     }
+    public function loginAdmin()
+    {
+        return view('admin.login');
+    }
 }

@@ -1,10 +1,11 @@
+@extends('layout.admin')
 
-@extends('layout.profil')
+@section('title', 'Profil Admin')
 
-@section('title', 'Profil')
+@section('account', 'bg-[#e5e7eb] bg-opacity-20')
 
 @section('content')
-<dialog class="modal w-full h-full" id="modalPass">
+<dialog class="modal w-full h-full" id="modalPassAdmin">
     <div class="modal-box font-normal">
         <div class="flex flex-col gap-4">
 
@@ -19,7 +20,7 @@
             </div>
 
             <div class="card bg-white text-left border-0">
-                <form action="{{ route('warga.update', ['warga' => Auth::user()->id_warga]) }}" id="formPass" class="card-body bg-slate-200 rounded-lg text-sm" style="font-family: Poppins" method="POST">
+                <form action="" id="formPass" class="card-body bg-slate-200 rounded-lg text-sm" style="font-family: Poppins" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -40,56 +41,58 @@
     </div>
 </dialog>
 
-<div class="lg:col-span-3">
-    <div class="card bg-white min-h-screen shadow-lg">
-        <div class="card-body">
-            <div>
-                <h2 class="lg:text-lg md:text-sm text-sm font-semibold">Info Profil</h2>
+<div class="h-96 rounded-lg overflow-hidden relative">
+    <div class="bg-black bg-opacity-60 absolute z-0 top-0 left-0 w-full h-full"></div>
+    <img src="{{ asset('assets/bg-login.jpg') }}" alt="Kantor Kepala Desa Kembaran">
+</div>
+
+<div class="container -mt-52">
+    <div class="card bg-white shadow-lg">
+        <div class="card-body p-4">
+            <div class="card-title p-4 bg-primary text-white rounded-lg font-normal block">
+                <h2 class="m-auto">Detail Admin</h2>
                 <div class="flex">
-                    <p class="lg:text-md md:text-sm text-sm" style="font-family: Poppins">Pastikan identitas Anda sesuai dengan yang tertera di e-KTP</p>
-                    <a href="#modalPass" class="text-sm flex gap-2 items-center" style="font-family: Poppins">
-                        <i class="fas fa-info-circle"></i>
+                    <p class="lg:text-md md:text-sm text-sm" style="font-family: Poppins">
+                        Identitas admin yang terdaftar di sistem
+                    </p>
+                    <a href="#modalPassAdmin" class="text-sm flex gap-2 items-center" style="font-family: Poppins">
+                        <i class="fas fa-lock"></i>
                         <span class="hover:underline">Ubah Password</span>
                     </a>
                 </div>
             </div>
+        
+            <hr class="border-2 my-4">
 
-            <hr class="my-4">
-
-            <form action="{{ route('warga.update', ['warga' => Auth::user()->id_warga]) }}" method="POST" class="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1 gap-4">
+            <form action="" method="POST" class="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1 gap-4">
                 @csrf
                 @method('PUT')
 
                 <div>
                     <div class="text-label text-sm">Nama *</div>
-                    <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="name" value="{{ Auth::user()->nama_warga }}"/>
+                    <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="name" value="{{ Auth::guard('admin')->user()->name }}"/>
 
                     <div class="text-label text-sm">Email *</div>
-                    <input type="email" placeholder="Masukkan Email" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="email" value="{{ Auth::user()->email }}"/>
+                    <input type="email" placeholder="Masukkan Email" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="email" value="{{ Auth::guard('admin')->user()->email }}"/>
 
-                    <div class="text-label text-sm">NIK *</div>
-                    <input type="text" placeholder="Masukkan NIK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="nik" value="{{ Auth::user()->nik }}"/>
+                    <div class="text-label text-sm">No Telephone *</div>
+                    <input type="number" placeholder="Masukkan No Telephone" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="notelpon" value=""/>
 
+                </div>
+                <div>
                     <div class="text-label text-sm">Jenis Kelamin *</div>
                     <select class="select select-primary w-full my-1" name="jenis_kelamin">
-                        <option selected disabled="disabled">{{ Auth::user()->jenis_kelamin }}</option>
+                        <option selected disabled="disabled"></option>
                         <option value="Pria">Pria</option>
                         <option value="Wanita">Wanita</option>
                     </select>
-                </div>
-                <div>
-                    <div class="text-label text-sm">Nomor Telfon *</div>
-                    <input type="text" placeholder="Masukkan Nomor Telfon" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="notelpon" value="{{ Auth::user()->notelpon }}" />
 
-                    <div class="text-label text-sm">Tempat, Tanggal Lahir *</div>
-                    <input type="text" placeholder="Masukkan Tempat, Tanggal Lahir" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="ttl" value="{{ Auth::user()->ttl }}"/>
-
-                    <div class="text-label text-sm">Pekerjaan *</div>
-                    <input type="text" placeholder="Masukkan Pekerjaan" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="pekerjaan" value="{{ Auth::user()->pekerjaan }}"/>
+                    <div class="text-label text-sm">Jabatan *</div>
+                    <input type="text" placeholder="Masukkan Jabatan" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="jabatan" value=""/>
 
                     <div class="text-label text-sm">Agama *</div>
                     <select class="select select-primary w-full my-1" name="agama">
-                        <option selected disabled>{{ Auth::user()->agama }}</option>
+                        <option selected disabled></option>
                         <option value="Islam">Islam</option>
                         <option value="Kristen">Kristen</option>
                         <option value="Katolik">Katolik</option>
@@ -100,7 +103,7 @@
 
                 <div class="lg:col-span-2">
                     <div class="text-label text-sm">Alamat *</div>
-                    <textarea class="textarea textarea-primary w-full placeholder:text-sm" placeholder="Masukkan Alamat" name="alamat">{{ Auth::user()->alamat }}</textarea>
+                    <textarea class="textarea textarea-primary w-full placeholder:text-sm" placeholder="Masukkan Alamat" name="alamat"></textarea>
                 </div>
 
                 <div class="lg:col-span-2">

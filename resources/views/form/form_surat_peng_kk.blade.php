@@ -43,7 +43,7 @@
 
                 <hr>
 
-                <form class="grid lg:grid-cols-2 text-left gap-6" action="{{ route('pengantar-kk.store') }}" method="POST" method="POST">
+                <form class="grid lg:grid-cols-2 text-left gap-6" action="{{ route('pengantar-kk.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
 

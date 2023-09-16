@@ -13,8 +13,13 @@ class Domisili extends Model
     protected $dates = ['created_at'];
     protected $table = 'surat_ket_domisili';
     protected $primaryKey = 'id_surat_ket_domisili';
-    public static function suratByUserId($id_warga)
+    protected $keyType = 'string';
+    public $incrementing = false;
+    protected static function boot()
     {
-        return self::where('id_warga', $id_warga)->get();
+        parent::boot();
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = \Illuminate\Support\Str::uuid();
+        });
     }
 }

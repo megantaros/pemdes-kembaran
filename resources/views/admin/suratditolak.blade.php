@@ -110,19 +110,19 @@
               $jenisSurat = $item->jenis_surat;
 
               if($jenisSurat == "Surat Pengantar KTP") {
-                  $jenisSurat = route("pengantar-ktp.show", ['pengantar_ktp' => $item->id_surat]);
+                  $jenisSurat = route("permohonan-ktp.show", ['permohonan_ktp' => $item->id_surat]);
               } elseif($jenisSurat == "Surat Pengantar KK") {
-                  $jenisSurat = route("pengantar-kk.show", ['pengantar_kk' => $item->id_surat]);
+                  $jenisSurat = route("permohonan-kk.show", ['permohonan_kk' => $item->id_surat]);
               } elseif($jenisSurat == "Surat Pengantar SKCK") {
-                  $jenisSurat = route("pengantar-skck.show", ['pengantar_skck' => $item->id_surat]);
+                  $jenisSurat = route("permohonan-skck.show", ['permohonan_skck' => $item->id_surat]);
               } elseif($jenisSurat == "Surat Keterangan Domisili") {
-                  $jenisSurat = route("keterangan-domisili.show", ['keterangan_domisili' => $item->id_surat]);
+                  $jenisSurat = route("permohonan-domisili.show", ['permohonan_domisili' => $item->id_surat]);
               } elseif($jenisSurat == "Surat Keterangan Pindah") {
-                  $jenisSurat = route("keterangan-pindah.show", ['keterangan_pindah' => $item->id_surat]);;
+                  $jenisSurat = route("permohonan-pindah.show", ['permohonan_pindah' => $item->id_surat]);
               } elseif($jenisSurat == "Surat Keterangan Pindah Datang") {
-                  $jenisSurat = route("keterangan-datang.show", ['keterangan_datang' => $item->id_surat]);;
+                  $jenisSurat = route("permohonan-datang.show", ['permohonan_datang' => $item->id_surat]);
               } elseif($jenisSurat == "Surat Keterangan Usaha") {
-                  $jenisSurat = route("keterangan-usaha.show", ['keterangan_usaha' => $item->id_surat]);
+                  $jenisSurat = route("permohonan-usaha.show", ['permohonan_usaha' => $item->id_surat]);
               }
             @endphp
 

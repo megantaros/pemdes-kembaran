@@ -13,6 +13,33 @@ class WargaController extends Controller
         $data = \App\Models\User::all();
         return view('admin.daftar-warga', compact('data'));
     }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:warga',
+            'password' => 'required',
+            'conf_pass' => 'required',
+        ]);
+
+        if ($request->password != $request->conf_pass) {
+            return redirect()->back()->with('error', 'Password Tidak Sama !');
+        }
+
+        $data = \App\Models\User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'id_warga' => $request->id_warga,
+            'password' => bcrypt($request->password),
+        ]);
+        $data->save();
+
+        if ($data) {
+            return redirect()->back()->with('success', 'Data Berhasil Ditambahkan !');
+        } else {
+            return redirect()->back()->with('error', 'Data Gagal Ditambahkan !');
+        }
+    }
     public function show($id_warga)
     {
         $data = \App\Models\User::find($id_warga);
@@ -25,7 +52,7 @@ class WargaController extends Controller
         $id_warga = \Illuminate\Support\Facades\Auth::user()->id_warga;
         $data = \App\Models\User::join('surat_pengajuan', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
             ->where('surat_pengajuan.id_warga', $id_warga)
-            ->select('warga.name', 'surat_pengajuan.*')
+            ->select('warga.nama_warga', 'surat_pengajuan.*')
             ->get();
 
         return view('users.suratpengajuan', compact('data'));

@@ -20,7 +20,7 @@
             </div>
 
             <div class="card bg-white text-left border-0">
-                <form action="{{ route('warga.update', ['warga' => $data->id_warga]) }}" id="formPass" class="card-body bg-slate-200 rounded-lg text-sm" style="font-family: Poppins" method="POST">
+                <form action="{{ route('warga-admin.update', ['warga_admin' => $data->id_warga]) }}" id="formPass" class="card-body bg-slate-200 rounded-lg text-sm" style="font-family: Poppins" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -54,7 +54,7 @@
                             Identitas warga yang terdaftar di sistem
                         </p>
                         <a href="#modalPassWarga" class="text-sm flex gap-2 items-center" style="font-family: Poppins">
-                            <i class="fas fa-info-circle"></i>
+                            <i class="fas fa-lock"></i>
                             <span class="hover:underline">Ubah Password</span>
                         </a>
                     </div>
@@ -62,7 +62,7 @@
             
                 <hr class="border-2">
 
-                <form action="{{ route('warga.update', ['warga' => $data->id_warga]) }}" method="POST" class="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1 gap-4">
+                <form action="{{ route('warga-admin.update', ['warga_admin' => $data->id_warga]) }}" method="POST" class="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1 gap-4">
                     @csrf
                     @method('PUT')
 
@@ -143,18 +143,37 @@
                     } else {
                         $status = 'border-success';
                     }
-                @endphp
 
-                    <div class="card rounded-none border-l-4 font-semibold text-sm {{ $status }}" style="font-family: Poppins;">
-                        <div class="card-body p-2">
-                            <a href="" class="hover:underline">
-                                <i class="fa fa-file-alt" aria-hidden="true"></i>
-                                <span class="ml-2">{{ $item->jenis_surat }}</span>
-                            </a>
-                        </div>
+                    $jenisSurat = $item->jenis_surat;
+
+                    if($jenisSurat == "Surat Pengantar KTP") {
+                        $jenisSurat = route("permohonan-ktp.show", ['permohonan_ktp' => $item->id_surat]);
+                    } elseif($jenisSurat == "Surat Pengantar KK") {
+                        $jenisSurat = route("permohonan-kk.show", ['permohonan_kk' => $item->id_surat]);
+                    } elseif($jenisSurat == "Surat Pengantar SKCK") {
+                        $jenisSurat = route("permohonan-skck.show", ['permohonan_skck' => $item->id_surat]);
+                    } elseif($jenisSurat == "Surat Keterangan Domisili") {
+                        $jenisSurat = route("permohonan-domisili.show", ['permohonan_domisili' => $item->id_surat]);
+                    } elseif($jenisSurat == "Surat Keterangan Pindah") {
+                        $jenisSurat = route("permohonan-pindah.show", ['permohonan_pindah' => $item->id_surat]);
+                    } elseif($jenisSurat == "Surat Keterangan Pindah Datang") {
+                        $jenisSurat = route("permohonan-datang.show", ['permohonan_datang' => $item->id_surat]);
+                    } elseif($jenisSurat == "Surat Keterangan Usaha") {
+                        $jenisSurat = route("permohonan-usaha.show", ['permohonan_usaha' => $item->id_surat]);
+                    }
+                @endphp
+                    
+                <div class="card rounded-none border-l-4 font-semibold text-sm {{ $status }}" style="font-family: Poppins;">
+                    <div class="card-body p-2">
+                        <a href="{{ $jenisSurat }}" class="hover:underline">
+                            <i class="fa fa-file-alt" aria-hidden="true"></i>
+                            <span class="ml-2">{{ $item->jenis_surat }}</span>
+                        </a>
                     </div>
+                </div>
 
                 @endforeach
+
             </div>
         </div>
     </div>

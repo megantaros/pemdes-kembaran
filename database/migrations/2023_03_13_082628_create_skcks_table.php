@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -14,8 +13,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('surat_peng_skck', function (Blueprint $table) {
-            $table->bigIncrements('id_surat_peng_skck');
-            $table->unsignedBigInteger('id_warga')->unique();
+            $table->uuid('id_surat_peng_skck')->primary();
+            $table->string('id_warga')->unique();
             $table->string('jenis_surat')->default('Surat Pengantar SKCK');
             // $table->string('nama');
             // $table->string('nik');

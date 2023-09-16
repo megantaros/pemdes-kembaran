@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     //
+    public function profileAdmin()
+    {
+        return view('admin.profile');
+    }
     public function dashboard()
     {
         $suratMasuk = \App\Models\SuratPengajuan::where('status', 'Terkirim')->count();
@@ -16,6 +20,10 @@ class AdminController extends Controller
         $warga = \App\Models\User::count();
 
         return view('admin.dashboard', ['suratMasuk' => $suratMasuk, 'suratKeluar' => $suratKeluar, 'suratDitolak' => $suratDitolak, 'warga' => $warga]);
+    }
+    public function update(Request $request)
+    {
+        $idAdmin = \Illuminate\Support\Facades\Auth::guard('admin')->user()->id_admin;
     }
 
     public function surat(Request $request, $statusSurat)

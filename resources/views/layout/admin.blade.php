@@ -84,7 +84,7 @@
         </li>
 
         <li>
-          <a href="{{ route('warga.index') }}" class="p-4 @yield('wargaActive')">
+          <a href="{{ route('warga-admin.index') }}" class="p-4 @yield('wargaActive')">
             <i class="fas fa-users"></i>
             Data Warga   
           </a>
@@ -122,7 +122,7 @@
         <hr class="my-4">
 
         <li>
-          <a class="p-4 @yield('account')">
+          <a href="{{ route('profile.admin') }}" class="p-4 @yield('account')">
             <i class="fas fa-cog"></i>
             Pengaturan Akun
           </a>
@@ -148,7 +148,11 @@
 </body>
 <script>
   @if (Session::has('success'))
-      swal("{{ Session::get('success') }}", "Terima Kasih", "success");
+    swal("{{ Session::get('success') }}", "Terima Kasih", "success");
+  @endif
+
+  @if (Session::has('error'))
+    swal("{{ Session::get('error') }}", "Terima Kasih", "error");
   @endif
 
   const myDrawer = document.getElementById('my-drawer-2').addEventListener('click', (e) => {

@@ -94,7 +94,7 @@
 
                     <div>
                         <div class="text-label text-sm">Nama *</div>
-                        <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ Auth::user()->name }}" readonly/>
+                        <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ Auth::user()->nama_warga }}" readonly/>
 
                         <div class="text-label text-sm">NIK *</div>
                         <input type="text" placeholder="Masukkan NIK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ Auth::user()->nik }}" readonly/>

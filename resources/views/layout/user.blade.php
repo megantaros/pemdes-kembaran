@@ -55,7 +55,7 @@
                     @auth
                     <li tabindex="0" class="z-10">
                         <a class="text-sm text-primary" style="background: #FFEBAD">
-                            Hi, {{ Auth::user()->name }}
+                            Hi, {{ Auth::user()->nama_warga }}
                             <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
                         </a>
                         <ul class="p-2 text-[#06283D] navUl mt-1 bg-white">
@@ -106,7 +106,7 @@
                             <i class="fa fa-bars" aria-hidden="true"></i>
                         </a>
                         <ul class="p-2 text-[#06283D] navUl mt-2 bg-white text-sm right-0 shadow-lg">
-                            <li><a href="{{ route('info.warga') }}" class="bg-[#FFEBAD]">Hi, {{ Auth::user()->name }}</a></li>
+                            <li><a href="{{ route('info.warga') }}" class="bg-[#FFEBAD]">Hi, {{ Auth::user()->nama_warga }}</a></li>
                             <li><a href="/" class="navLi {{ Route::is('beranda') ? 'active' : '' }}">Beranda</a></li>
                             <li><a href="/layanan" class="navLi {{ Route::is('layanan') ? 'active' : '' }}">Layanan</a></li>
                             <li><a href="/kontak" class="navLi {{ Route::is('kontak') ? 'active' : '' }}">Kontak</a></li>

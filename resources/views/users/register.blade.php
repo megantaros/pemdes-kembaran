@@ -28,9 +28,9 @@
 
               <div class="mb-3">
 
-                <input type="text" placeholder="Masukkan Nama Anda" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="name"/>
+                <input type="text" placeholder="Masukkan Nama Anda" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="nama_warga"/>
 
-                @error('name')
+                @error('nama_warga')
                 <div class="alert alert-error shadow-lg text-white w-full m-auto my-2">
                   <div>
                   <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
