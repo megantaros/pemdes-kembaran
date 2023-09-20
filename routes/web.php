@@ -32,6 +32,7 @@ Route::middleware('auth:web')->group(function () {
     Route::prefix('auth-session')->group(function () {
 
         Route::resource('warga', \App\Http\Controllers\Auth\WargaController::class);
+        Route::put('/update-profil/{id_warga}', [\App\Http\Controllers\Auth\WargaController::class, 'completedProfile'])->name('completed.profile');
         Route::get('/permohonan-surat', [\App\Http\Controllers\Auth\WargaController::class, 'suratWarga'])->name('surat.warga');
         Route::get('/info-akun', [\App\Http\Controllers\Auth\WargaController::class, 'infoAkun'])->name('info.warga');
         Route::resource('pengajuan-surat', \App\Http\Controllers\Letters\PengajuanSuratController::class);
@@ -56,7 +57,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('dashboard');
         Route::get('/daftar-surat/{status_surat}', [\App\Http\Controllers\Admin\AdminController::class, 'surat'])->name('daftar.surat');
         Route::get('/daftar-surat/{status_surat}/cetak', [\App\Http\Controllers\Admin\AdminController::class, 'cetakSurat'])->name('cetak.surat');
-        Route::get('profile', [\App\Http\Controllers\Admin\AdminController::class, 'profileAdmin'])->name('profile.admin');
+        Route::resource('admin', \App\Http\Controllers\Admin\AdminController::class);
         Route::resource('validasi-surat', \App\Http\Controllers\Letters\PengajuanSuratController::class);
         Route::resource('permohonan-kk', \App\Http\Controllers\Letters\SuratPengKkController::class);
         Route::resource('permohonan-ktp', \App\Http\Controllers\Letters\SuratPengKtpController::class);

@@ -22,7 +22,7 @@
 
       <div class="card bg-white shadow-lg mb-10 border-l-8 border-[#FFEBAD]">
         <div class="card-body">
-          <form action="{{ route('warga.update', ['warga' => $id_warga]) }}" class="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1 gap-2" method="POST">
+          <form action="{{ route('completed.profile', ['id_warga' => $id_warga]) }}" class="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1 gap-2" method="POST">
             @csrf
             @method('PUT')
 

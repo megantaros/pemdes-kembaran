@@ -56,7 +56,7 @@ class SuratPengKtpController extends Controller
             ->join('surat_peng_ktp', 'surat_pengajuan.id_surat', '=', 'surat_peng_ktp.id_surat_peng_ktp')
             ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
             ->where('surat_pengajuan.jenis_surat', 'Surat Pengantar KTP')
-            ->select('surat_pengajuan.*', 'surat_peng_ktp.*', 'warga.name', 'warga.nik', 'warga.alamat')
+            ->select('surat_pengajuan.*', 'surat_peng_ktp.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
             ->first();
 
         // $data->tanggal_surat = date('d-m-Y', strtotime($data->tanggal_surat));
@@ -70,7 +70,7 @@ class SuratPengKtpController extends Controller
             ->join('surat_peng_ktp', 'surat_pengajuan.id_surat', '=', 'surat_peng_ktp.id_surat_peng_ktp')
             ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
             ->where('surat_pengajuan.jenis_surat', 'Surat Pengantar KTP')
-            ->select('surat_pengajuan.*', 'surat_peng_ktp.*', 'warga.name', 'warga.nik', 'warga.alamat')
+            ->select('surat_pengajuan.*', 'surat_peng_ktp.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
             ->first();
 
         // $data->tanggal_surat = date('d-m-Y', strtotime($data->tanggal_surat));

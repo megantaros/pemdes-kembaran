@@ -15,7 +15,7 @@
       <div class="flex lg:flex-row flex-col shadow-lg form-login lg:w-4/5 w-4/5 lg:h-auto rounded-lg overflow-hidden">
         <div class="lg:w-full w-full bg-primary relative text-center py-6">
           <div class="lg:absolute lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 w-full">
-            <img id="logoAuth" src="{{asset('assets/logo-login.png')}}" alt="Logo Kebumen" class="m-auto lg:w-[153px] lg:h-[210px] w-auto h-[150px]">
+            <img src="{{asset('assets/logo-login.png')}}" alt="Logo Kebumen" class="m-auto lg:w-[153px] lg:h-[210px] w-auto h-[150px]">
             <div class="lg:text-2xl text-[#FFEBAD] lg:mt-6 mt-2 text-lg">Selamat Datang</div>
             <div class="text-lg text-white" style="font-family: Poppins">Portal Pelayanan Pemdes Kembaran</div>
           </div>

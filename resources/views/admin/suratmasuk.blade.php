@@ -27,14 +27,11 @@
 
         <div class="flex items-center gap-2">
           <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="daterange" value="01/01/2023 - 01/15/2023" />
-          <button type="submit" class="btn btn-primary capitalize font-normal text-white">Cek</button>
+          <button type="submit" class="btn btn-primary capitalize font-normal text-white">Cek Tanggal</button>
         </div>
       </form>
 
     </div>
-
-
-    
 
     {{-- <div class="p-4">
       <div class="card-title">Surat Masuk</div>
@@ -54,7 +51,6 @@
       </div>
     </div> --}}
 
-      
   </div>
 </div>
 
@@ -73,7 +69,7 @@
     <hr class="border-2">
 
     <div class="overflow-x-auto">
-      <table id="listLetters" class="table w-full">
+      <table class="table w-full">
 
         <thead>
           <tr>
@@ -123,21 +119,26 @@
             } elseif($jenisSurat == "Surat Keterangan Usaha") {
                 $jenisSurat = route("permohonan-usaha.show", ['permohonan_usaha' => $item->id_surat]);
             }
+
+            $keteranganWarga = $item->keterangan_warga;
+            if(!$keteranganWarga) {
+                $keteranganWarga = "Tidak ada keterangan";
+            }
           @endphp
 
-          <tr class="border-b-2 border-primary font-semibold p-3 text-gray-800" style="font-family: Poppins;">
+          <tr id="listLetters" class="border-b-2 border-primary font-semibold p-3 text-gray-800" style="font-family: Poppins;">
             <th class="text-sm">{{$no++}}</th>
-            <td class="text-sm">{{ $item->name }}</td>
+            <td class="text-sm">{{ $item->nama_warga }}</td>
             <td class="text-sm">{{ $item->nik }}</td>
             <td class="text-sm">{{ $item->jenis_surat }}</td>
             <td class="text-sm">
-              {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y') }}
+              {{ \Carbon\Carbon::parse($item->tanggal_permohonan)->isoFormat('dddd, D MMMM Y') }}
             </td>
             <td>
-              <textarea class="textarea textarea-primary w-full placeholder:text-sm" placeholder="Tulis disini..." disabled rows="1">{{ $item->keterangan_warga }}</textarea>
+              <textarea class="textarea textarea-primary w-full placeholder:text-sm" placeholder="Tulis disini..." disabled rows="1">{{ $keteranganWarga }}</textarea>
             </td>
             <td>
-              <a href="{{ $jenisSurat }}" class="text-sm hover:underline btn btn-info flex capitalize gap-2" style="font-family: Poppins">
+              <a href="{{ $jenisSurat }}" class="text-sm hover:underline p-4 rounded-lg btn-info capitalize flex items-center justify-center gap-1" style="font-family: Poppins">
                 <i class="fa fa-info-circle"></i>
                 <span>Detail</span>
               </a>

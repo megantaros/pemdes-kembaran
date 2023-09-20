@@ -64,7 +64,7 @@ class SuratPengKkController extends Controller
             ->join('surat_peng_kk', 'surat_pengajuan.id_surat', '=', 'surat_peng_kk.id_surat_peng_kk')
             ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
             ->where('surat_pengajuan.jenis_surat', 'Surat Pengantar KK')
-            ->select('surat_pengajuan.*', 'surat_peng_kk.*', 'warga.name', 'warga.nik', 'warga.alamat')
+            ->select('surat_pengajuan.*', 'surat_peng_kk.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
             ->first();
 
         // $data->tanggal_surat = date('d-m-Y', strtotime($data->tanggal_surat));
@@ -76,7 +76,7 @@ class SuratPengKkController extends Controller
             ->join('surat_peng_kk', 'surat_pengajuan.id_surat', '=', 'surat_peng_kk.id_surat_peng_kk')
             ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
             ->where('surat_pengajuan.jenis_surat', 'Surat Pengantar KK')
-            ->select('surat_pengajuan.*', 'surat_peng_kk.*', 'warga.name', 'warga.nik', 'warga.alamat')
+            ->select('surat_pengajuan.*', 'surat_peng_kk.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
             ->first();
 
         return view('users.detailsuratkk', compact('data'));

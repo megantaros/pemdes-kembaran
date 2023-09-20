@@ -52,7 +52,7 @@ class SuratPengSkckController extends Controller
             ->join('surat_peng_skck', 'surat_pengajuan.id_surat', '=', 'surat_peng_skck.id_surat_peng_skck')
             ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
             ->where('surat_pengajuan.jenis_surat', 'Surat Pengantar SKCK')
-            ->select('surat_pengajuan.*', 'surat_peng_skck.*', 'warga.name', 'warga.nik', 'warga.alamat')
+            ->select('surat_pengajuan.*', 'surat_peng_skck.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
             ->first();
 
         return view('admin.detailsuratskck', compact('data'));
@@ -66,7 +66,7 @@ class SuratPengSkckController extends Controller
             ->join('surat_peng_skck', 'surat_pengajuan.id_surat', '=', 'surat_peng_skck.id_surat_peng_skck')
             ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
             ->where('surat_pengajuan.jenis_surat', 'Surat Pengantar SKCK')
-            ->select('surat_pengajuan.*', 'surat_peng_skck.*', 'warga.name', 'warga.nik', 'warga.alamat')
+            ->select('surat_pengajuan.*', 'surat_peng_skck.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
             ->first();
 
         return view('users.detailsuratskck', compact('data'));

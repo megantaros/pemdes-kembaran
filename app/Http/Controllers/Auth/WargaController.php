@@ -8,10 +8,23 @@ use Illuminate\Http\Request;
 class WargaController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        $data = \App\Models\User::all();
-        return view('admin.daftar-warga', compact('data'));
+        $startDate = $request->startDate;
+        $endDate = $request->endDate;
+
+        if ($startDate && $endDate) {
+            $data = \App\Models\User::whereBetween('created_at', [$startDate, $endDate])->get();
+
+            if ($data == '[]') {
+                return redirect()->route('warga-admin.index')->with('error', 'Data Tidak Ditemukan !');
+            }
+
+            return view('admin.daftar-warga', compact('data'));
+        } else {
+            $data = \App\Models\User::all();
+            return view('admin.daftar-warga', compact('data'));
+        }
     }
     public function store(Request $request)
     {
@@ -80,5 +93,13 @@ class WargaController extends Controller
         }
 
         return redirect()->back()->with('success', 'Data Berhasil Diupdate !');
+    }
+
+    public function completedProfile(Request $request, $id_warga)
+    {
+        $data = \App\Models\User::find($id_warga);
+        $data->update($request->all());
+
+        return redirect()->route('info.warga')->with('success', 'Data Berhasil Dilengkapi !');
     }
 }

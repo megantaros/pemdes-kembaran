@@ -19,6 +19,122 @@
     @vite('resources/js/app.js')
 </head>
 <body>
+  {{-- Modal Ubah Password Admin --}}
+  <dialog class="modal w-full h-full" id="modalPassAdmin">
+    <div class="modal-box font-normal">
+        <div class="flex flex-col gap-4">
+
+            <div class="p-4 rounded-lg bg-warning text-center">
+                <h2 class="text-lg font-semibold">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Update Password</span>
+                </h2>
+                <p class="text-sm mt-2" style="font-family: Poppins">
+                    Pastikan password Anda mudah diingat dan tidak mudah ditebak oleh orang lain
+                </p>
+            </div>
+
+            <div class="card bg-white text-left border-0">
+                <form action="{{ route('admin.update', ['admin' => Auth::guard('admin')->user()->id_admin ]) }}" id="formPass" class="card-body bg-slate-200 rounded-lg text-sm" style="font-family: Poppins" method="POST">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="text-label text-sm">Password *</div>
+                    <input type="password" placeholder="Masukkan Password" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="password"/>
+
+                    <div class="text-label text-sm">Konfirmasi Password *</div>
+                    <input type="password" placeholder="Masukkan Konfirmasi Password" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="confirmPassword"/>
+
+                    <button type="submit" class="btn btn-warning capitalize font-normal text-white">Ubah Password</button>
+                    
+                </form>
+            </div>
+        </div>
+        <div class="modal-action">
+            <a href="#headerService" class="btn btn-primary text-white font-normal capitalize">Tutup</a>
+        </div>
+    </div>
+  </dialog>
+
+  {{-- Modal Tambah Warga --}}
+  <dialog class="modal w-full h-full" id="modalAddWarga">
+    <div class="modal-box font-normal">
+        <div class="flex flex-col gap-4">
+  
+            <div class="p-4 rounded-lg bg-warning text-center">
+                <h2 class="text-lg font-semibold">
+                  <i class="fas fa-info-circle"></i>
+                  <span>Tambah Warga</span>
+                </h2>
+                <p class="text-sm mt-2" style="font-family: Poppins">
+                  Tambahkan warga baru ke dalam sistem
+                </p>
+            </div>
+  
+            <div class="card bg-white text-left border-0">
+                <form action="{{ route('warga-admin.store') }}" class="card-body bg-slate-200 rounded-lg text-sm" style="font-family: Poppins" method="POST">
+                    @csrf
+                    @method('POST')
+  
+                    <div class="text-label text-sm">Nama *</div>
+                    <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="name"/>
+                    @error('name')
+                    <div class="alert alert-error shadow-lg text-white w-full m-auto my-2">
+                      <div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                      {{-- <span>{{ $message }}</span> --}}
+                      <span>Kolom Nama Wajib Diisi!</span>
+                      </div>
+                    </div>
+                    @enderror
+                    
+                    <div class="text-label text-sm">Email *</div>
+                    <input type="email" placeholder="Masukkan Email" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="email"/>
+                    @error('email')
+                    <div class="alert alert-error shadow-lg text-white w-full m-auto my-2">
+                      <div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                      {{-- <span>{{ $message }}</span> --}}
+                      <span>Kolom Email Wajib Diisi!</span>
+                      </div>
+                    </div>
+                    @enderror
+  
+                    <div class="text-label text-sm">Password *</div>
+                    <input type="password" placeholder="Masukkan Password" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="password"/>
+                    @error('password')
+                    <div class="alert alert-error shadow-lg text-white w-full m-auto my-2">
+                      <div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                      {{-- <span>{{ $message }}</span> --}}
+                      <span>Kolom Password Wajib Diisi!</span>
+                      </div>
+                    </div>
+                    @enderror
+  
+                    <div class="text-label text-sm">Konfirmasi Password *</div>
+                    <input type="password" placeholder="Masukkan Konfirmasi Password" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="conf_pass"/>
+                    @error('conf_pass')
+                    <div class="alert alert-error shadow-lg text-white w-full m-auto my-2">
+                      <div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                      {{-- <span>{{ $message }}</span> --}}
+                      <span>Kolom Konfirmasi Password Wajib Diisi!</span>
+                      </div>
+                    </div>
+                    @enderror
+  
+                    <button type="submit" class="btn btn-primary capitalize font-normal text-white mt-4">Tambah Warga</button>
+                    
+                </form>
+            </div>
+        </div>
+        <div class="modal-action">
+            <a href="#headerService" class="btn btn-primary text-white font-normal capitalize">Tutup</a>
+        </div>
+    </div>
+  </dialog>
+
   <div id="sideBar" class="drawer drawer-mobile bg-slate-200">
     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex flex-col">
@@ -38,7 +154,7 @@
           <a href="" class="btn btn-ghost font-normal capitalize flex gap-2 items-center">
             {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg> --}}
             <i class="fas fa-user"></i>
-            Hi, Admin
+            Hai, {{ Auth::guard('admin')->user()->nama_admin  }}
           </a>
         </div>
       </div>
@@ -122,7 +238,7 @@
         <hr class="my-4">
 
         <li>
-          <a href="{{ route('profile.admin') }}" class="p-4 @yield('account')">
+          <a href="{{ route('admin.edit', ['admin' => Auth::guard('admin')->user()->id_admin ]) }}" class="p-4 @yield('account')">
             <i class="fas fa-cog"></i>
             Pengaturan Akun
           </a>
@@ -185,17 +301,27 @@
   $(document).ready(function(){
     $("#search").on("keyup", function() {
       var value = $(this).val().toLowerCase();
-      $("#listLetters tr").filter(function() {
+
+      $("#listWarga").filter(function() {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
       });
+
+      $("#listLetters").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+
     });
 
-    $("#searchWarga").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#listWarga tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
+    $('input[name="daterange"]').daterangepicker({
+    opens: 'left'
+    }, function(start, end, label) {
+
+      $('input[name="startDate"]').val(start.format('YYYY-MM-DD'));
+      $('input[name="endDate"]').val(end.format('YYYY-MM-DD'));
+
+      console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
     });
   });
+
 </script>
 </html>

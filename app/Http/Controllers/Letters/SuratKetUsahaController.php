@@ -66,7 +66,7 @@ class SuratKetUsahaController extends Controller
             ->join('surat_ket_usaha', 'surat_pengajuan.id_surat', '=', 'surat_ket_usaha.id_surat_ket_usaha')
             ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
             ->where('surat_pengajuan.jenis_surat', 'Surat Keterangan Usaha')
-            ->select('surat_pengajuan.*', 'surat_ket_usaha.*', 'warga.name', 'warga.nik', 'warga.alamat')
+            ->select('surat_pengajuan.*', 'surat_ket_usaha.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
             ->first();
 
         return view('admin.detailsuratusaha', compact('data'));
@@ -77,7 +77,7 @@ class SuratKetUsahaController extends Controller
             ->join('surat_ket_usaha', 'surat_pengajuan.id_surat', '=', 'surat_ket_usaha.id_surat_ket_usaha')
             ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
             ->where('surat_pengajuan.jenis_surat', 'Surat Keterangan Usaha')
-            ->select('surat_pengajuan.*', 'surat_ket_usaha.*', 'warga.name', 'warga.nik', 'warga.alamat')
+            ->select('surat_pengajuan.*', 'surat_ket_usaha.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
             ->first();
 
         return view('users.detailsuratusaha', compact('data'));

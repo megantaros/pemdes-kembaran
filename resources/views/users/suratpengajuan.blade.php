@@ -56,7 +56,7 @@
                             <h2 class="mb-2">{{ $row->jenis_surat }}</h2>
         
                             <div class="text-xs" style="font-family: Poppins">
-                                Diajukan pada: <span class="font-semibold">{{ $row->created_at }}</span>
+                                Diajukan pada: <span class="font-semibold">{{ $row->tanggal_permohonan }}</span>
                             </div>
 
                             <div class="text-xs" style="font-family: Poppins">
@@ -71,7 +71,7 @@
                                     <span>Detail</span>
                                 </a>
 
-                                <form id="formHapus" action="{{ route('pengajuan-surat.destroy', ['pengajuan_surat' => $row->id]) }}" method="POST" data-id="{{ $row->id }}" data-jenis="{{ $row->jenis_surat }}" class="{{ $row->status == 'Diterima' ? 'hidden' : '' }}">
+                                <form id="formHapus" action="{{ route('pengajuan-surat.destroy', ['pengajuan_surat' => $row->id_surat_pengajuan]) }}" method="POST" data-id="{{ $row->id_surat_pengajuan }}" data-jenis="{{ $row->jenis_surat }}" class="{{ $row->status == 'Diterima' ? 'hidden' : '' }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-sm hover:underline text-error" style="font-family: Poppins">

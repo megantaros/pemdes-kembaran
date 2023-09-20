@@ -17,9 +17,14 @@ class AdminSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('admins')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
+        DB::table('admin')->insert([
+            'id_admin' => Str::uuid()->toString(),
+            'nama_admin' => 'Rian Megarandra',
+            'email' => 'admin1@gmail.com',
+            'notelpon' => '081234567890',
+            'jabatan' => 'Kasi Pemerintahan',
+            'jenis_kelamin' => 'Pria',
+            'alamat' => 'Gang Braja RT 01 RW 02, Desa Kembaran, Kebumen, Jawa Tengah',
             'password' => Hash::make('123')
         ]);
     }

@@ -15,7 +15,7 @@
   
             <div>
                 <div class="text-label text-sm">Nama Lengkap *</div>
-                <input type="text" class="input input-bordered input-primary w-full my-1 placeholder:text-sm read-only:bg-white" value="{{ $data->name }}" disabled/>
+                <input type="text" class="input input-bordered input-primary w-full my-1 placeholder:text-sm read-only:bg-white" value="{{ $data->nama_warga }}" disabled/>
             </div>
   
             <div>
@@ -108,7 +108,7 @@
     <div class="card bg-white">
       <div class="card-body p-4">
 
-        <form action="{{ route('validasi-surat.update', ['validasi_surat' => $data->id]) }}" method="POST" class="p-4 bg-slate-200 rounded-md">
+        <form action="{{ route('validasi-surat.update', ['validasi_surat' => $data->id_surat_pengajuan]) }}" method="POST" class="p-4 bg-slate-200 rounded-md">
           @csrf
           @method('PUT')
           

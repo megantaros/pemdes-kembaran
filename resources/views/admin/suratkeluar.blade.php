@@ -18,7 +18,7 @@
     </div>
 
     <div class="p-4 bg-slate-200 rounded-lg">
-      <form action="{{ route('daftar.surat', ['status_surat' => 'keluar']) }}" method="GET">
+      <form action="{{ route('daftar.surat', ['status_surat' => 'diterima']) }}" method="GET">
         @csrf
         @method('GET')
         <input type="hidden" name="startDate"/>
@@ -27,7 +27,7 @@
 
         <div class="flex items-center gap-2">
           <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="daterange" value="01/01/2023 - 01/15/2023" />
-          <button type="submit" class="btn btn-primary capitalize font-normal text-white">Cek</button>
+          <button type="submit" class="btn btn-primary capitalize font-normal text-white">Cek Tanggal</button>
         </div>
       </form>
 
@@ -131,7 +131,7 @@
             }
           @endphp
 
-          <tr class="border-b-2 border-primary font-semibold p-3 text-gray-800" style="font-family: Poppins;">
+          <tr id="listLetters" class="border-b-2 border-primary font-semibold p-3 text-gray-800" style="font-family: Poppins;">
             <th class="text-sm">{{$no++}}</th>
             <td class="text-sm">{{ $item->name }}</td>
             <td class="text-sm">{{ $item->nik }}</td>
@@ -143,7 +143,7 @@
               <textarea class="textarea textarea-primary w-full placeholder:text-sm" placeholder="Tulis disini..." disabled rows="1">{{ $item->keterangan_warga }}</textarea>
             </td>
             <td>
-              <a href="{{ $jenisSurat }}" class="text-sm hover:underline btn btn-info flex capitalize gap-2" style="font-family: Poppins">
+              <a href="{{ $jenisSurat }}" class="text-sm hover:underline p-4 rounded-lg btn-info capitalize flex items-center justify-center gap-1" style="font-family: Poppins">
                 <i class="fa fa-info-circle"></i>
                 <span>Detail</span>
               </a>

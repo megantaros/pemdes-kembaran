@@ -61,7 +61,7 @@ class SuratKetPindahController extends Controller
             ->join('surat_ket_pindah', 'surat_pengajuan.id_surat', '=', 'surat_ket_pindah.id_surat_ket_pindah')
             ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
             ->where('surat_pengajuan.jenis_surat', 'Surat Keterangan Pindah')
-            ->select('surat_pengajuan.*', 'surat_ket_pindah.*', 'warga.name', 'warga.nik', 'warga.alamat')
+            ->select('surat_pengajuan.*', 'surat_ket_pindah.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
             ->first();
 
         return view('admin.detailsuratpindah', compact('data'));
@@ -72,7 +72,7 @@ class SuratKetPindahController extends Controller
             ->join('surat_ket_pindah', 'surat_pengajuan.id_surat', '=', 'surat_ket_pindah.id_surat_ket_pindah')
             ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
             ->where('surat_pengajuan.jenis_surat', 'Surat Keterangan Pindah')
-            ->select('surat_pengajuan.*', 'surat_ket_pindah.*', 'warga.name', 'warga.nik', 'warga.alamat')
+            ->select('surat_pengajuan.*', 'surat_ket_pindah.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
             ->first();
 
         return view('users.detailsuratpindah', compact('data'));

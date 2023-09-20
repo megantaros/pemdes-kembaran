@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->foreign('id_warga')->references('id_warga')->on('warga');
             $table->string('id_surat')->nullable();
             $table->string('jenis_surat');
-            $table->date('tanggal')->NOW();
+            $table->date('tanggal_permohonan')->default(now());
             $table->string('keterangan_warga')->nullable();
             $table->string('keterangan_admin')->nullable();
             $table->enum('status', ['Terkirim', 'Diterima', 'Ditolak'])->default('Terkirim');
