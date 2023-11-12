@@ -12,16 +12,15 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('surat_pengajuan', function (Blueprint $table) {
-            $table->uuid('id_surat_pengajuan')->primary();
+        Schema::create('permohonan_surat', function (Blueprint $table) {
+            $table->uuid('id_permohonan_surat')->primary();
             $table->string('id_warga');
             $table->foreign('id_warga')->references('id_warga')->on('warga');
-            $table->string('id_surat')->nullable();
             $table->string('jenis_surat');
-            $table->date('tanggal_permohonan')->default(now());
+            $table->date('tanggal');
             $table->string('keterangan_warga')->nullable();
             $table->string('keterangan_admin')->nullable();
-            $table->enum('status', ['Terkirim', 'Diterima', 'Ditolak'])->default('Terkirim');
+            $table->enum('status', [1, 2, 3, 4, 5, 6])->default(1);
             $table->timestamps();
         });
     }

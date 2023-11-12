@@ -34,7 +34,7 @@ class AuthController extends Controller
 
         if (\Illuminate\Support\Facades\Auth::attempt($request->only('email', 'password'))) {
             $user = $request->user();
-            if (!$user->jenis_kelamin && !$user->notelpon && !$user->alamat) {
+            if (!$user->jenis_kelamin && !$user->notelpon && !$user->alamat && !$user->nik && !$user->kk) {
                 return redirect()->route('warga.edit', ['warga' => $user->id_warga])->with('success', 'Anda Berhasil Login !');
             }
 
@@ -61,6 +61,12 @@ class AuthController extends Controller
     public function logout()
     {
         \Illuminate\Support\Facades\Auth::logout();
-        return redirect()->route('home')->with('success', 'Anda Berhasil Logout !');
+        return redirect()->route('login.warga')->with('success', 'Anda Berhasil Logout !');
+    }
+
+    public function logoutAdmin()
+    {
+        \Illuminate\Support\Facades\Auth::guard('admin')->logout();
+        return redirect()->route('login.admin')->with('success', 'Anda Berhasil Logout !');
     }
 }

@@ -40,7 +40,7 @@
                     </li>
 
                     @guest
-                    <li tabindex="0" class="z-10">
+                    <li tabindex="0" class="z-[90]">
                         <a class="text-sm text-primary" style="background: #FFEBAD">
                             Masuk
                             <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
@@ -53,7 +53,7 @@
                     @endguest
 
                     @auth
-                    <li tabindex="0" class="z-10">
+                    <li tabindex="0" class="z-[90]">
                         <a class="text-sm text-primary" style="background: #FFEBAD">
                             Hi, {{ Auth::user()->nama_warga }}
                             <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
@@ -76,7 +76,7 @@
             <div class="flex-none lg:hidden block">
                 <ul class="menu menu-horizontal">
                     @guest
-                        <li tabindex="0" class="z-10">
+                        <li tabindex="0" class="z-[90]">
                             <a class="btn-ghost rounded-md">
                                 <i class="fa fa-bars text-2xl text-white"></i>
                             </a>
@@ -101,7 +101,7 @@
                     @endguest
 
                     @auth
-                    <li tabindex="0" class="z-10">
+                    <li tabindex="0" class="z-[90]">
                         <a>
                             <i class="fa fa-bars" aria-hidden="true"></i>
                         </a>
@@ -215,7 +215,8 @@
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-
+    
+    @yield('script')
     {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> --}}
     {{-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> --}}

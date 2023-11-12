@@ -34,12 +34,15 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        $suratMasuk = \App\Models\SuratPengajuan::where('status', 'Terkirim')->count();
-        $suratKeluar = \App\Models\SuratPengajuan::where('status', 'Diterima')->count();
-        $suratDitolak = \App\Models\SuratPengajuan::where('status', 'Ditolak')->count();
+        $suratMasuk = \App\Models\SuratPengajuan::where('status', 1)->count();
+        $suratKeluar = \App\Models\SuratPengajuan::where('status', 5)->count();
+        $suratDitolak = \App\Models\SuratPengajuan::where('status', 6)->count();
         $warga = \App\Models\User::count();
+        $statusSurat = \App\Models\SuratPengajuan::select('status')->groupBy('status')->get();
 
-        $data = \App\Models\SuratPengajuan::join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
+        $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->where('permohonan_surat.status', 1)
+            ->orderBy('permohonan_surat.created_at', 'DESC')
             ->get();
 
         return view('admin.dashboard', [
@@ -47,83 +50,18 @@ class AdminController extends Controller
             'suratKeluar' => $suratKeluar,
             'suratDitolak' => $suratDitolak,
             'warga' => $warga,
-            'data' => $data
+            'data' => $data,
+            'statusSurat' => $statusSurat
         ]);
-
-        // $statistik = \App\Models\SuratPengajuan::selectRaw('count(*) as jumlah, DATE_FORMAT(tanggal_permohonan, "%M") as bulan')
-        //     ->where('status', 'Terkirim')
-        //     ->whereYear('tanggal_permohonan', date('Y'))
-        //     ->groupBy('bulan')
-        //     ->get();
-
-        // $statsInMonthIncoming = \App\Models\SuratPengajuan::selectRaw('count(*) as jumlah, DATE_FORMAT(tanggal_permohonan, "%M") as bulan')
-        //     ->where('status', 'Terkirim')
-        //     ->whereYear('tanggal_permohonan', date('Y'))
-        //     ->groupBy('bulan')
-        //     ->get();
-
-        // $statisInMonthOutgoing = \App\Models\SuratPengajuan::selectRaw('count(*) as jumlah, DATE_FORMAT(tanggal_permohonan, "%M") as bulan')
-        //     ->where('status', 'Diterima')
-        //     ->whereYear('tanggal_permohonan', date('Y'))
-        //     ->groupBy('bulan')
-        //     ->get();
-
-        // $statisInMonthRejected = \App\Models\SuratPengajuan::selectRaw('count(*) as jumlah, DATE_FORMAT(tanggal_permohonan, "%M") as bulan')
-        //     ->where('status', 'Ditolak')
-        //     ->whereYear('tanggal_permohonan', date('Y'))
-        //     ->groupBy('bulan')
-        //     ->get();
-
-        // $statsInMonthCivil = \App\Models\User::selectRaw('count(*) as jumlah, DATE_FORMAT(created_at, "%M") as bulan')
-        //     ->whereYear('created_at', date('Y'))
-        //     ->groupBy('bulan')
-        //     ->get();
-
-        // return view('admin.dashboard', [
-        //     'suratMasuk' => $suratMasuk,
-        //     'suratKeluar' => $suratKeluar,
-        //     'suratDitolak' => $suratDitolak,
-        //     'warga' => $warga,
-        //     'statistikIncoming' => $statsInMonthIncoming,
-        //     'statistikOutgoing' => $statisInMonthOutgoing,
-        //     'statistikRejected' => $statisInMonthRejected,
-        //     'statistikCivil' => $statsInMonthCivil
-        // ]);
     }
 
-    public function surat(Request $request, $statusSurat)
+    public function verifikasiSurat()
     {
-        $startDate = $request->startDate;
-        $endDate = $request->endDate;
+        $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->where('permohonan_surat.status', 2)
+            ->orderBy('permohonan_surat.created_at', 'DESC')
+            ->get();
 
-        if ($startDate && $endDate) {
-            $data = \App\Models\SuratPengajuan::join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
-                ->whereBetween('surat_pengajuan.tanggal_permohonan', [$startDate, $endDate])
-                ->where('surat_pengajuan.status', $statusSurat)->get();
-
-            if ($data == '[]') {
-                return redirect()->route('daftar.surat', $statusSurat)->with('error', 'Data Tidak Ditemukan !');
-            }
-
-            if ($statusSurat == 'terkirim') {
-                return view('admin.suratmasuk', compact('data'));
-            } elseif ($statusSurat == 'diterima') {
-                return view('admin.suratkeluar', compact('data'));
-            } else {
-                return view('admin.suratditolak', compact('data'));
-            }
-        } else {
-            $data = \App\Models\SuratPengajuan::join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
-                ->where('surat_pengajuan.status', $statusSurat)->get();
-
-            if ($statusSurat == 'terkirim') {
-                return view('admin.suratmasuk', compact('data'));
-            } elseif ($statusSurat == 'diterima') {
-                return view('admin.suratkeluar', compact('data'));
-            } else {
-                return view('admin.suratditolak', compact('data'));
-            }
-        }
-
+        return view('admin.suratmasuk', compact('data'));
     }
 }

@@ -14,12 +14,13 @@ return new class extends Migration {
     {
         Schema::create('surat_ket_pindah_datang', function (Blueprint $table) {
             $table->uuid('id_surat_ket_pindah_datang')->primary();
-            $table->string('id_warga')->unique();
-            $table->string('jenis_surat')->default('Surat Keterangan Pindah Datang');
+            // $table->string('id_warga');
+            // $table->foreign('id_warga')->references('id_warga')->on('warga');
+            $table->string('id_permohonan_surat');
+            // $table->foreign('id_permohonan_surat')->references('id_permohonan_surat')->on('permohonan_surat');
             $table->string('foto_surat_ket_pindah_capil');
             $table->timestamps();
 
-            $table->foreign('id_warga')->references('id_warga')->on('warga');
         });
     }
 

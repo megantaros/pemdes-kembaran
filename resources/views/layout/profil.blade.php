@@ -130,8 +130,8 @@
                     <div class="flex gap-4 items-center">
                         <img src="{{ asset('assets/man.png') }}" alt="Icon Profil" class="h-12" />
                         <div>
-                            <h2 class="font-normal">Hi, {{ Auth::user()->nama_warga }}</h2>
-                            <a href="{{ route('info.warga') }}" class="font-normal text-sm hover:underline leading-5" style="font-family: Poppins">
+                            <h2 class="font-semibold">Hi, {{ Auth::user()->nama_warga }}</h2>
+                            <a href="{{ route('info.warga') }}" class="text-sm hover:underline leading-5" style="font-family: Poppins">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                 <span>Ubah Profil</span>
                             </a>
@@ -140,22 +140,25 @@
 
                     <hr class="my-4">
 
-                    <a href="{{ route('surat.warga') }}" class="capitalize font-normal text-white flex gap-2 justify-start hover:text-white {{ Route::is('surat.warga') ? "btn btn-primary" : "btn btn-outline btn-primary" }}">
+                    <a href="{{ route('surat.warga') }}" class="capitalize text-white flex gap-2 justify-start hover:text-white font-normal {{ Route::is('surat.warga') ? "btn btn-primary" : "btn btn-outline btn-primary" }}">
                         <i class="fa fa-envelope mx-2 text-xl" aria-hidden="true"></i>
                         <span>Permohonan Surat</span>
                     </a>
 
-                    <a href="{{ route('info.warga') }}" class="capitalize font-normal text-white flex gap-2 justify-start hover:text-white {{ Route::is('info.warga') ? "btn btn-primary" : "btn btn-outline btn-primary" }}">
+                    <a href="{{ route('info.warga') }}" class="capitalize text-white flex gap-2 justify-start hover:text-white font-normal {{ Route::is('info.warga') ? "btn btn-primary" : "btn btn-outline btn-primary" }}">
                         <i class="fa fa-user mx-2 text-lg" aria-hidden="true"></i>
                         <span>Info Profil</span>
                     </a>
 
                     <hr class="my-4">
 
-                    <a href="{{ route('logout.warga') }}" class="btn btn-error capitalize font-normal text-white flex gap-2 justify-start hover:text-white">
-                        <i class="fa fa-sign-out mx-2 text-lg" aria-hidden="true"></i>
-                        <span>Logout</span>
-                    </a>
+                    <form action="{{ route('logout.warga') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-error capitalize text-white flex gap-2 justify-start hover:text-white w-full">
+                            <i class="fa fa-sign-out mx-2 text-lg" aria-hidden="true"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
                     
                 </div>
             </div>

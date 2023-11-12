@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->string('notelpon')->nullable();
             $table->string('nik')->nullable();
+            $table->string('kk')->nullable();
             $table->string('ttl')->nullable();
             $table->enum('jenis_kelamin', ['Pria', 'Wanita'])->nullable();
             $table->string('pekerjaan')->nullable();

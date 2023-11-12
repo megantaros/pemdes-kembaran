@@ -51,7 +51,7 @@
 
                         <input type="hidden" value="{{ Auth::user()->id_warga }}" name="id_warga"/>
 
-                        <div class="text-label text-sm">KK *</div>
+                        {{-- <div class="text-label text-sm">KK *</div>
                         <input type="text" placeholder="Masukkan No. KK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="kk"/>
 
                         @error('kk')
@@ -61,7 +61,7 @@
                             <span>Kolom tidak boleh kosong!</span>
                             </div>
                         </div>
-                        @enderror
+                        @enderror --}}
 
                         <div class="text-label text-sm">Alamat Domisili *</div>
                         <textarea class="textarea textarea-primary w-full placeholder:text-sm" placeholder="Masukkan Alamat Domisili" name="alamat_domisili"></textarea>

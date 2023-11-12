@@ -4,98 +4,23 @@
 @section('title', 'Beranda')
 
 @section('content')
-{{-- <section>
-    <div
-        id="carouselExampleCrossfade"
-        class="carousel slide carousel-fade relative"
-        data-bs-ride="carousel"
-        >
-        <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 lg:mb-4 mb-0">
-            <button
-            type="button"
-            data-bs-target="#carouselExampleCrossfade"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-            ></button>
-            <button
-            type="button"
-            data-bs-target="#carouselExampleCrossfade"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-            ></button>
-            <button
-            type="button"
-            data-bs-target="#carouselExampleCrossfade"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-            ></button>
-        </div>
-        <div class="carousel-inner relative w-full overflow-hidden">
-            <div class="carousel-item active float-left w-full">
-            <img
-                src="{{ asset('assets/carousel-1.png') }}"
-                class="block w-full h-[60vh] lg:h-[90vh] object-cover"
-                alt="Wild Landscape"
-            />
-            <div class="overlay">
-                <div class="textOverlay text-center block">
-                    <h1 class="text-white lg:text-5xl lg:mb-4 text-2xl mb-3">Selamat Datang di Website Desa Kembaran</h1>
-                    <p class="text-white lg:text-l text-sm">Kembaran adalah sebuah desa di Kecamatan Kebumen, Kabupaten Kebumen, Jawa Tengah, Indonesia.</p>
-                    <button class="btnOverlay lg:py-2 lg:px-4 py-1 px-2 lg:text-lg text-sm lg:mt-5 mt-4 rounded">Pelajari Lebih</button>
-                </div>
+<header id="carousel" class="carousel w-full h-screen overflow-hidden">
+        {{-- @foreach ($carousel as $item)
+        <div id="{{ $item->slide }}" class="carousel-item relative w-full">
+            <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2 z-40">
+                <a href="#slide3" class="btn btn-circle btn-primary border-none">❮</a> 
+                <a href="#slide2" class="btn btn-circle btn-primary border-none">❯</a>
             </div>
+            <div class="absolute bg-black bg-opacity-70 z-20 w-full h-full top-0 left-0 right-0 bottom-0"></div>
+            <div class="absolute h-full w-full top-0 left-0 flex flex-col justify-center items-center z-30 gap-2">
+                <h2 class="text-white xl:text-3xl lg:text-3xl text-2xl text-center">{{ $item->title }}</h2>
+                <p class="xl:text-lg lg:text-lg text-md text-white" style="font-family: var(--font-secondary)">{{ $item->desc }}</p>
+                <button class="btn btn-primary capitalize font-normal text-white rounded-full mt-5">Pelajari Lebih</button>
             </div>
-            <div class="carousel-item active float-left w-full">
-            <img
-                src="{{ asset('assets/carousel-2.png') }}"
-                class="block w-full h-[60vh] lg:h-[90vh] object-cover"
-                alt="Wild Landscape"
-            />
-            <div class="overlay">
-                <div class="textOverlay text-center block">
-                    <h1 class="text-white lg:text-5xl lg:mb-4 text-2xl mb-3">Selamat Datang di Website Desa Kembaran</h1>
-                    <p class="text-white lg:text-l text-sm">Kembaran adalah sebuah desa di Kecamatan Kebumen, Kabupaten Kebumen, Jawa Tengah, Indonesia.</p>
-                    <button class="btnOverlay lg:py-2 lg:px-4 py-1 px-2 lg:text-lg text-sm lg:mt-5 mt-4 rounded">Pelajari Lebih</button>
-                </div>
-            </div>
-            </div>
-            <div class="carousel-item active float-left w-full">
-            <img
-                src="{{ asset('assets/carousel-1.png') }}"
-                class="block w-full h-[60vh] lg:h-[90vh] object-cover"
-                alt="Wild Landscape"
-            />
-            <div class="overlay">
-                <div class="textOverlay text-center block">
-                    <h1 class="text-white lg:text-5xl lg:mb-4 text-2xl mb-3">Selamat Datang di Website Desa Kembaran</h1>
-                    <p class="text-white lg:text-l text-sm">Kembaran adalah sebuah desa di Kecamatan Kebumen, Kabupaten Kebumen, Jawa Tengah, Indonesia.</p>
-                    <button class="btnOverlay lg:py-2 lg:px-4 py-1 px-2 lg:text-lg text-sm lg:mt-5 mt-4 rounded">Pelajari Lebih</button>
-                </div>
-            </div>
-            </div>
-        </div>
-        <button
-            class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-            type="button"
-            data-bs-target="#carouselExampleCrossfade"
-            data-bs-slide="prev"
-        >
-            <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-            class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-            type="button"
-            data-bs-target="#carouselExampleCrossfade"
-            data-bs-slide="next"
-        >
-            <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</section> --}}
+            <img src="" class="w-full object-cover" />
+        </div> 
+        @endforeach --}}
+</header>
 
 <section data-aos="fade-up" id="service" class="py-10">
     <div class="container text-center">
@@ -420,4 +345,55 @@
         <img src="{{ asset('assets/bagan-jabatan.png') }}" alt="Bagan Jabatan" class="m-auto w-3/4">
     </div>
 </section>
+@endsection
+
+@section('script')
+<script>
+    const data = [
+        {
+            slide: "slide1",
+            img: "{{url('assets/carousel-1.png')}}",
+            title: "Selamat Datang di Website Desa Kembaran",
+            desc: "Website ini dibuat untuk memudahkan masyarakat dalam mengakses informasi seputar Desa Kembaran",
+            next: "slide2",
+            prev: "slide3",
+        },
+        {
+            slide: "slide2",
+            img: "{{url('assets/carousel-2.png')}}",
+            title: "Selamat Datang di Website Desa Kembaran",
+            desc: "Website ini dibuat untuk memudahkan masyarakat dalam mengakses informasi seputar Desa Kembaran",
+            next: "slide3",
+            prev: "slide1",
+        },
+        {
+            slide: "slide3",
+            img: "{{url('assets/carousel-1.png')}}",
+            title: "Selamat Datang di Website Desa Kembaran",
+            desc: "Website ini dibuat untuk memudahkan masyarakat dalam mengakses informasi seputar Desa Kembaran",
+            next: "slide1",
+            prev: "slide2",
+        },
+    ];
+
+    const carouselItem = data.map((item) => {
+        return `
+            <div id="${item.slide}" class="carousel-item relative w-full">
+                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2 z-40">
+                    <a href="#${item.prev}" class="btn btn-circle btn-primary border-none">❮</a>
+                    <a href="#${item.next}" class="btn btn-circle btn-primary border-none">❯</a>
+                </div>
+                <div class="absolute bg-black bg-opacity-70 z-20 w-full h-full top-0 left-0 right-0 bottom-0"></div>
+                <div class="absolute h-full w-full top-0 left-0 flex flex-col justify-center items-center z-30 gap-2 xl:p-0 lg:p-0 p-14">
+                    <h2 class="text-white xl:text-3xl lg:text-3xl text-2xl text-center">${item.title}</h2>
+                    <p class="xl:text-lg lg:text-lg text-md text-white text-center" style="font-family: var(--font-secondary)">${item.desc}</p>
+                    <button class="btn btn-primary capitalize font-normal text-white rounded-full mt-5 px-10">Pelajari Lebih</button>
+                </div>
+                <img src="${item.img}" class="w-full object-cover" />
+            </div>
+        `;
+    });
+
+    document.getElementById("carousel").innerHTML = carouselItem.join("");
+</script>
 @endsection

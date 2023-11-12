@@ -181,7 +181,7 @@
       <ul class="menu p-4 w-80 bg-primary text-white" style="font-family: Poppins;">
         <!-- Sidebar content here -->
         <li>
-          <a href="" class="btn-ghost p-2 flex items-center rounded-lg gap-2">
+          <a href="/dashboard" class="btn-ghost p-2 flex items-center rounded-lg gap-2">
             <img src="{{ asset('assets/logo-big-kebumen.png') }}" alt="Logo Kebumen" class="h-12">
             <div>
               <h2 class="text-lg active" style="font-family: Viga">Admin</h2>
@@ -216,12 +216,12 @@
 
         <ul id="letters" class="hidden pl-4" style="font-family: Poppins">
           <li>
-            <a href="{{ route('daftar.surat', ['status_surat' => 'terkirim']) }}" class="p-4 @yield('incomingActive')">
+            <a href="{{ route('verifikasi.surat') }}" class="p-4 @yield('incomingActive')">
               <i class="fa fa-inbox" aria-hidden="true"></i>
-              Surat Masuk 
+              Surat Diterima
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a href="{{ route('daftar.surat', ['status_surat' => 'diterima']) }}" class="p-4 @yield('outgoingActive')">
               <i class="fa fa-list-alt" aria-hidden="true"></i>
               Surat Keluar
@@ -232,7 +232,7 @@
               <i class="fa fa-times" aria-hidden="true"></i>
               Surat Ditolak
             </a>
-          </li>
+          </li> --}}
         </ul>
 
         <hr class="my-4">
@@ -244,12 +244,16 @@
           </a>
         </li>
 
+        <form action="{{ route('logout.admin') }}" method="POST">
         <li>
-          <a class="p-4 bg-error text-red-950 hover:text-red-500">
-            <i class="fas fa-sign-out-alt"></i>
-            Keluar
-          </a>
-        </li>
+            @csrf
+            @method('POST')
+            <button type="submit" class="p-4 bg-error text-red-950 hover:text-red-500">
+              <i class="fas fa-sign-out-alt"></i>
+              Keluar
+            </button>
+          </li>
+        </form>
 
       </ul>
     
@@ -261,8 +265,10 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   {{-- <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script> --}}
 
+  @yield('scripts')
 </body>
 <script>
+
   @if (Session::has('success'))
     swal("{{ Session::get('success') }}", "Terima Kasih", "success");
   @endif

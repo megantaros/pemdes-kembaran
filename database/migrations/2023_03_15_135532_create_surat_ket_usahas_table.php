@@ -14,8 +14,10 @@ return new class extends Migration {
     {
         Schema::create('surat_ket_usaha', function (Blueprint $table) {
             $table->uuid('id_surat_ket_usaha')->primary();
-            $table->string('id_warga')->unique();
-            $table->string('jenis_surat')->default('Surat Keterangan Usaha');
+            // $table->string('id_warga');
+            // $table->foreign('id_warga')->references('id_warga')->on('warga');
+            $table->string('id_permohonan_surat');
+            // $table->foreign('id_permohonan_surat')->references('id_permohonan_surat')->on('permohonan_surat');
             $table->enum('kewarganegaraan', ['WNI', 'WNA'])->default('WNI');
             $table->enum('status_pernikahan', ['Kawin', 'Belum Kawin'])->default('Belum Kawin');
             $table->string('jenis_usaha');
@@ -26,8 +28,6 @@ return new class extends Migration {
             $table->string('fc_kk');
             $table->string('foto_usaha');
             $table->timestamps();
-
-            $table->foreign('id_warga')->references('id_warga')->on('warga');
         });
     }
 

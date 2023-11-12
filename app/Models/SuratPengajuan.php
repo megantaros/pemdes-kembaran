@@ -10,8 +10,8 @@ class SuratPengajuan extends Model
     use HasFactory;
     protected $guarded = [];
     protected $dates = ['tanggal'];
-    protected $table = 'surat_pengajuan';
-    protected $primaryKey = 'id_surat_pengajuan';
+    protected $table = 'permohonan_surat';
+    protected $primaryKey = 'id_permohonan_surat';
     protected $keyType = 'string';
     public $incrementing = false;
     protected static function boot()

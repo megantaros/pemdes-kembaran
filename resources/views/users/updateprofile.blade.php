@@ -33,10 +33,10 @@
               
               <div class="text-label text-sm">NIK</div>
               <input type="number" placeholder="Masukkan NIK Anda" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="nik"/>
-  
-              <div class="text-label text-sm">Tempat, Tanggal Lahir</div>
-              <input type="text" placeholder="Contoh: Kebumen, 17 Agustus 1999" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="ttl"/>
 
+              <div class="text-label text-sm">KK</div>
+              <input type="number" placeholder="Masukkan NIK Anda" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="kk"/>
+  
             </div>
   
             <div>
@@ -63,6 +63,9 @@
             </div>
   
             <div class="lg:col-span-2">
+
+              <div class="text-label text-sm">Tempat, Tanggal Lahir</div>
+              <input type="text" placeholder="Contoh: Kebumen, 17 Agustus 1999" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="ttl"/>
 
               <div class="text-label text-sm">Alamat</div>
               <textarea class="textarea textarea-primary w-full mb-2 placeholder:text-sm" placeholder="Alamat Lengkap Sesuai KTP" name="alamat"></textarea>

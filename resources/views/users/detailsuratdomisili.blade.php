@@ -167,7 +167,7 @@
                     </div>
 
                     <div class="lg:col-span-2">
-                        <button type="submit" class="{{ $statusSurat == 'Diterima' || $statusSurat == 'Ditolak' ? 'hidden' : 'btn btn-warning w-full text-white font-normal capitalize' }}">Update</button>
+                        <button type="submit" class="{{ $statusSurat == '5' || $statusSurat == '6' ? 'hidden' : 'btn btn-warning w-full text-white font-normal capitalize' }}">Update</button>
                     </div>
 
                 </div>

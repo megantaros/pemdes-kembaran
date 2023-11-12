@@ -44,7 +44,7 @@ Route::middleware('auth:web')->group(function () {
         Route::resource('keterangan-pindah', App\Http\Controllers\Letters\SuratKetPindahController::class);
         Route::resource('keterangan-datang', App\Http\Controllers\Letters\SuratKetDatangController::class);
 
-        Route::post('/logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout.warga');
+        Route::post('/logout-warga', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout.warga');
     });
 
 });
@@ -55,7 +55,7 @@ Route::middleware('auth:admin')->group(function () {
 
         Route::resource('warga-admin', \App\Http\Controllers\Auth\WargaController::class);
         Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('dashboard');
-        Route::get('/daftar-surat/{status_surat}', [\App\Http\Controllers\Admin\AdminController::class, 'surat'])->name('daftar.surat');
+        Route::get('/daftar-surat/verifikasi-surat', [\App\Http\Controllers\Admin\AdminController::class, 'verifikasiSurat'])->name('verifikasi.surat');
         Route::get('/daftar-surat/{status_surat}/cetak', [\App\Http\Controllers\Admin\AdminController::class, 'cetakSurat'])->name('cetak.surat');
         Route::resource('admin', \App\Http\Controllers\Admin\AdminController::class);
         Route::resource('validasi-surat', \App\Http\Controllers\Letters\PengajuanSuratController::class);
@@ -66,6 +66,8 @@ Route::middleware('auth:admin')->group(function () {
         Route::resource('permohonan-usaha', \App\Http\Controllers\Letters\SuratKetUsahaController::class);
         Route::resource('permohonan-pindah', \App\Http\Controllers\Letters\SuratKetPindahController::class);
         Route::resource('permohonan-datang', \App\Http\Controllers\Letters\SuratKetDatangController::class);
+
+        Route::post('/logout-admin', [\App\Http\Controllers\Auth\AuthController::class, 'logoutAdmin'])->name('logout.admin');
 
     });
 });

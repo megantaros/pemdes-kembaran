@@ -1,6 +1,6 @@
 @extends('layout.admin')
 
-@section('title', 'Surat Masuk')
+@section('title', 'Surat Diterima')
 
 @section('incomingActive', 'bg-[#e5e7eb] bg-opacity-20')
 
@@ -18,7 +18,7 @@
     </div>
 
     <div class="p-4 bg-slate-200 rounded-lg">
-      <form action="{{ route('daftar.surat', ['status_surat' => 'terkirim']) }}" method="GET">
+      {{-- <form action="{{ route('daftar.surat', ['status_surat' => 'terkirim']) }}" method="GET">
         @csrf
         @method('GET')
         <input type="hidden" name="startDate"/>
@@ -29,7 +29,7 @@
           <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="daterange" value="01/01/2023 - 01/15/2023" />
           <button type="submit" class="btn btn-primary capitalize font-normal text-white">Cek Tanggal</button>
         </div>
-      </form>
+      </form> --}}
 
     </div>
 
@@ -59,10 +59,10 @@
 
     <div class="card-title p-4 bg-primary text-white rounded-lg font-normal block text-center">
       <h2 class="m-auto">
-        Daftar Surat Masuk
+        Daftar Surat yang Diterima
       </h2>
       <p class="font-normal text-sm" style="font-family: Poppins;">
-        Berikut adalah daftar surat masuk yang telah dikirimkan oleh warga
+        Berikut adalah daftar surat yang telah diterima oleh admin dan berkas akan diverifikasi
       </p>
     </div>
 
@@ -78,7 +78,6 @@
             <th class="bg-primary text-white capitalize font-normal">NIK</th>
             <th class="bg-primary text-white capitalize font-normal">Jenis Surat</th>
             <th class="bg-primary text-white capitalize font-normal">Tanggal Diajukan</th>
-            <th class="bg-primary text-white capitalize font-normal">Keterangan</th>
             <th class="bg-primary text-white capitalize font-normal">Aksi</th>
           </tr>
         </thead>
@@ -92,37 +91,22 @@
           @foreach ($data as $item)
 
           @php
-            $statusSurat = $item->status;
-            
-            if($statusSurat == "Terkirim"){
-                $statusSurat = "text-orange-500";
-            } elseif($statusSurat == "Ditolak"){
-                $statusSurat = "text-red-800";
-            } else {
-                $statusSurat = "text-green-800";
-            }
-
             $jenisSurat = $item->jenis_surat;
 
             if($jenisSurat == "Surat Pengantar KTP") {
-                $jenisSurat = route("permohonan-ktp.show", ['permohonan_ktp' => $item->id_surat]);
+                $jenisSurat = route("permohonan-ktp.show", ['permohonan_ktp' => $item->id_permohonan_surat]);
             } elseif($jenisSurat == "Surat Pengantar KK") {
-                $jenisSurat = route("permohonan-kk.show", ['permohonan_kk' => $item->id_surat]);
+                $jenisSurat = route("permohonan-kk.show", ['permohonan_kk' => $item->id_permohonan_surat]);
             } elseif($jenisSurat == "Surat Pengantar SKCK") {
-                $jenisSurat = route("permohonan-skck.show", ['permohonan_skck' => $item->id_surat]);
+                $jenisSurat = route("permohonan-skck.show", ['permohonan_skck' => $item->id_permohonan_surat]);
             } elseif($jenisSurat == "Surat Keterangan Domisili") {
-                $jenisSurat = route("permohonan-domisili.show", ['permohonan_domisili' => $item->id_surat]);
+                $jenisSurat = route("permohonan-domisili.show", ['permohonan_domisili' => $item->id_permohonan_surat]);
             } elseif($jenisSurat == "Surat Keterangan Pindah") {
-                $jenisSurat = route("permohonan-pindah.show", ['permohonan_pindah' => $item->id_surat]);
+                $jenisSurat = route("permohonan-pindah.show", ['permohonan_pindah' => $item->id_permohonan_surat]);
             } elseif($jenisSurat == "Surat Keterangan Pindah Datang") {
-                $jenisSurat = route("permohonan-datang.show", ['permohonan_datang' => $item->id_surat]);
+                $jenisSurat = route("permohonan-datang.show", ['permohonan_datang' => $item->id_permohonan_surat]);
             } elseif($jenisSurat == "Surat Keterangan Usaha") {
-                $jenisSurat = route("permohonan-usaha.show", ['permohonan_usaha' => $item->id_surat]);
-            }
-
-            $keteranganWarga = $item->keterangan_warga;
-            if(!$keteranganWarga) {
-                $keteranganWarga = "Tidak ada keterangan";
+                $jenisSurat = route("permohonan-usaha.show", ['permohonan_usaha' => $item->id_permohonan_surat]);
             }
           @endphp
 
@@ -135,12 +119,11 @@
               {{ \Carbon\Carbon::parse($item->tanggal_permohonan)->isoFormat('dddd, D MMMM Y') }}
             </td>
             <td>
-              <textarea class="textarea textarea-primary w-full placeholder:text-sm" placeholder="Tulis disini..." disabled rows="1">{{ $keteranganWarga }}</textarea>
-            </td>
-            <td>
-              <a href="{{ $jenisSurat }}" class="text-sm hover:underline p-4 rounded-lg btn-info capitalize flex items-center justify-center gap-1" style="font-family: Poppins">
-                <i class="fa fa-info-circle"></i>
-                <span>Detail</span>
+              <a href="{{ $jenisSurat }}" class="btn btn-outline btn-info capitalize" style="font-family: Poppins">
+                <span class="flex items-center justify-center text-sm gap-1">
+                  <i class="fa fa-info-circle"></i>
+                  Detail Surat
+                </span>
               </a>
             </td>
           </tr>

@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="lg:col-span-2">
-                    <button type="submit" class="btn btn-warning capitalize font-normal text-white w-full">Update Profil</button>
+                    <button type="submit" class="btn btn-warning capitalize font-normal text-white w-full">Ubah Profil</button>
                 </div>
             </form>
         </div>

@@ -23,33 +23,48 @@
                 <div class="text-label text-sm">NIK *</div>
                 <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" disabled/>
             </div>
+
+            <div>
+                <div class="text-label text-sm">No. KK *</div>
+                <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->kk }}" disabled/>
+            </div>
+
+            <div>
+                <div class="text-label text-sm">Tempat, Tanggal Lahir *</div>
+                <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->ttl }}" disabled/>
+            </div>
+
+            <div>
+                <div class="text-label text-sm">Jenis Kelamin *</div>
+                <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->jenis_kelamin }}" disabled/>
+            </div>
+
+            <div>
+                <div class="text-label text-sm">Pekerjaan *</div>
+                <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->pekerjaan }}" disabled/>
+            </div>
   
             <div class="lg:col-span-2">
                 <div class="text-label text-sm">Alamat *</div>
-                <textarea class="textarea textarea-primary w-full placeholder:text-sm">{{ $data->alamat }}</textarea>
+                <textarea class="textarea textarea-primary w-full placeholder:text-sm" disabled style="background: #fff !important";>{{ $data->alamat }}</textarea>
             </div>
-  
+
             <div class="lg:col-span-2">
-                <div class="text-label text-sm">KK *</div>
-                <input type="text" placeholder="Masukkan No. KK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="kk" value="{{ $data->kk }}" disabled/>
-            </div>
-  
-            <div class="lg:col-span-2">
-              <div class="text-label text-sm">Alamat Domisili *</div>
-              <textarea class="textarea textarea-primary w-full placeholder:text-sm">{{ $data->alamat_domisili }}</textarea>
-          </div>
-  
+                <div class="text-label text-sm">Alamat Domisili *</div>
+                <textarea class="textarea textarea-primary w-full placeholder:text-sm" disabled style="background: #fff !important";>{{ $data->alamat_domisili }}</textarea>
+            </div>      
+
             <div class="p-4 bg-white rounded-lg relative lg:col-span-2 flex items-center border-[#9CB4CC] border-2 my-1">
   
                 <div class="flex flex-1 items-center gap-4">
   
-                  <div class="h-20 border-2 bg-primary rounded-lg p-2 overflow-hidden w-32">
-                    <img src="{{ url('berkaspemohon/'. $data->pengantar_rt ) }}" alt="Pengantar RT" class="rounded-sm h-20 object-cover m-auto">
+                  <div class="h-20 border-2 bg-primary rounded-lg overflow-hidden w-32">
+                    <img src="{{ url('berkaspemohon/'. $data->pengantar_rt ) }}" alt="Pengantar RT" class="rounded-sm object-cover w-full h-full">
                   </div>
   
                   <div>
                     <h2 class="font-semibold">Surat Pengantar RT</h2>
-                    <p class="text-sm font-semibold text-gray-500">{{ $data->pengantar_rt != null ? $data->pengantar_rt : 'Belum Upload File' }}</p>
+                    <p class="text-sm text-gray-500">{{ $data->pengantar_rt != null ? $data->pengantar_rt : 'Belum Upload File' }}</p>
                   </div>
   
                 </div>
@@ -65,13 +80,13 @@
   
               <div class="flex flex-1 items-center gap-4">
   
-                <div class="h-20 border-2 bg-primary rounded-lg p-2 overflow-hidden w-32">
-                  <img src="{{ url('berkaspemohon/'. $data->fc_ktp ) }}" alt="Fotokopi KTP" class="rounded-sm h-20 object-cover m-auto">
+                <div class="h-20 border-2 bg-primary rounded-lg overflow-hidden w-32">
+                  <img src="{{ url('berkaspemohon/'. $data->fc_ktp ) }}" alt="Fotokopi KTP" class="rounded-sm object-cover w-full h-full">
                 </div>
   
                 <div>
                   <h2 class="font-semibold">Fotokopi KTP</h2>
-                  <p class="text-sm font-semibold text-gray-500">{{ $data->fc_ktp != null ? $data->fc_ktp : 'Belum Upload File' }}</p>
+                  <p class="text-sm text-gray-500">{{ $data->fc_ktp != null ? $data->fc_ktp : 'Belum Upload File' }}</p>
                 </div>
   
               </div>
@@ -87,13 +102,13 @@
   
               <div class="flex flex-1 items-center gap-4">
   
-                <div class="h-20 border-2 bg-primary rounded-lg p-2 overflow-hidden w-32">
-                  <img src="{{ url('berkaspemohon/'. $data->fc_kk ) }}" alt="Fotokopi KK" class="rounded-sm h-20 object-cover m-auto">
+                <div class="h-20 border-2 bg-primary rounded-lg overflow-hidden w-32">
+                  <img src="{{ url('berkaspemohon/'. $data->fc_kk ) }}" alt="Fotokopi KK" class="rounded-sm object-cover w-full h-full">
                 </div>
   
                 <div>
                   <h2 class="font-semibold">Fotokopi KK</h2>
-                  <p class="text-sm font-semibold text-gray-500">{{ $data->fc_kk != null ? $data->fc_kk : 'Belum Upload File' }}</p>
+                  <p class="text-sm text-gray-500">{{ $data->fc_kk != null ? $data->fc_kk : 'Belum Upload File' }}</p>
                 </div>
   
               </div>
@@ -109,13 +124,13 @@
   
               <div class="flex flex-1 items-center gap-4">
   
-                <div class="h-20 border-2 bg-primary rounded-lg p-2 overflow-hidden w-32">
-                  <img src="{{ url('berkaspemohon/'. $data->foto_lokasi ) }}" alt="Foto Rumah / Lokasi" class="rounded-sm h-20 object-cover m-auto">
+                <div class="h-20 border-2 bg-primary rounded-lg overflow-hidden w-32">
+                  <img src="{{ url('berkaspemohon/'. $data->foto_lokasi ) }}" alt="Foto Rumah / Lokasi" class="rounded-sm object-cover w-full h-full">
                 </div>
   
                 <div>
                   <h2 class="font-semibold">Foto Rumah / Lokasi</h2>
-                  <p class="text-sm font-semibold text-gray-500">{{ $data->foto_lokasi != null ? $data->foto_lokasi : 'Belum Upload File' }}</p>
+                  <p class="text-sm text-gray-500">{{ $data->foto_lokasi != null ? $data->foto_lokasi : 'Belum Upload File' }}</p>
                 </div>
   
               </div>
@@ -138,7 +153,7 @@
                 @endphp
   
                 <div class="text-label text-sm">Keterangan Warga *</div>
-                <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1 disabled:bg-white">{{ $keteranganWarga  }}</textarea>
+                <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1 disabled:bg-white" disabled>{{ $keteranganWarga  }}</textarea>
   
             </div>
           </div>
@@ -153,18 +168,41 @@
     <div class="card bg-white">
       <div class="card-body p-4">
 
-        <form action="{{ route('validasi-surat.update', ['validasi_surat' => $data->id_surat_pengajuan]) }}" method="POST" class="p-4 bg-slate-200 rounded-md">
+        <form action="{{ route('validasi-surat.update', ['validasi_surat' => $data->id_permohonan_surat]) }}" method="POST" class="p-4 bg-slate-200 rounded-md">
           @csrf
           @method('PUT')
           
+          @if ($data->status == 6)
           <div class="text-label text-sm">Tambah Keterangan *</div>
           <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1" placeholder="Tambah Keterangan (Optional)" name="keterangan_admin">{{ $data->keterangan_admin }}</textarea>
+          @endif
+
+          @php
+            $ketStatus = $data->status;
+            if($ketStatus == 1) {
+                $ketStatus = "Permohonan Surat Pending";
+            } elseif($ketStatus == 2) {
+                $ketStatus = "Dokumen Diterima dan Verifikasi Berkas";
+            } elseif($ketStatus == 3) {
+                $ketStatus = "Proses Surat";
+            } elseif($ketStatus == 4) {
+                $ketStatus = "Surat Telah Ditandatangani Kepala Desa";
+            } elseif($ketStatus == 5) {
+                $ketStatus = "Surat Dapat Diambil di Kantor Kepala Desa Kembaran";
+            } elseif($ketStatus == 6) {
+                $ketStatus = "Permohonan Ditolak";
+            }
+          @endphp
   
           <div class="text-label text-sm">Status Surat *</div>
           <select class="select select-bordered w-full select-primary" name="status">
-            <option value="{{ $data->status }}" selected disabled>{{ $data->status }}</option>
-            <option value="Diterima">Diterima</option>
-            <option value="Ditolak">Ditolak</option>
+            @if ($data->status == 2)
+            <option value="{{ $data->status }}" selected disabled>{{$ketStatus}}</option>
+            <option value="3">Proses Surat</option>
+            <option value="6">Permohonan Ditolak</option>
+            @else
+            <option value="{{ $data->status }}" selected disabled>{{$ketStatus}}</option>
+            @endif
           </select>
 
           <div class="mt-4">

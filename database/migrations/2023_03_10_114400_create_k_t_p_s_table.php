@@ -14,23 +14,13 @@ return new class extends Migration {
     {
         Schema::create('surat_peng_ktp', function (Blueprint $table) {
             $table->uuid('id_surat_peng_ktp')->primary();
-            $table->string('id_warga')->unique();
-            $table->string('jenis_surat')->default('Surat Pengantar KTP');
+            $table->string('id_permohonan_surat');
             $table->enum('jenis_permohonan', ['Baru', 'Perpanjangan', 'Penggantian'])->nullable();
-            // $table->string('nama');
             // $table->string('kk');
-            $table->string('kk');
-            // $table->string('alamat');
-            // $table->string('rt');
-            // $table->string('rw');
-            // $table->string('kode_pos');
             $table->string('foto_ktp');
             $table->string('foto_kk');
             $table->string('pengantar_rt');
-            // $table->enum('status', ['Terkirim', 'Diterima', 'Ditolak'])->default('Terkirim');
             $table->timestamps();
-
-            $table->foreign('id_warga')->references('id_warga')->on('warga');
         });
     }
 

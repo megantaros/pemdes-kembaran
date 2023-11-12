@@ -21,30 +21,45 @@
             @php
                 $statusSurat = $row->status;
                 
-                if($statusSurat == "Terkirim"){
+                if($statusSurat == 1 || $statusSurat == 2 || $statusSurat == 3 || $statusSurat == 4){
                     $statusSurat = "text-orange-500";
-                } elseif($statusSurat == "Ditolak"){
+                } elseif($statusSurat == 6){
                     $statusSurat = "text-red-800";
                 } else {
                     $statusSurat = "text-green-800";
                 }
 
+                $ketStatus = $row->status;
+                if($ketStatus == 1) {
+                    $ketStatus = "Permohonan Surat Pending";
+                } elseif($ketStatus == 2) {
+                    $ketStatus = "Dokumen Diterima dan Verifikasi Berkas";
+                } elseif($ketStatus == 3) {
+                    $ketStatus = "Surat Sedang Diproses";
+                } elseif($ketStatus == 4) {
+                    $ketStatus = "Surat Telah Ditandatangani Kepala Desa";
+                } elseif($ketStatus == 5) {
+                    $ketStatus = "Surat Dapat Diambil di Kantor Kepala Desa Kembaran";
+                } elseif($ketStatus == 6) {
+                    $ketStatus = "Permohonan Ditolak";
+                }
+
                 $jenisSurat = $row->jenis_surat;
 
                 if($jenisSurat == "Surat Pengantar KTP") {
-                    $jenisSurat = route("pengantar-ktp.edit", ['pengantar_ktp' => $row->id_surat]);
+                    $jenisSurat = route("pengantar-ktp.edit", ['pengantar_ktp' => $row->id_permohonan_surat]);
                 } elseif($jenisSurat == "Surat Pengantar KK") {
-                    $jenisSurat = route("pengantar-kk.edit", ['pengantar_kk' => $row->id_surat]);
+                    $jenisSurat = route("pengantar-kk.edit", ['pengantar_kk' => $row->id_permohonan_surat]);
                 } elseif($jenisSurat == "Surat Pengantar SKCK") {
-                    $jenisSurat = route("pengantar-skck.edit", ['pengantar_skck' => $row->id_surat]);
+                    $jenisSurat = route("pengantar-skck.edit", ['pengantar_skck' => $row->id_permohonan_surat]);
                 } elseif($jenisSurat == "Surat Keterangan Domisili") {
-                    $jenisSurat = route("keterangan-domisili.edit", ['keterangan_domisili' => $row->id_surat]);
+                    $jenisSurat = route("keterangan-domisili.edit", ['keterangan_domisili' => $row->id_permohonan_surat]);
                 } elseif($jenisSurat == "Surat Keterangan Pindah") {
-                    $jenisSurat = route("keterangan-pindah.edit", ['keterangan_pindah' => $row->id_surat]);;
+                    $jenisSurat = route("keterangan-pindah.edit", ['keterangan_pindah' => $row->id_permohonan_surat]);
                 } elseif($jenisSurat == "Surat Keterangan Pindah Datang") {
-                    $jenisSurat = route("keterangan-datang.edit", ['keterangan_datang' => $row->id_surat]);;
+                    $jenisSurat = route("keterangan-datang.edit", ['keterangan_datang' => $row->id_permohonan_surat]);
                 } elseif($jenisSurat == "Surat Keterangan Usaha") {
-                    $jenisSurat = route("keterangan-usaha.edit", ['keterangan_usaha' => $row->id_surat]);
+                    $jenisSurat = route("keterangan-usaha.edit", ['keterangan_usaha' => $row->id_permohonan_surat]);
                 }
 
             @endphp
@@ -56,11 +71,11 @@
                             <h2 class="mb-2">{{ $row->jenis_surat }}</h2>
         
                             <div class="text-xs" style="font-family: Poppins">
-                                Diajukan pada: <span class="font-semibold">{{ $row->tanggal_permohonan }}</span>
+                                Diajukan pada: <span class="font-semibold">{{ $row->tanggal }}</span>
                             </div>
 
                             <div class="text-xs" style="font-family: Poppins">
-                                Status: <span class="font-semibold {{ $statusSurat }}">{{ $row->status }}</span>
+                                Status: <span class="font-semibold {{ $statusSurat }}">{{ $ketStatus }}</span>
                             </div>
                         </div>
 
@@ -71,7 +86,7 @@
                                     <span>Detail</span>
                                 </a>
 
-                                <form id="formHapus" action="{{ route('pengajuan-surat.destroy', ['pengajuan_surat' => $row->id_surat_pengajuan]) }}" method="POST" data-id="{{ $row->id_surat_pengajuan }}" data-jenis="{{ $row->jenis_surat }}" class="{{ $row->status == 'Diterima' ? 'hidden' : '' }}">
+                                <form id="formHapus" action="{{ route('pengajuan-surat.destroy', ['pengajuan_surat' => $row->id_permohonan_surat]) }}" method="POST" data-id="{{ $row->id_permohonan_surat }}" data-jenis="{{ $row->jenis_surat }}" class="{{ $row->status == 'Diterima' ? 'hidden' : '' }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-sm hover:underline text-error" style="font-family: Poppins">
@@ -85,146 +100,6 @@
                 </div>
             </div>
             @endforeach
-
-            {{-- <div class="overflow-x-auto">
-                <table class="table w-full tabel-surat shadow-md">
-                    <!-- head -->
-                    <thead>
-                    <tr class="text-center">
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Jenis Surat</th>
-                        <th>Tanggal Pengajuan</th>
-                        <th>Status Surat</th>
-                        <th>Aksi</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php $no=1 ?>
-                    @foreach($data as $row)
-                    <tr>
-                        <th class="text-center">{{ $no++ }}</th>
-                        <td>{{ $row->name }}</td>
-                        <td>{{ $row->jenis_surat }}</td>
-                        <td class="text-center">{{ $row->created_at }}</td>
-                        <td>
-                            @if($row->status == "Terkirim")
-                            <div class="p-2 bg-orange-500 rounded-lg text-white text-center font-normal">{{ $row->status }}</div>
-                            @elseif ($row->status == "Ditolak") 
-                            <div class="p-2 bg-red-800 rounded-lg text-white text-center font-normal">{{ $row->status }}</div>
-                            @else
-                            <div class="p-2 bg-green-800 rounded-lg text-white text-center font-normal">{{ $row->status }}</div>
-                            @endif
-                        </td>
-                        @if($row->status == "Terkirim")
-                        <td class="flex gap-2">
-                            @if($row->jenis_surat == 'Surat Keterangan Domisili')
-                            <a href="{{ route('keterangan-domisili.show', ['keterangan_domisili' => $row->id_surat]) }}" class="btn btn-warning border-none w-50">
-                                <i class="bi bi-envelope-paper text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Pengantar SKCK')
-                            <a href="{{ route('pengantar-skck.show', ['pengantar_skck' => $row->id_surat]) }}" class="btn btn-warning border-none w-50">
-                                <i class="bi bi-envelope-paper text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Pengantar KTP')
-                            <a href="{{ route('pengantar-ktp.show', ['pengantar_ktp' => $row->id_surat]) }}" class="btn btn-warning border-none w-50">
-                                <i class="bi bi-envelope-paper text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Pengantar KK')
-                            <a href="{{ route('pengantar-kk.show', ['pengantar_kk' => $row->id_surat]) }}" class="btn btn-warning border-none w-50">
-                                <i class="bi bi-envelope-paper text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Keterangan Pindah')
-                            <a href="{{ route('keterangan-pindah.show', ['keterangan_pindah' => $row->id_surat]) }}" class="btn btn-warning border-none w-50">
-                                <i class="bi bi-envelope-paper text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Keterangan Pindah Datang')
-                            <a href="{{ route('keterangan-datang.show', ['keterangan_datang' => $row->id_surat]) }}" class="btn btn-warning border-none w-50">
-                                <i class="bi bi-envelope-paper text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Keterangan Usaha')
-                            <a href="{{ route('keterangan-usaha.show', ['keterangan_usaha' => $row->id_surat]) }}" class="btn btn-warning border-none w-50">
-                                <i class="bi bi-envelope-paper text-2xl"></i>
-                            </a>
-                            @endif
-                            <form action="{{ route('pengajuan-surat.destroy', ['pengajuan_surat' => $row->id]) }}" class="btn form-hapus text-white bg-red-800 hover:bg-red-900 border-none w-50" method="POST" data-id="{{ $row->id }}" data-jenis="{{ $row->jenis_surat }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">
-                                    <i class="bi bi-trash text-2xl"></i>
-                                </button>
-                            </form>
-                        </td>
-                        @elseif($row->status == "Diterima")
-                        <td>
-                            @if($row->jenis_surat == 'Surat Keterangan Domisili')
-                            <a href="{{ route('keterangan-domisili.show', ['keterangan_domisili' => $row->id_surat]) }}" class="btn btn-info border-none w-full">
-                                <i class="bi bi-envelope-check-fill text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Pengantar SKCK')
-                            <a href="{{ route('pengantar-skck.show', ['pengantar_skck' => $row->id_surat]) }}" class="btn btn-info border-none w-full">
-                                <i class="bi bi-envelope-check-fill text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Pengantar KTP')
-                            <a href="{{ route('pengantar-ktp.show', ['pengantar_ktp' => $row->id_surat]) }}" class="btn btn-info border-none w-full">
-                                <i class="bi bi-envelope-check-fill text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Pengantar KK')
-                            <a href="{{ route('pengantar-kk.show', ['pengantar_kk' => $row->id_surat]) }}" class="btn btn-info border-none w-full">
-                                <i class="bi bi-envelope-check-fill text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Keterangan Pindah')
-                            <a href="{{ route('keterangan-pindah.show', ['keterangan_pindah' => $row->id_surat]) }}" class="btn btn-info border-none w-full">
-                                <i class="bi bi-envelope-check-fill text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Keterangan Pindah Datang')
-                            <a href="{{ route('keterangan-datang.show', ['keterangan_datang' => $row->id_surat]) }}" class="btn btn-info border-none w-full">
-                                <i class="bi bi-envelope-check-fill text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Keterangan Usaha')
-                            <a href="{{ route('keterangan-usaha.show', ['keterangan_usaha' => $row->id_surat]) }}" class="btn btn-info border-none w-full">
-                                <i class="bi bi-envelope-check-fill text-2xl"></i>
-                            </a>
-                            @endif
-                        </td>
-                        @else
-                        <td>
-                            @if($row->jenis_surat == 'Surat Keterangan Domisili')
-                            <a href="{{ route('keterangan-domisili.show', ['keterangan_domisili' => $row->id_surat]) }}" class="btn btn-info border-none w-full">
-                                <i class="bi bi-envelope-exclamation-fill text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Pengantar SKCK')
-                            <a href="{{ route('pengantar-skck.show', ['pengantar_skck' => $row->id_surat]) }}" class="btn btn-info border-none w-full">
-                                <i class="bi bi-envelope-exclamation-fill text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Pengantar KTP')
-                            <a href="{{ route('pengantar-ktp.show', ['pengantar_ktp' => $row->id_surat]) }}" class="btn btn-info border-none w-full">
-                                <i class="bi bi-envelope-exclamation-fill text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Pengantar KK')
-                            <a href="{{ route('pengantar-kk.show', ['pengantar_kk' => $row->id_surat]) }}" class="btn btn-info border-none w-full">
-                                <i class="bi bi-envelope-exclamation-fill text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Keterangan Pindah')
-                            <a href="{{ route('keterangan-pindah.show', ['keterangan_pindah' => $row->id_surat]) }}" class="btn btn-info border-none w-full">
-                                <i class="bi bi-envelope-exclamation-fill text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Keterangan Pindah Datang')
-                            <a href="{{ route('keterangan-datang.show', ['keterangan_datang' => $row->id_surat]) }}" class="btn btn-info border-none w-full">
-                                <i class="bi bi-envelope-exclamation-fill text-2xl"></i>
-                            </a>
-                            @elseif($row->jenis_surat == 'Surat Keterangan Usaha')
-                            <a href="{{ route('keterangan-usaha.show', ['keterangan_usaha' => $row->id_surat]) }}" class="btn btn-info border-none w-full">
-                                <i class="bi bi-envelope-exclamation-fill text-2xl"></i>
-                            </a>
-                            @endif
-                        </td>
-                        @endif
-                    </tr>
-                    @endforeach       
-                    </tbody>
-                </table>
-            </div> --}}
         </div>
             
         </div>

@@ -14,22 +14,13 @@ return new class extends Migration {
     {
         Schema::create('surat_peng_skck', function (Blueprint $table) {
             $table->uuid('id_surat_peng_skck')->primary();
-            $table->string('id_warga')->unique();
-            $table->string('jenis_surat')->default('Surat Pengantar SKCK');
-            // $table->string('nama');
-            // $table->string('nik');
-            $table->string('kk');
-            // $table->string('ttl');
-            // $table->enum('agama', ['Islam', 'Kristen', 'Katolik', 'Hindhu', 'Budha'])->default('Islam');
-            // $table->enum('jenis_kelamin', ['Pria', 'Wanita'])->default('Pria');
+            $table->string('id_permohonan_surat');
+            // $table->string('kk');
             $table->enum('kewarganegaraan', ['WNI', 'WNA'])->default('WNI');
             $table->string('keperluan')->default('Mengurus Skck');
             $table->string('fc_ktp');
             $table->string('pengantar_rt');
-            // $table->enum('status', ['Terkirim', 'Diterima', 'Ditolak'])->default('Terkirim');
             $table->timestamps();
-
-            $table->foreign('id_warga')->references('id_warga')->on('warga');
         });
     }
 

@@ -25,6 +25,7 @@ class User extends Authenticatable
         'notelpon',
         'alamat',
         'nik',
+        'kk',
         'ttl',
         'pekerjaan',
         'agama'

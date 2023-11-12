@@ -63,41 +63,6 @@ class PengajuanSuratController extends Controller
         $data = \App\Models\SuratPengajuan::find($id);
         $data->delete();
 
-        if ($data->jenis_surat == 'Surat Pengantar KTP') {
-            $ktp = \App\Models\KTP::find($data->id_surat);
-            $ktp->delete();
-        }
-
-        if ($data->jenis_surat == 'Surat Pengantar KK') {
-            $kk = \App\Models\SuratPengKk::find($data->id_surat);
-            $kk->delete();
-        }
-
-        if ($data->jenis_surat == 'Surat Pengantar SKCK') {
-            $skck = \App\Models\Skck::find($data->id_surat);
-            $skck->delete();
-        }
-
-        if ($data->jenis_surat == 'Surat Keterangan Domisili') {
-            $domisili = \App\Models\Domisili::find($data->id_surat);
-            $domisili->delete();
-        }
-
-        if ($data->jenis_surat == 'Surat Keterangan Usaha') {
-            $usaha = \App\Models\SuratKetUsaha::find($data->id_surat);
-            $usaha->delete();
-        }
-
-        if ($data->jenis_surat == 'Surat Keterangan Pindah') {
-            $pindah = \App\Models\SuratKetPindah::find($data->id_surat);
-            $pindah->delete();
-        }
-
-        if ($data->jenis_surat == 'Surat Keterangan Pindah Datang') {
-            $datang = \App\Models\SuratKetPindahDatang::find($data->id_surat);
-            $datang->delete();
-        }
-
         return redirect()->route('surat.warga')->with('success', 'Data Berhasil Dihapus');
     }
 }

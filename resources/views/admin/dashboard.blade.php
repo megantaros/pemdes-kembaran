@@ -72,63 +72,16 @@
             <th class="bg-primary text-white capitalize font-normal">NIK</th>
             <th class="bg-primary text-white capitalize font-normal">Jenis Surat</th>
             <th class="bg-primary text-white capitalize font-normal">Tanggal Diajukan</th>
-            <th class="bg-primary text-white capitalize font-normal">Keterangan</th>
             <th class="bg-primary text-white capitalize font-normal">Aksi</th>
           </tr>
         </thead>
 
         <tbody>
-
           @php
           $no = 1;
           @endphp
 
           @foreach ($data as $item)
-
-          @php
-            $statusSurat = $item->status;
-            
-            if($statusSurat == "Terkirim"){
-                $statusSurat = "text-orange-500";
-            } elseif($statusSurat == "Ditolak"){
-                $statusSurat = "text-red-800";
-            } else {
-                $statusSurat = "text-green-800";
-            }
-
-            $jenisSurat = $item->jenis_surat;
-
-            if($jenisSurat == "Surat Pengantar KTP") {
-                $jenisSurat = route("permohonan-ktp.show", ['permohonan_ktp' => $item->id_surat]);
-            } elseif($jenisSurat == "Surat Pengantar KK") {
-                $jenisSurat = route("permohonan-kk.show", ['permohonan_kk' => $item->id_surat]);
-            } elseif($jenisSurat == "Surat Pengantar SKCK") {
-                $jenisSurat = route("permohonan-skck.show", ['permohonan_skck' => $item->id_surat]);
-            } elseif($jenisSurat == "Surat Keterangan Domisili") {
-                $jenisSurat = route("permohonan-domisili.show", ['permohonan_domisili' => $item->id_surat]);
-            } elseif($jenisSurat == "Surat Keterangan Pindah") {
-                $jenisSurat = route("permohonan-pindah.show", ['permohonan_pindah' => $item->id_surat]);
-            } elseif($jenisSurat == "Surat Keterangan Pindah Datang") {
-                $jenisSurat = route("permohonan-datang.show", ['permohonan_datang' => $item->id_surat]);
-            } elseif($jenisSurat == "Surat Keterangan Usaha") {
-                $jenisSurat = route("permohonan-usaha.show", ['permohonan_usaha' => $item->id_surat]);
-            }
-
-            $keteranganWarga = $item->keterangan_warga;
-            if(!$keteranganWarga) {
-                $keteranganWarga = "Tidak ada keterangan";
-            }
-
-            $statusSurat = $item->status;
-
-            if($statusSurat == "Terkirim"){
-                $statusSurat = "btn-info";
-            } elseif($statusSurat == "Ditolak"){
-                $statusSurat = "btn-error";
-            } else {
-                $statusSurat = "btn-success";
-            }
-          @endphp
 
           <tr id="listLetters" class="border-b-2 border-primary font-semibold p-3 text-gray-800" style="font-family: Poppins;">
             <th class="text-sm">{{$no++}}</th>
@@ -136,24 +89,117 @@
             <td class="text-sm">{{ $item->nik }}</td>
             <td class="text-sm">{{ $item->jenis_surat }}</td>
             <td class="text-sm">
-              {{ \Carbon\Carbon::parse($item->tanggal_permohonan)->isoFormat('dddd, D MMMM Y') }}
+              {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('dddd, D MMMM Y') }}
             </td>
             <td>
-              <textarea class="textarea textarea-primary w-full placeholder:text-sm" placeholder="Tulis disini..." disabled rows="1">{{ $keteranganWarga }}</textarea>
-            </td>
-            <td>
-              <a href="{{ $jenisSurat }}" class="text-sm hover:underline p-4 rounded-lg {{ $statusSurat }} capitalize flex items-center justify-center gap-1" style="font-family: Poppins">
-                <i class="fa fa-info-circle"></i>
-                <span>Detail</span>
-              </a>
+              <form action="{{ route('validasi-surat.update', ['validasi_surat' => $item->id_permohonan_surat]) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <input type="hidden" name="status" value="2">
+
+                <button type="submit" class="btn btn-outline btn-success" style="font-family: Poppins">
+                  <span class="text-sm capitalize flex items-center justify-center gap-1">
+                    <i class="fa fa-check"></i>
+                    Terima & Verifikasi Berkas
+                  </span>
+                </button>
+              </form>
             </td>
           </tr>
           @endforeach
-
         </tbody>
       </table>
     </div>
   </div>
 </div>
+@endsection
+
+@section('scripts')
+  {{-- <script>
+    const listLetters = document.querySelector('#listLetters');
+    const data = @json($data);
+
+    function dateFormatted(date) {
+      const dateObj = new Date(date);
+      const day = dateObj.getDate();
+      // const month = dateObj.getMonth() + 1;
+      const month = dateObj.toLocaleString('default', { month: 'long' });
+      const year = dateObj.getFullYear();
+      return `${day} ${month} ${year}`;
+    }
+
+    function href(id_permohonan_surat, jenis_surat) {
+      switch(jenis_surat) {
+        case 'Surat Pengantar KTP':
+          return `/admin/permohonan-ktp/${id_permohonan_surat}`;
+        case 'Surat Pengantar KK':
+          return `/admin/permohonan-kk/${id_permohonan_surat}`;
+        case 'Surat Pengantar SKCK':
+          return `/admin/permohonan-skck/${id_permohonan_surat}`;
+        case 'Surat Keterangan Domisili':
+          return `/admin/permohonan-domisili/${id_permohonan_surat}`;
+        case 'Surat Keterangan Pindah':
+          return `/admin/permohonan-pindah/${id_permohonan_surat}`;
+        case 'Surat Keterangan Pindah Datang':
+          return `/admin/permohonan-datang/${id_permohonan_surat}`;
+        case 'Surat Keterangan Usaha':
+          return `/admin/permohonan-usaha/${id_permohonan_surat}`;
+        default:
+          return '#';
+      }
+    }
+
+    function status(statusSurat) {
+      switch(statusSurat) {
+        case '1': 
+          return 'Permohonan Surat Pending';
+        case '2':
+          return 'Dokumen Diterima dan Verifikasi Berkas';
+        case '3':
+          return 'Proses Cetak Surat';
+        case '4':
+          return 'Ditandatangani Kepala Desa';
+        case '5':
+          return 'Surat Dapat Diambil di Kantor Kepala Desa Kembaran';
+        case '6':
+          return 'Permohonan Ditolak';
+        default:
+          return 'Status tidak diketahui';
+      }
+    }
+
+
+    const itemLetters = data
+      .filter(item => item.status === '1')
+      .map((item, index) => {
+      return `
+        <tr class="border-b-2 border-primary font-semibold p-3 text-gray-800" style="font-family: Poppins;">
+          <th class="text-sm">${index + 1}</th>
+          <td class="text-sm">${item.nama_warga}</td>
+          <td class="text-sm">${item.nik}</td>
+          <td class="text-sm">${item.jenis_surat}</td>
+          <td class="text-sm">${dateFormatted(item.tanggal)}</td>
+          <td>
+            <select class="select select-bordered w-full select-primary">
+              <option value="${item.status}" selected disabled>${status(item.status)}</option>
+              <option value="2">Dokumen Diterima dan Verifikasi Berkas</option>
+              <option value="3">Proses Cetak Surat</option>
+              <option value="4">Ditandatangani Kepala Desa</option>
+              <option value="5">Surat Dapat Diambil di Kantor Kepala Desa Kembaran</option>
+              <option value="6">Permohonan Ditolak</option>
+            </select>
+          </td>
+          <td>
+            <a href="${href(item.id_permohonan_surat, item.jenis_surat)}" class="text-sm hover:underline p-4 rounded-lg btn-info capitalize flex items-center justify-center gap-1" style="font-family: Poppins">
+              <i class="fa fa-info-circle"></i>
+              <span>Info</span>
+            </a>
+          </td>
+        </tr>
+      `
+    }).join('');
+
+    listLetters.innerHTML = itemLetters;
+  </script> --}}
 @endsection
 
