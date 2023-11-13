@@ -11,20 +11,20 @@
                 <th scope="col">Nama</th>
                 <th scope="col">NIK</th>
                 <th scope="col">Jenis Surat</th>
-                <th scope="col">Alamat</th>
-                <th scope="col">Tanggal Pengajuan</th>
+                <th scope="col">Tanggal Diterbitkan</th>
               </tr>
             </thead>
             <tbody>
-                <?php $no=1 ?>
-                @foreach ($data as $index => $surat)
+              @php
+              $no = 1;
+              @endphp  
+              @foreach ($data as $index => $surat)
               <tr>
                 <th scope="row" class="text-center">{{ $no++ }}</th>
-                <td>{{ $surat->name }}</td>
+                <td>{{ $surat->nama_warga }}</td>
                 <td>{{ $surat->nik }}</td>
                 <td>{{ $surat->jenis_surat }}</td>
-                <td>{{ $surat->alamat }}</td>
-                <td class="text-center">{{ $surat->tanggal }}</td>
+                <td class="text-center">{{ \Carbon\Carbon::parse($surat->updated_at)->isoFormat('DD MMMM YYYY') }}</td>
               </tr>
               @endforeach
             </tbody>

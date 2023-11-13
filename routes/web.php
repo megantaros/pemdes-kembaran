@@ -56,7 +56,11 @@ Route::middleware('auth:admin')->group(function () {
         Route::resource('warga-admin', \App\Http\Controllers\Auth\WargaController::class);
         Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('dashboard');
         Route::get('/daftar-surat/verifikasi-surat', [\App\Http\Controllers\Admin\AdminController::class, 'verifikasiSurat'])->name('verifikasi.surat');
-        Route::get('/daftar-surat/{status_surat}/cetak', [\App\Http\Controllers\Admin\AdminController::class, 'cetakSurat'])->name('cetak.surat');
+        Route::get('/daftar-surat/proses-surat', [\App\Http\Controllers\Admin\AdminController::class, 'prosesSurat'])->name('proses.surat');
+        Route::get('/daftar-surat/signed-surat', [\App\Http\Controllers\Admin\AdminController::class, 'signedSurat'])->name('signed.surat');
+        Route::get('/daftar-surat/selesai-surat', [\App\Http\Controllers\Admin\AdminController::class, 'selesaiSurat'])->name('selesai.surat');
+        Route::get('/daftar-surat/ditolak-surat', [\App\Http\Controllers\Admin\AdminController::class, 'ditolakSurat'])->name('ditolak.surat');
+        Route::get('/daftar-surat/cetak', [\App\Http\Controllers\Admin\AdminController::class, 'cetakSurat'])->name('cetak.surat');
         Route::resource('admin', \App\Http\Controllers\Admin\AdminController::class);
         Route::resource('validasi-surat', \App\Http\Controllers\Letters\PengajuanSuratController::class);
         Route::resource('permohonan-kk', \App\Http\Controllers\Letters\SuratPengKkController::class);

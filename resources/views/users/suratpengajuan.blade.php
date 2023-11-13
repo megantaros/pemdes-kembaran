@@ -86,6 +86,7 @@
                                     <span>Detail</span>
                                 </a>
 
+                                @if ($row->status == 1)
                                 <form id="formHapus" action="{{ route('pengajuan-surat.destroy', ['pengajuan_surat' => $row->id_permohonan_surat]) }}" method="POST" data-id="{{ $row->id_permohonan_surat }}" data-jenis="{{ $row->jenis_surat }}" class="{{ $row->status == 'Diterima' ? 'hidden' : '' }}">
                                     @csrf
                                     @method('DELETE')
@@ -94,6 +95,7 @@
                                         <span>Hapus</span>
                                     </button>
                                 </form>
+                                @endif
                             </div>
                         </div>
                     </div>

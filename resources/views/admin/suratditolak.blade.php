@@ -18,42 +18,16 @@
     </div>
 
     <div class="p-4 bg-slate-200 rounded-lg">
-      <form action="{{ route('daftar.surat', ['status_surat' => 'ditolak']) }}" method="GET">
-        @csrf
-        @method('GET')
-        <input type="hidden" name="startDate"/>
-        <input type="hidden" name="endDate"/>
-        <label for="" class="text-label text-sm">Tanggal</label>
+      <label for="" class="text-label text-sm">Tanggal</label>
 
-        <div class="flex items-center gap-2">
-          <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="daterange" value="01/01/2023 - 01/15/2023" />
-          <button type="submit" class="btn btn-primary capitalize font-normal text-white">Cek Tanggal</button>
-        </div>
-      </form>
+      <input type="hidden" name="startDate"/>
+      <input type="hidden" name="endDate"/>
+
+      <div class="flex items-center gap-2">
+        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="daterange" value="01/01/2023 - 01/15/2023" />
+      </div>
 
     </div>
-
-
-    
-
-    {{-- <div class="p-4">
-      <div class="card-title">Surat Masuk</div>
-      <div class="flex gap-2">
-        <a href="{{ route('daftar.surat', ['status_surat' => 'terkirim']) }}" class="btn btn-info flex items-center gap-2" style="font-family: Poppins">
-          <i class="fa fa-inbox" aria-hidden="true"></i>
-          <span>Surat Masuk</span>
-        </a>
-        <a href="{{ route('daftar.surat', ['status_surat' => 'ditolak']) }}" class="btn btn-danger flex items-center gap-2" style="font-family: Poppins">
-          <i class="fa fa-times" aria-hidden="true"></i>
-          <span>Surat Ditolak</span>
-        </a>
-        <a href="{{ route('daftar.surat', ['status_surat' => 'diterima']) }}" class="btn btn-success flex items-center gap-2" style="font-family: Poppins">
-          <i class="fa fa-check" aria-hidden="true"></i>
-          <span>Surat Diterima</span>
-        </a>
-      </div>
-    </div> --}}
-
       
   </div>
 </div>
@@ -83,7 +57,7 @@
               <th class="bg-primary text-white capitalize font-normal">NIK</th>
               <th class="bg-primary text-white capitalize font-normal">Jenis Surat</th>
               <th class="bg-primary text-white capitalize font-normal">Tanggal Diajukan</th>
-              <th class="bg-primary text-white capitalize font-normal">Keterangan</th>
+              {{-- <th class="bg-primary text-white capitalize font-normal">Keterangan</th> --}}
               <th class="bg-primary text-white capitalize font-normal">Aksi</th>
             </tr>
           </thead>
@@ -97,16 +71,6 @@
             @foreach ($data as $item)
 
             @php
-              $statusSurat = $item->status;
-              
-              if($statusSurat == "Terkirim"){
-                  $statusSurat = "text-orange-500";
-              } elseif($statusSurat == "Ditolak"){
-                  $statusSurat = "text-red-800";
-              } else {
-                  $statusSurat = "text-green-800";
-              }
-
               $jenisSurat = $item->jenis_surat;
 
               if($jenisSurat == "Surat Pengantar KTP") {
@@ -132,13 +96,13 @@
               <td class="text-sm">{{ $item->nik }}</td>
               <td class="text-sm">{{ $item->jenis_surat }}</td>
               <td class="text-sm">
-                {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y') }}
+                {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('DD MMMM YYYY') }}
               </td>
-              <td>
+              {{-- <td>
                 <textarea class="textarea textarea-primary w-full placeholder:text-sm" placeholder="Tulis disini..." disabled rows="1">{{ $item->keterangan_warga ? $item->keterangan_warga : 'Belum ada keterangan' }}</textarea>
-              </td>
+              </td> --}}
               <td>
-                <a href="{{ $jenisSurat }}" class="text-sm hover:underline p-4 rounded-lg btn-info capitalize flex items-center justify-center gap-1" style="font-family: Poppins">
+                <a href="{{ $jenisSurat }}" class="btn btn-outline btn-error gap-2 capitalize" style="font-family: Poppins">
                   <i class="fa fa-info-circle"></i>
                   <span>Detail</span>
                 </a>

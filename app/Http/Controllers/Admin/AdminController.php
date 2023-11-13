@@ -64,4 +64,64 @@ class AdminController extends Controller
 
         return view('admin.suratmasuk', compact('data'));
     }
+
+    public function prosesSurat()
+    {
+        $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->where('permohonan_surat.status', 3)
+            ->orderBy('permohonan_surat.created_at', 'DESC')
+            ->get();
+
+        return view('admin.suratproses', compact('data'));
+    }
+    public function signedSurat()
+    {
+        $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->where('permohonan_surat.status', 4)
+            ->orderBy('permohonan_surat.created_at', 'DESC')
+            ->get();
+
+        return view('admin.suratsigned', compact('data'));
+    }
+    public function selesaiSurat()
+    {
+        $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->where('permohonan_surat.status', 5)
+            ->orderBy('permohonan_surat.updated_at', 'DESC')
+            ->get();
+
+        return view('admin.suratkeluar', compact('data'));
+    }
+    public function ditolakSurat()
+    {
+        $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->where('permohonan_surat.status', 6)
+            ->orderBy('permohonan_surat.updated_at', 'DESC')
+            ->get();
+
+        return view('admin.suratditolak', compact('data'));
+    }
+    public function cetakSurat(Request $request)
+    {
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
+
+        if ($startDate && $endDate) {
+            $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+                ->where('permohonan_surat.status', 5)
+                ->whereBetween('permohonan_surat.updated_at', [$startDate, $endDate])
+                ->orderBy('permohonan_surat.created_at', 'DESC')
+                ->get();
+
+            return view('admin.cetak_suratkeluar', compact('data'));
+        } else {
+            $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+                ->where('permohonan_surat.status', 5)
+                ->orderBy('permohonan_surat.updated_at', 'DESC')
+                ->get();
+
+            return view('admin.cetak_suratkeluar', compact('data'));
+        }
+
+    }
 }

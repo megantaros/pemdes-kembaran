@@ -55,6 +55,22 @@ class PengajuanSuratController extends Controller
         $data = \App\Models\SuratPengajuan::find($id);
         $data->update($request->all());
 
+        if ($request->status == '2') {
+            return redirect()->route('verifikasi.surat')->with('success', 'Surat Diterima');
+        }
+
+        if ($request->status == '3') {
+            return redirect()->route('proses.surat')->with('success', 'Surat Diproses');
+        }
+
+        if ($request->status == '4') {
+            return redirect()->route('signed.surat')->with('success', 'Surat Telah Ditandatangani oleh Kepala Desa');
+        }
+
+        if ($request->status == '5') {
+            return redirect()->route('selesai.surat')->with('success', 'Proses Surat Telah Selesai');
+        }
+
         return redirect()->back()->with('success', 'Data Berhasil Diubah');
     }
 

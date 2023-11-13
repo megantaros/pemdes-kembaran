@@ -217,22 +217,34 @@
         <ul id="letters" class="hidden pl-4" style="font-family: Poppins">
           <li>
             <a href="{{ route('verifikasi.surat') }}" class="p-4 @yield('incomingActive')">
-              <i class="fa fa-inbox" aria-hidden="true"></i>
+              <i class="fa fa-inbox w-5 text-center" aria-hidden="true"></i>
               Surat Diterima
             </a>
           </li>
-          {{-- <li>
-            <a href="{{ route('daftar.surat', ['status_surat' => 'diterima']) }}" class="p-4 @yield('outgoingActive')">
-              <i class="fa fa-list-alt" aria-hidden="true"></i>
+          <li>
+            <a href="{{ route('proses.surat') }}" class="p-4 @yield('processedActive')">
+              <i class="fa fa-spinner w-5 text-center" aria-hidden="true"></i>
+              Surat Diproses
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('signed.surat') }}" class="p-4 @yield('signedActive')">
+              <i class="fa fa-check w-5 text-center" aria-hidden="true"></i>
+              Surat Ditandatangani
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('selesai.surat') }}" class="p-4 @yield('doneActive')">
+              <i class="fa fa-list-alt w-5 text-center" aria-hidden="true"></i>
               Surat Keluar
             </a>
           </li>
           <li>
-            <a href="{{ route('daftar.surat', ['status_surat' => 'ditolak']) }}" class="p-4 @yield('rejectedActive')">
-              <i class="fa fa-times" aria-hidden="true"></i>
+            <a href="{{ route('ditolak.surat') }}" class="p-4 @yield('rejectedActive')">
+              <i class="fa fa-times w-5 text-center" aria-hidden="true"></i>
               Surat Ditolak
             </a>
-          </li> --}}
+          </li>
         </ul>
 
         <hr class="my-4">
@@ -325,7 +337,13 @@
       $('input[name="startDate"]').val(start.format('YYYY-MM-DD'));
       $('input[name="endDate"]').val(end.format('YYYY-MM-DD'));
 
-      console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+      $("#listLetters").filter(function() {
+        const text = $(this).text().toLowerCase();
+
+        const isInRange = text.includes(start.format('DD MMMM YYYY')) || end.format('DD MMMM YYYY');
+
+        $(this).toggle(isInRange);
+      });
     });
   });
 

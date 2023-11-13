@@ -83,7 +83,7 @@ class SuratKetDomisiliController extends Controller
         $data = \App\Models\Domisili::where('surat_ket_domisili.id_permohonan_surat', $id)
             ->join('permohonan_surat', 'surat_ket_domisili.id_permohonan_surat', '=', 'permohonan_surat.id_permohonan_surat')
             ->join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
-            ->select('permohonan_surat.*', 'surat_ket_domisili.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
+            ->select('permohonan_surat.*', 'surat_ket_domisili.*', 'warga.*')
             ->first();
 
         return view('users.detailsuratdomisili', compact('data'));

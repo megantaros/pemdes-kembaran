@@ -2,7 +2,7 @@
 
 @section('title', 'Surat Keluar')
 
-@section('outgoingActive', 'bg-[#e5e7eb] bg-opacity-20')
+@section('doneActive', 'bg-[#e5e7eb] bg-opacity-20')
 
 @section('content')
 <div class="card bg-white shadow-lg mb-4">
@@ -10,57 +10,37 @@
 
     <div class="p-4 bg-slate-200 rounded-lg">
 
-        <div>
-            <label for="" class="text-label text-sm">Cari</label>
-            <input id="search" type="text" placeholder="Cari disini..." class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm"/>
-        </div>
+      <div>
+        <label class="text-label text-sm">Cari</label>
+        <input id="search" type="text" placeholder="Cari disini..." class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm"/>
+      </div>
 
     </div>
 
-    <div class="p-4 bg-slate-200 rounded-lg">
-      <form action="{{ route('daftar.surat', ['status_surat' => 'diterima']) }}" method="GET">
-        @csrf
-        @method('GET')
-        <input type="hidden" name="startDate"/>
-        <input type="hidden" name="endDate"/>
-        <label for="" class="text-label text-sm">Tanggal</label>
 
-        <div class="flex items-center gap-2">
-          <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="daterange" value="01/01/2023 - 01/15/2023" />
-          <button type="submit" class="btn btn-primary capitalize font-normal text-white">Cek Tanggal</button>
-        </div>
-      </form>
+    <div class="p-4 bg-slate-200 rounded-lg">
+      <label for="" class="text-label text-sm">Tanggal</label>
+
+      <div class="flex items-center gap-2">
+        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="daterange" value="11/01/2023 - 11/30/2023" />
+      </div>
 
     </div>
 
     <div>
-        <a href="" target="__blank" class="btn btn-success capitalize font-normal flex items-center gap-2 lg:w-2/5">
-            <i class="fa fa-print" aria-hidden="true"></i>
-            <span>Cetak Laporan</span>
-        </a>
-    </div>
+        <form action="{{ route('cetak.surat', request()->query()) }}" method="GET">
+          @csrf
+          @method('GET')
 
-    
+          <input type="hidden" name="startDate"/>
+          <input type="hidden" name="endDate"/>
 
-    {{-- <div class="p-4">
-      <div class="card-title">Surat Masuk</div>
-      <div class="flex gap-2">
-        <a href="{{ route('daftar.surat', ['status_surat' => 'terkirim']) }}" class="btn btn-info flex items-center gap-2" style="font-family: Poppins">
-          <i class="fa fa-inbox" aria-hidden="true"></i>
-          <span>Surat Masuk</span>
-        </a>
-        <a href="{{ route('daftar.surat', ['status_surat' => 'ditolak']) }}" class="btn btn-danger flex items-center gap-2" style="font-family: Poppins">
-          <i class="fa fa-times" aria-hidden="true"></i>
-          <span>Surat Ditolak</span>
-        </a>
-        <a href="{{ route('daftar.surat', ['status_surat' => 'diterima']) }}" class="btn btn-success flex items-center gap-2" style="font-family: Poppins">
-          <i class="fa fa-check" aria-hidden="true"></i>
-          <span>Surat Diterima</span>
-        </a>
-      </div>
-    </div> --}}
-
-      
+          <button type="submit" class="btn btn-success capitalize font-normal flex items-center gap-2 lg:w-2/5">
+              <i class="fa fa-print" aria-hidden="true"></i>
+              <span>Cetak Laporan</span>
+          </button>
+        </form>
+    </div>  
   </div>
 </div>
 
@@ -72,7 +52,7 @@
             Daftar Surat Keluar
         </h2>
         <p class="font-normal text-sm" style="font-family: Poppins;">
-          Berikut adalah daftar surat keluar yang telah dikirimkan oleh warga
+          Berikut adalah daftar surat keluar yang telah diproses oleh admin
         </p>
     </div>
 
@@ -87,8 +67,8 @@
             <th class="bg-primary text-white capitalize font-normal">Nama</th>
             <th class="bg-primary text-white capitalize font-normal">NIK</th>
             <th class="bg-primary text-white capitalize font-normal">Jenis Surat</th>
-            <th class="bg-primary text-white capitalize font-normal">Tanggal Diajukan</th>
-            <th class="bg-primary text-white capitalize font-normal">Keterangan</th>
+            <th class="bg-primary text-white capitalize font-normal">Tanggal Diterbitkan</th>
+            {{-- <th class="bg-primary text-white capitalize font-normal">Keterangan</th> --}}
             <th class="bg-primary text-white capitalize font-normal">Aksi</th>
           </tr>
         </thead>
@@ -102,16 +82,6 @@
           @foreach ($data as $item)
 
           @php
-            $statusSurat = $item->status;
-            
-            if($statusSurat == "Terkirim"){
-                $statusSurat = "text-orange-500";
-            } elseif($statusSurat == "Ditolak"){
-                $statusSurat = "text-red-800";
-            } else {
-                $statusSurat = "text-green-800";
-            }
-
             $jenisSurat = $item->jenis_surat;
 
             if($jenisSurat == "Surat Pengantar KTP") {
@@ -137,13 +107,13 @@
             <td class="text-sm">{{ $item->nik }}</td>
             <td class="text-sm">{{ $item->jenis_surat }}</td>
             <td class="text-sm">
-              {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y') }}
+              {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('DD MMMM YYYY') }}
             </td>
-            <td>
+            {{-- <td>
               <textarea class="textarea textarea-primary w-full placeholder:text-sm" placeholder="Tulis disini..." disabled rows="1">{{ $item->keterangan_warga ? $item->keterangan_warga : 'Belum ada keterangan' }}</textarea>
-            </td>
+            </td> --}}
             <td>
-              <a href="{{ $jenisSurat }}" class="text-sm hover:underline p-4 rounded-lg btn-info capitalize flex items-center justify-center gap-1" style="font-family: Poppins">
+              <a href="{{ $jenisSurat }}" class="btn btn-outline btn-info gap-2 capitalize" style="font-family: Poppins">
                 <i class="fa fa-info-circle"></i>
                 <span>Detail</span>
               </a>

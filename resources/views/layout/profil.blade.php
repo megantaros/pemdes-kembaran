@@ -154,7 +154,7 @@
 
                     <form action="{{ route('logout.warga') }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-error capitalize text-white flex gap-2 justify-start hover:text-white w-full">
+                        <button type="submit" class="btn btn-error capitalize text-white flex gap-2 justify-start hover:text-white w-full font-normal">
                             <i class="fa fa-sign-out mx-2 text-lg" aria-hidden="true"></i>
                             <span>Logout</span>
                         </button>
