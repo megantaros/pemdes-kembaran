@@ -65,6 +65,7 @@ class WargaController extends Controller
         $id_warga = \Illuminate\Support\Facades\Auth::user()->id_warga;
         $data = \App\Models\User::join('permohonan_surat', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
             ->where('permohonan_surat.id_warga', $id_warga)
+            ->orderBy('permohonan_surat.created_at', 'DESC')
             ->select('warga.nama_warga', 'permohonan_surat.*')
             ->get();
 

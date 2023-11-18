@@ -43,6 +43,11 @@
                 <div class="text-label text-sm">Pekerjaan *</div>
                 <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->pekerjaan }}" disabled/>
             </div>
+
+            <div class="col-span-2">
+              <div class="text-label text-sm">Agama *</div>
+              <input type="text" placeholder="Masukkan Agama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->agama }}" disabled/>
+            </div>
   
             <div class="lg:col-span-2">
                 <div class="text-label text-sm">Alamat *</div>
@@ -147,7 +152,7 @@
                 @php
                     $keteranganWarga = $data->keterangan_warga;
   
-                    if($keteranganWarga == null) {
+                    if($keteranganWarga == '') {
                         $keteranganWarga = 'Belum ada keterangan dari warga';
                     }
                 @endphp
@@ -156,6 +161,23 @@
                 <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1 disabled:bg-white" disabled>{{ $keteranganWarga  }}</textarea>
   
             </div>
+
+            @if ($data->status == 6)
+            <div class="p-4 bg-white rounded-lg relative lg:col-span-2 flex items-center border-[#9CB4CC] border-2 my-1">
+  
+                @php
+                    $keteranganAdmin = $data->keterangan_admin;
+  
+                    if($keteranganAdmin == '') {
+                        $keteranganAdmin = 'Belum ada keterangan dari admin';
+                    }
+                @endphp
+  
+                <div class="text-label text-sm">Keterangan Admin *</div>
+                <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1" disabled>{{ $keteranganAdmin  }}</textarea>
+  
+            </div>
+            @endif
           </div>
         </div>
 
@@ -172,10 +194,10 @@
           @csrf
           @method('PUT')
           
-          @if ($data->status == 6)
-          <div class="text-label text-sm">Tambah Keterangan *</div>
-          <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1" placeholder="Tambah Keterangan (Optional)" name="keterangan_admin">{{ $data->keterangan_admin }}</textarea>
-          @endif
+          <div id="keteranganAdmin" class="hidden">
+            <div class="text-label text-sm">Tambah Keterangan *</div>
+            <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1" placeholder="Tambah Keterangan (Optional)" name="keterangan_admin">{{ $data->keterangan_admin }}</textarea>
+          </div>
 
           @php
             $ketStatus = $data->status;
@@ -195,7 +217,7 @@
           @endphp
   
           <div class="text-label text-sm">Status Surat *</div>
-          <select class="select select-bordered w-full select-primary" name="status">
+          <select class="select select-bordered w-full select-primary" name="status" id="selectStatus">
             @if ($data->status == 2)
             <option value="{{ $data->status }}" selected disabled>{{$ketStatus}}</option>
             <option value="3">Proses Surat</option>
@@ -205,12 +227,21 @@
             @endif
           </select>
 
+          @if ($data->status == 6)
+          <div class="mt-4 hidden">
+            <button type="submit" class="btn btn-success capitalize font-normal w-full flex items-center gap-2">
+              <i class="fa fa-check" aria-hidden="true"></i>
+              <span>Simpan</span>
+            </button>
+          </div>
+          @else
           <div class="mt-4">
             <button type="submit" class="btn btn-success capitalize font-normal w-full flex items-center gap-2">
               <i class="fa fa-check" aria-hidden="true"></i>
               <span>Simpan</span>
             </button>
           </div>
+          @endif
 
         </form>
         

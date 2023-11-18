@@ -88,13 +88,11 @@ class PermohonanDomisili extends Controller
             $data->foto_lokasi = $request->file('foto_lokasi')->getClientOriginalName();
             $data->save();
         }
-        ;
         if ($request->hasFile('pengantar_rt')) {
             $request->file('pengantar_rt')->move('berkaspemohon/', $request->file('pengantar_rt')->getClientOriginalName());
             $data->pengantar_rt = $request->file('pengantar_rt')->getClientOriginalName();
             $data->save();
         }
-        ;
 
         $keteranganWarga = $request->keterangan_warga;
         $idPermohonanSurat = $data->id_permohonan_surat;

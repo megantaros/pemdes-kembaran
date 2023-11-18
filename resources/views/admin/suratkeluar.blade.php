@@ -28,7 +28,7 @@
     </div>
 
     <div>
-        <form action="{{ route('cetak.surat', request()->query()) }}" method="GET">
+        <form action="{{ route('cetak.surat', request()->query()) }}" method="GET" target="_blank">
           @csrf
           @method('GET')
 

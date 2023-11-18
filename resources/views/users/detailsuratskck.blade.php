@@ -169,23 +169,23 @@
 
                     <div>
                         <div class="text-label text-sm">Nama Lengkap *</div>
-                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nama_warga }}" readonly/>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nama_warga }}" disabled/>
                     </div>
 
                     <div>
                         <div class="text-label text-sm">NIK *</div>
-                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" readonly/>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" disabled/>
                     </div>
 
                     <div class="lg:col-span-2">
                         <div class="text-label text-sm">Alamat *</div>
-                        <textarea class="textarea textarea-primary w-full placeholder:text-sm" readonly>{{ $data->alamat }}</textarea>
+                        <textarea class="textarea textarea-primary w-full placeholder:text-sm disabled:bg-white" disabled style="background: #fff !important;">{{ $data->alamat }}</textarea>
                     </div>
 
                     <div>
                         <div class="text-label text-sm">Kewarganegaraan *</div>
                         <select class="select select-primary w-full my-1" name="kewarganegaraan">
-                            <option selected value="{{ $data->kewarganegaraan }}">{{ $data->kewarganegaraan }}</option>
+                            <option selected disabled value="{{ $data->kewarganegaraan }}">{{ $data->kewarganegaraan }}</option>
                             <option value="WNI">WNI</option>
                             <option value="WNA">WNA</option>
                         </select>
@@ -193,7 +193,7 @@
 
                     <div>
                         <div class="text-label text-sm">KK *</div>
-                        <input type="text" placeholder="Masukkan No. KK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="kk" value="{{ $data->kk }}"/>
+                        <input type="text" placeholder="Masukkan No. KK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->kk }}" disabled />
     
                         @error('kk')
                         <div class="alert alert-error shadow-lg text-white w-full m-auto my-1">

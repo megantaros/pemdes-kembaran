@@ -11,7 +11,9 @@ class PengajuanSurat extends Controller
     {
         $id_warga = auth('sanctum')->user()->id_warga;
 
-        $data = \App\Models\SuratPengajuan::where('id_warga', $id_warga)->get();
+        $data = \App\Models\SuratPengajuan::where('id_warga', $id_warga)
+            ->orderBy('tanggal', 'desc')
+            ->get();
 
         return response()->json([
             'message' => 'Berhasil menampilkan data',

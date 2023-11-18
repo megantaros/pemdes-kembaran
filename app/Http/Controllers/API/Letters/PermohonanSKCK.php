@@ -10,11 +10,16 @@ class PermohonanSKCK extends Controller
     public function store(Request $request)
     {
         $id_warga = auth('sanctum')->user()->id_warga;
+        $permohonaSurat = \App\Models\SuratPengajuan::create([
+            'id_warga' => $id_warga,
+            'jenis_surat' => 'Surat Pengantar SKCK',
+            'tanggal' => date('Y-m-d'),
+        ]);
 
         $data = \App\Models\Skck::create([
-            'id_warga' => $id_warga,
-            'kk' => $request->kk,
-            'kewarganegaraan' => $request->kewarganegaraan,
+            'id_permohonan_surat' => $permohonaSurat->id_permohonan_surat,
+            // 'kk' => $request->kk,
+            'kewarganegaraan' => 'WNI',
             'keperluan' => $request->keperluan,
             'pengantar_rt' => $request->pengantar_rt,
             'fc_ktp' => $request->fc_ktp,
@@ -32,25 +37,18 @@ class PermohonanSKCK extends Controller
             $data->save();
         }
 
-        \App\Models\SuratPengajuan::create([
-            'id_warga' => $data->id_warga,
-            'jenis_surat' => 'Surat Pengantar SKCK',
-            'id_surat' => $data->id_surat_peng_skck,
-        ]);
-
         return response()->json([
-            'message' => 'Data berhasil dikirim',
+            'message' => 'Permohonan Surat Berhasil Dibuat!',
             'data' => $data
         ]);
     }
     public function edit($id)
     {
 
-        $data = \App\Models\SuratPengajuan::where('id_surat', $id)
-            ->join('surat_peng_skck', 'surat_pengajuan.id_surat', '=', 'surat_peng_skck.id_surat_peng_skck')
-            ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
-            ->where('surat_pengajuan.jenis_surat', 'Surat Pengantar SKCK')
-            ->select('surat_pengajuan.*', 'surat_peng_skck.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
+        $data = \App\Models\Skck::where('surat_peng_skck.id_permohonan_surat', $id)
+            ->join('permohonan_surat', 'surat_peng_skck.id_permohonan_surat', '=', 'permohonan_surat.id_permohonan_surat')
+            ->join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->select('permohonan_surat.*', 'surat_peng_skck.*', 'warga.*')
             ->first();
 
         return response()->json([
@@ -63,7 +61,6 @@ class PermohonanSKCK extends Controller
         $data = \App\Models\Skck::find($id);
         $data->update($request->except(['keterangan_warga']));
 
-
         if ($request->hasFile('fc_ktp')) {
             $request->file('fc_ktp')->move('berkaspemohon/', $request->file('fc_ktp')->getClientOriginalName());
             $data->fc_ktp = $request->file('fc_ktp')->getClientOriginalName();
@@ -74,15 +71,12 @@ class PermohonanSKCK extends Controller
             $data->pengantar_rt = $request->file('pengantar_rt')->getClientOriginalName();
             $data->save();
         }
-        ;
 
         $keteranganWarga = $request->input('keterangan_warga');
+        $idPermohonanSurat = $data->id_permohonan_surat;
 
         if ($keteranganWarga != null) {
-
-            $suratPengajuan = \App\Models\SuratPengajuan::where('id_surat', $id)
-                ->where('jenis_surat', 'Surat Pengantar SKCK')
-                ->first();
+            $suratPengajuan = \App\Models\SuratPengajuan::find($idPermohonanSurat);
 
             $suratPengajuan->update([
                 'keterangan_warga' => $request->keterangan_warga,

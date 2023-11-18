@@ -51,23 +51,15 @@
 
                         <input type="hidden" value="{{ Auth::user()->id_warga }}" name="id_warga"/>
 
-                        <div class="text-label text-sm">KK *</div>
-                        <input type="text" placeholder="Masukkan No. KK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="kk"/>
-
-                        @error('kk')
-                        <div class="alert alert-error shadow-lg text-white w-full m-auto my-1">
-                            <div>
-                            <i class="bi bi-x-circle"></i>
-                            <span>Kolom tidak boleh kosong!</span>
-                            </div>
-                        </div>
-                        @enderror
-
                         <div class="text-label text-sm">Kewarganegaraan *</div>
                         <select class="select select-primary w-full mb-3" name="kewarganegaraan">
                             <option value="WNI">WNI</option>
                             <option value="WNA">WNA</option>
                         </select>
+
+                        <div class="text-label text-sm">Keperluan *</div>
+                        <input type="text" placeholder="Contoh: Melamar Pekerjaan" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="keperluan"/>
+
 
                     </div>
 

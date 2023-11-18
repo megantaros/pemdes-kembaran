@@ -345,6 +345,17 @@
         $(this).toggle(isInRange);
       });
     });
+
+    $("#selectStatus").on("change", function() {
+      const value = $(this).val();
+      const keteranganAdmin = $("#keteranganAdmin");
+
+      if (value === '6') {
+        keteranganAdmin.removeClass('hidden');
+      } else {
+        keteranganAdmin.addClass('hidden');
+      }
+    });
   });
 
 </script>
