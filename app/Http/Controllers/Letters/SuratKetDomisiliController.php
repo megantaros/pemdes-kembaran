@@ -97,25 +97,21 @@ class SuratKetDomisiliController extends Controller
             $data->fc_ktp = $request->file('fc_ktp')->getClientOriginalName();
             $data->save();
         }
-        ;
         if ($request->hasFile('fc_kk')) {
             $request->file('fc_kk')->move('berkaspemohon/', $request->file('fc_kk')->getClientOriginalName());
             $data->fc_kk = $request->file('fc_kk')->getClientOriginalName();
             $data->save();
         }
-        ;
         if ($request->hasFile('foto_lokasi')) {
             $request->file('foto_lokasi')->move('berkaspemohon/', $request->file('foto_lokasi')->getClientOriginalName());
             $data->foto_lokasi = $request->file('foto_lokasi')->getClientOriginalName();
             $data->save();
         }
-        ;
         if ($request->hasFile('pengantar_rt')) {
             $request->file('pengantar_rt')->move('berkaspemohon/', $request->file('pengantar_rt')->getClientOriginalName());
             $data->pengantar_rt = $request->file('pengantar_rt')->getClientOriginalName();
             $data->save();
         }
-        ;
 
         $keteranganWarga = $request->input('keterangan_warga');
         $idPermohonanSurat = $data->id_permohonan_surat;

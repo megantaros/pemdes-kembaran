@@ -24,7 +24,24 @@ class SuratKetUsahaController extends Controller
             'pengantar_rt' => 'required|image'
         ]);
 
-        $data = \App\Models\SuratKetUsaha::create($request->all());
+        $permohonanSurat = \App\Models\SuratPengajuan::create([
+            'id_warga' => $request->id_warga,
+            'jenis_surat' => 'Surat Keterangan Usaha',
+            'tanggal' => date('Y-m-d'),
+        ]);
+
+        $data = \App\Models\SuratKetUsaha::create([
+            'id_permohonan_surat' => $permohonanSurat->id_permohonan_surat,
+            'kewarganegaraan' => $request->kewarganegaraan,
+            'status_pernikahan' => $request->status_pernikahan,
+            'jenis_usaha' => $request->jenis_usaha,
+            'tempat_usaha' => $request->tempat_usaha,
+            'lama_usaha' => $request->lama_usaha,
+            'pengantar_rt' => $request->pengantar_rt,
+            'fc_ktp' => $request->fc_ktp,
+            'fc_kk' => $request->fc_kk,
+            'foto_usaha' => $request->foto_usaha,
+        ]);
 
         if ($request->hasFile('fc_ktp')) {
             $request->file('fc_ktp')->move('berkaspemohon/', $request->file('fc_ktp')->getClientOriginalName());
@@ -36,48 +53,37 @@ class SuratKetUsahaController extends Controller
             $data->fc_kk = $request->file('fc_kk')->getClientOriginalName();
             $data->save();
         }
-        ;
         if ($request->hasFile('foto_usaha')) {
             $request->file('foto_usaha')->move('berkaspemohon/', $request->file('foto_usaha')->getClientOriginalName());
             $data->foto_usaha = $request->file('foto_usaha')->getClientOriginalName();
             $data->save();
         }
-        ;
         if ($request->hasFile('pengantar_rt')) {
             $request->file('pengantar_rt')->move('berkaspemohon/', $request->file('pengantar_rt')->getClientOriginalName());
             $data->pengantar_rt = $request->file('pengantar_rt')->getClientOriginalName();
             $data->save();
         }
-        ;
 
-        \App\Models\SuratPengajuan::create([
-            'id_warga' => $request->id_warga,
-            'jenis_surat' => 'Surat Keterangan Usaha',
-            'id_surat' => $data->id_surat_ket_usaha,
-        ]);
-
-        // return dd($data);
         return redirect()->route('surat.warga')->with('success', 'Data Berhasil Dikirim');
     }
 
     public function show($id)
     {
-        $data = \App\Models\SuratPengajuan::where('id_surat', $id)
-            ->join('surat_ket_usaha', 'surat_pengajuan.id_surat', '=', 'surat_ket_usaha.id_surat_ket_usaha')
-            ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
-            ->where('surat_pengajuan.jenis_surat', 'Surat Keterangan Usaha')
-            ->select('surat_pengajuan.*', 'surat_ket_usaha.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
+        $data = \App\Models\SuratPengajuan::where('permohonan_surat.id_permohonan_surat', $id)
+            ->join('surat_ket_usaha', 'permohonan_surat.id_permohonan_surat', '=', 'surat_ket_usaha.id_permohonan_surat')
+            ->join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->where('permohonan_surat.jenis_surat', 'Surat Keterangan Usaha')
+            ->select('permohonan_surat.*', 'surat_ket_usaha.*', 'warga.*')
             ->first();
 
         return view('admin.detailsuratusaha', compact('data'));
     }
     public function edit($id)
     {
-        $data = \App\Models\SuratPengajuan::where('id_surat', $id)
-            ->join('surat_ket_usaha', 'surat_pengajuan.id_surat', '=', 'surat_ket_usaha.id_surat_ket_usaha')
-            ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
-            ->where('surat_pengajuan.jenis_surat', 'Surat Keterangan Usaha')
-            ->select('surat_pengajuan.*', 'surat_ket_usaha.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
+        $data = \App\Models\SuratKetUsaha::where('surat_ket_usaha.id_permohonan_surat', $id)
+            ->join('permohonan_surat', 'surat_ket_usaha.id_permohonan_surat', '=', 'permohonan_surat.id_permohonan_surat')
+            ->join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->select('permohonan_surat.*', 'surat_ket_usaha.*', 'warga.*')
             ->first();
 
         return view('users.detailsuratusaha', compact('data'));
@@ -113,17 +119,13 @@ class SuratKetUsahaController extends Controller
         ;
 
         $keteranganWarga = $request->input('keterangan_warga');
-
+        $idPermohonanSurat = $data->id_permohonan_surat;
         if ($keteranganWarga != null) {
-
-            $suratPengajuan = \App\Models\SuratPengajuan::where('id_surat', $id)
-                ->where('jenis_surat', 'Surat Keterangan Usaha')
-                ->first();
+            $suratPengajuan = \App\Models\SuratPengajuan::find($idPermohonanSurat);
 
             $suratPengajuan->update([
-                'keterangan_warga' => $request->keterangan_warga,
+                'keterangan_warga' => $keteranganWarga,
             ]);
-
         }
 
         return redirect()->back()->with('success', 'Sukses Edit Data Surat!');

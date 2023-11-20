@@ -82,7 +82,6 @@ class PermohonanDomisili extends Controller
             $data->fc_kk = $request->file('fc_kk')->getClientOriginalName();
             $data->save();
         }
-        ;
         if ($request->hasFile('foto_lokasi')) {
             $request->file('foto_lokasi')->move('berkaspemohon/', $request->file('foto_lokasi')->getClientOriginalName());
             $data->foto_lokasi = $request->file('foto_lokasi')->getClientOriginalName();

@@ -4,14 +4,14 @@
 @section('title', 'Detail Surat Pengantar SKCK')
 
 @section('content')
-<div class="grid lg:grid-cols-6 gap-4">
+<div class="grid xl:grid-cols-6 lg:grid-cols-6 md:grid-cols-6 grid-cols-1 gap-4">
 
-  <div class="lg:col-span-4 md:col-span-6 col-span-6">
+  <div class="xl:col-span-4 lg:col-span-4 md:col-span-4 col-span-1">
     <div class="card bg-white shadow-lg">
       <div class="card-body p-4">
         
         <div class="bg-slate-200 p-4 rounded-lg">
-          <div class="gap-1 grid lg:grid-cols-2">
+          <div class="gap-1 grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 grid-cols-1">
   
             <div>
                 <div class="text-label text-sm">Nama Lengkap *</div>
@@ -53,12 +53,12 @@
               <input type="text" placeholder="Masukkan Pekerjaan" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->pekerjaan }}" disabled/>
             </div>
 
-            <div class="lg:col-span-2">
+            <div class="xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1">
                 <div class="text-label text-sm">Alamat *</div>
                 <textarea class="textarea textarea-primary w-full placeholder:text-sm" disabled style="background: #fff !important">{{ $data->alamat }}</textarea>
             </div>
             
-            <div class="p-4 bg-white rounded-lg relative lg:col-span-2 flex items-center border-[#9CB4CC] border-2 my-1">
+            <div class="p-4 bg-white rounded-lg relative xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1 flex items-center border-[#9CB4CC] border-2 my-1">
   
                 <div class="flex flex-1 items-center gap-4">
   
@@ -68,7 +68,7 @@
   
                   <div>
                     <h2 class="font-semibold">Surat Pengantar RT</h2>
-                    <p class="text-sm font-semibold text-gray-500">{{ $data->pengantar_rt != null ? $data->pengantar_rt : 'Belum Upload File' }}</p>
+                    <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-semibold text-gray-500">{{ $data->pengantar_rt != null ? $data->pengantar_rt : 'Belum Upload File' }}</p>
                   </div>
   
                 </div>
@@ -80,7 +80,7 @@
   
             </div>
   
-            <div class="p-4 bg-white rounded-lg relative lg:col-span-2 flex items-center border-[#9CB4CC] border-2 my-1">
+            <div class="p-4 bg-white rounded-lg relative xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1 flex items-center border-[#9CB4CC] border-2 my-1">
   
               <div class="flex flex-1 items-center gap-4">
   
@@ -90,7 +90,7 @@
   
                 <div>
                   <h2 class="font-semibold">Fotokopi KTP</h2>
-                  <p class="text-sm font-semibold text-gray-500">{{ $data->fc_ktp != null ? $data->fc_ktp : 'Belum Upload File' }}</p>
+                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-semibold text-gray-500">{{ $data->fc_ktp != null ? $data->fc_ktp : 'Belum Upload File' }}</p>
                 </div>
   
               </div>
@@ -102,7 +102,7 @@
   
             </div>
   
-            <div class="p-4 bg-white rounded-lg relative lg:col-span-2 flex items-center border-[#9CB4CC] border-2 my-1">
+            <div class="p-4 bg-white rounded-lg relative xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1 flex items-center border-[#9CB4CC] border-2 my-1">
   
                 @php
                     $keteranganWarga = $data->keterangan_warga;
@@ -118,7 +118,7 @@
             </div>
 
             @if ($data->status == 6)
-            <div class="p-4 bg-white rounded-lg relative lg:col-span-2 flex items-center border-[#9CB4CC] border-2 my-1">
+            <div class="p-4 bg-white rounded-lg relative xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1 flex items-center border-[#9CB4CC] border-2 my-1">
   
                 @php
                     $keteranganAdmin = $data->keterangan_admin;
@@ -141,7 +141,7 @@
     </div>
   </div>
 
-  <div class="col-span-2">
+  <div class="xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1">
     <div class="card bg-white">
       <div class="card-body p-4">
 
