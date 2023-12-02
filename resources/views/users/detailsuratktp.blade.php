@@ -9,7 +9,7 @@
         <div class="card-body">
 
             <div>
-                <h2 class="lg:text-lg md:text-sm text-sm font-semibold">Detail Surat Pengantar KTP</h2>
+                <h2 class="lg:text-lg text-lg font-semibold">Detail Surat Pengantar KTP</h2>
                 <div class="flex">
                     <p class="lg:text-md md:text-sm text-sm" style="font-family: Poppins">Pastikan identitas Anda sesuai dengan yang tertera di e-KTP</p>
                 </div>
@@ -25,7 +25,7 @@
                 @csrf
                 @method('PUT')
 
-                <div class="p-4 bg-slate-200 rounded-lg gap-1 grid lg:grid-cols-2">
+                <div class="p-4 bg-slate-200 rounded-lg gap-1 grid lg:grid-cols-2 grid-cols-1">
 
                     <div>
                         <div class="text-label text-sm">Nama Lengkap *</div>
@@ -35,6 +35,26 @@
                     <div>
                         <div class="text-label text-sm">NIK *</div>
                         <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" disabled/>
+                    </div>
+
+                    <div>
+                        <div class="text-label text-sm">No. KK *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->kk }}" disabled/>
+                    </div>
+
+                    <div>
+                        <div class="text-label text-sm">No. KK *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->ttl }}" disabled/>
+                    </div>
+
+                    <div>
+                        <div class="text-label text-sm">Jenis Kelamin *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->jenis_kelamin }}" disabled/>
+                    </div>
+
+                    <div>
+                        <div class="text-label text-sm">Pekerjaan *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->pekerjaan }}" disabled/>
                     </div>
 
                     <div class="lg:col-span-2">
@@ -56,7 +76,7 @@
                         @enderror
                     </div> --}}
 
-                    <div class="col-span-2">
+                    <div class="lg:col-span-2">
                         <div class="text-label text-sm">Jenis Permohonan *</div>
                         <select class="select select-primary w-full my-1" name="jenis_permohonan">
                             <option selected disabled value="{{ $data->jenis_permohonan }}">{{ $data->jenis_permohonan }}</option>

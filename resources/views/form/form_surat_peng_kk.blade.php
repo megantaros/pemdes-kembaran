@@ -34,7 +34,7 @@
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body gap-10">
 
-                <div class="card-title bg-slate-200 p-4 rounded-lg">
+                <div class="bg-slate-200 p-4 rounded-lg">
                     <div class="m-auto">
                         <h2 class="text-lg leading-1">Form Pengisian Surat Pengantar KK</h2>
                         <p class="font-normal text-sm" style="font-family: Poppins">Isi form pengajuan surat di bawah ini!</p>
@@ -43,7 +43,7 @@
 
                 <hr>
 
-                <form class="grid lg:grid-cols-2 text-left gap-6" action="{{ route('pengantar-kk.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 text-left gap-6" action="{{ route('pengantar-kk.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
 
@@ -51,7 +51,7 @@
 
                         <input type="hidden" value="{{ Auth::user()->id_warga }}" name="id_warga"/>
 
-                        <div class="text-label text-sm">KK Lama *</div>
+                        {{-- <div class="text-label text-sm">KK Lama *</div>
                         <input type="text" placeholder="Masukkan No. KK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="kk_lama"/>
 
                         @error('kk_lama')
@@ -61,20 +61,20 @@
                             <span>Kolom tidak boleh kosong!</span>
                             </div>
                         </div>
-                        @enderror
+                        @enderror --}}
 
                         <div class="text-label text-sm">Status Hubungan Dalam Keluarga *</div>
                         <select class="select select-primary w-full my-1" name="shdk">
-                            <option value="01">Kepala Keluarga</option>
-                            <option value="02">Suami</option>
-                            <option value="03">Istri</option>
-                            <option value="04">Anak</option>
-                            <option value="05">Menantu</option>
-                            <option value="06">Cucu</option>
-                            <option value="07">Orangtua</option>
-                            <option value="08">Mertua</option>
-                            <option value="09">Famili Lainnya</option>
-                            <option value="10">Pembantu</option>
+                            <option value="Kepala Keluarga">Kepala Keluarga</option>
+                            <option value="Suami">Suami</option>
+                            <option value="Istri">Istri</option>
+                            <option value="Anak">Anak</option>
+                            <option value="Menantu">Menantu</option>
+                            <option value="Cucu">Cucu</option>
+                            <option value="Orang Tua">Orangtua</option>
+                            <option value="Mertua">Mertua</option>
+                            <option value="Famili Lainnya">Famili Lainnya</option>
+                            <option value="Pembantu">Pembantu</option>
                         </select>
 
                         @error('shdk')
@@ -102,7 +102,7 @@
                         </div>
                         @enderror
 
-                        <div class="text-label text-sm">Jumlah Anggota Keluarga *</div>
+                        {{-- <div class="text-label text-sm">Jumlah Anggota Keluarga *</div>
                         <input type="number" placeholder="Masukkan Jumlah Anggota Keluarga" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="jml_angg_keluarga"/>
 
                         @error('jml_angg_keluarga')
@@ -112,13 +112,13 @@
                             <span>Kolom tidak boleh kosong!</span>
                             </div>
                         </div>
-                        @enderror
+                        @enderror --}}
 
                     </div>
 
                     <div class="p-4 bg-slate-200 rounded-lg">
 
-                        <div class="text-label text-sm">KTP Asli*</div>
+                        <div class="text-label text-sm">Surat Pengantar RT *</div>
                         <input type="file" class="input input-bordered input-primary w-full file-input-primary file:border-none file:py-1 my-1" accept="image/png, image/jpeg" name="pengantar_rt"/>
 
                         @error('pengantar_rt')
@@ -168,7 +168,31 @@
 
                     </div>
 
-                    <div class="col-span-2">
+                    {{-- <div class="xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1">
+                        <div class="flex flex-col gap-4">
+                            <div class="p-4 bg-slate-200 rounded-lg">
+                                <h2 class="text-lg leading-1">Daftar Anggota Keluarga</h2>
+                                <p class="font-normal text-sm" style="font-family: Poppins">Isi form pengajuan surat di bawah ini!</p>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="table w-full">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-white capitalize font-normal bg-primary" style="font-family: Poppins">No</th>
+                                        <th class="text-white capitalize font-normal bg-primary" style="font-family: Poppins">NIK</th>
+                                        <th class="text-white capitalize font-normal bg-primary" style="font-family: Poppins">Nama</th>
+                                        <th class="text-white capitalize font-normal bg-primary" style="font-family: Poppins">SHDK</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="listFamily">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    <div class="xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1">
                         <button type="submit" class="btn btn-primary w-full text-white font-normal capitalize">Kirim</button>
                     </div>
                 </form>

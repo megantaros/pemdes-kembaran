@@ -80,7 +80,7 @@
   
                   <div>
                     <h2 class="font-semibold">Surat Pengantar RT</h2>
-                    <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-semibold text-gray-500">{{ $data->pengantar_rt != null ? $data->pengantar_rt : 'Belum Upload File' }}</p>
+                    <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-normal text-gray-500">{{ $data->pengantar_rt != null ? $data->pengantar_rt : 'Belum Upload File' }}</p>
                   </div>
   
                 </div>
@@ -102,7 +102,7 @@
   
                 <div>
                   <h2 class="font-semibold">Fotokopi KTP</h2>
-                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-semibold text-gray-500">{{ $data->fc_ktp != null ? $data->fc_ktp : 'Belum Upload File' }}</p>
+                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-normal text-gray-500">{{ $data->fc_ktp != null ? $data->fc_ktp : 'Belum Upload File' }}</p>
                 </div>
   
               </div>
@@ -124,7 +124,7 @@
   
                 <div>
                   <h2 class="font-semibold">Fotokopi KK</h2>
-                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-semibold text-gray-500">{{ $data->fc_kk != null ? $data->fc_kk : 'Belum Upload File' }}</p>
+                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-normal text-gray-500">{{ $data->fc_kk != null ? $data->fc_kk : 'Belum Upload File' }}</p>
                 </div>
   
               </div>
@@ -146,7 +146,7 @@
   
                 <div>
                   <h2 class="font-semibold">Foto Usaha</h2>
-                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-semibold text-gray-500">{{ $data->foto_usaha != null ? $data->foto_usaha : 'Belum Upload File' }}</p>
+                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-normal text-gray-500">{{ $data->foto_usaha != null ? $data->foto_usaha : 'Belum Upload File' }}</p>
                 </div>
   
               </div>

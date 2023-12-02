@@ -29,7 +29,7 @@ Route::middleware("auth:sanctum")->group(function () {
         Route::resource("permohonan-domisili", \App\Http\Controllers\API\Letters\PermohonanDomisili::class);
         Route::resource("permohonan-usaha", \App\Http\Controllers\API\Letters\PermohonanUsaha::class);
         Route::resource("permohonan-pindah", \App\Http\Controllers\API\Letters\PermohonanPindah::class);
-        Route::resource("permohonan-datang", \App\Http\Controllers\API\Letters\PermohonanPindah::class);
+        Route::resource("permohonan-datang", \App\Http\Controllers\API\Letters\PermohonanDatang::class);
     });
 
 });

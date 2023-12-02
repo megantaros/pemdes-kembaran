@@ -20,13 +20,17 @@
 
             @php
                 $statusSurat = $row->status;
+                $borderStatus = "";
                 
                 if($statusSurat == 1 || $statusSurat == 2 || $statusSurat == 3 || $statusSurat == 4){
                     $statusSurat = "text-orange-500";
+                    $borderStatus = "border-orange-500";
                 } elseif($statusSurat == 6){
                     $statusSurat = "text-red-800";
+                    $borderStatus = "border-red-800";
                 } else {
                     $statusSurat = "text-green-800";
+                    $borderStatus = "border-green-800";
                 }
 
                 $ketStatus = $row->status;
@@ -37,9 +41,9 @@
                 } elseif($ketStatus == 3) {
                     $ketStatus = "Surat Sedang Diproses";
                 } elseif($ketStatus == 4) {
-                    $ketStatus = "Surat Telah Ditandatangani Kepala Desa";
-                } elseif($ketStatus == 5) {
                     $ketStatus = "Surat Dapat Diambil di Kantor Kepala Desa Kembaran";
+                } elseif($ketStatus == 5) {
+                    $ketStatus = "Surat Telah Diambil";
                 } elseif($ketStatus == 6) {
                     $ketStatus = "Permohonan Ditolak";
                 }
@@ -64,17 +68,23 @@
 
             @endphp
 
-            <div class="card bg-slate-200 border-l-4 border-primary rounded-none">
+            <div class="card bg-slate-200 border-l-[5px] {{ $borderStatus }} rounded-xl">
                 <div class="card-body p-4">
                     <div class="grid grid-cols-3">
                         <div class="col-span-2">
-                            <h2 class="mb-2">{{ $row->jenis_surat }}</h2>
+                            <h2 class="my-2 text-lg flex items-center gap-2">{{ $row->jenis_surat }}
+                                {{-- <span class="py-1 px-2 bg-gray-600 bg-opacity-20 rounded-lg uppercase" style="font-family: Poppins">{{ substr($row->id_permohonan_surat, 0, 6) }}</span> --}}
+                            </h2>
+
+                            <div class="text-sm" style="font-family: Poppins">
+                                Kode Surat: <span class="font-semibold uppercase">{{ substr($row->id_permohonan_surat, 0, 6) }}</span>
+                            </div>
         
-                            <div class="text-xs" style="font-family: Poppins">
-                                Diajukan pada: <span class="font-semibold">{{ $row->tanggal }}</span>
+                            <div class="text-sm" style="font-family: Poppins">
+                                Diajukan pada: <span class="font-semibold">{{ \Carbon\Carbon::parse($row->tanggal)->isoFormat('D MMMM Y') }}</span>
                             </div>
 
-                            <div class="text-xs" style="font-family: Poppins">
+                            <div class="text-sm" style="font-family: Poppins">
                                 Status: <span class="font-semibold {{ $statusSurat }}">{{ $ketStatus }}</span>
                             </div>
                         </div>

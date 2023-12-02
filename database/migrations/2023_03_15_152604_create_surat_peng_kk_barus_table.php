@@ -14,14 +14,9 @@ return new class extends Migration {
     {
         Schema::create('surat_peng_kk', function (Blueprint $table) {
             $table->uuid('id_surat_peng_kk')->primary();
-            // $table->string('id_warga');
-            // $table->foreign('id_warga')->references('id_warga')->on('warga');
             $table->string('id_permohonan_surat');
-            // $table->foreign('id_permohonan_surat')->references('id_permohonan_surat')->on('permohonan_surat');
-            // $table->string('kk_lama');
-            $table->string('shdk');
             $table->enum('alasan_permohonan', ['1', '2', '3']);
-            $table->bigInteger('jml_angg_keluarga');
+            $table->enum('shdk', ['Kepala Keluarga', 'Suami', 'Istri', 'Anak', 'Menantu', 'Cucu', 'Orang Tua', 'Mertua', 'Famili Lainnya', 'Pembantu']);
             $table->string('foto_ktp');
             $table->string('foto_kk');
             $table->string('fc_buku_nikah');

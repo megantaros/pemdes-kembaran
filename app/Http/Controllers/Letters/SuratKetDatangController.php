@@ -19,7 +19,16 @@ class SuratKetDatangController extends Controller
             'foto_surat_ket_pindah_capil' => 'required|image',
         ]);
 
-        $data = \App\Models\SuratKetPindahDatang::create($request->all());
+        $permohonanSurat = \App\Models\SuratPengajuan::create([
+            'id_warga' => $request->id_warga,
+            'jenis_surat' => 'Surat Keterangan Pindah Datang',
+            'tanggal' => date('Y-m-d'),
+        ]);
+
+        $data = \App\Models\SuratKetPindahDatang::create([
+            'id_permohonan_surat' => $permohonanSurat->id_permohonan_surat,
+            'foto_surat_ket_pindah_capil' => $request->foto_surat_ket_pindah_capil,
+        ]);
 
         if ($request->hasFile('foto_surat_ket_pindah_capil')) {
             $request->file('foto_surat_ket_pindah_capil')->move('berkaspemohon/', $request->file('foto_surat_ket_pindah_capil')->getClientOriginalName());
@@ -27,32 +36,25 @@ class SuratKetDatangController extends Controller
             $data->save();
         }
 
-        \App\Models\SuratPengajuan::create([
-            'id_warga' => $request->id_warga,
-            'jenis_surat' => 'Surat Keterangan Pindah Datang',
-            'id_surat' => $data->id_surat_ket_pindah_datang,
-        ]);
-
         return redirect()->route('surat.warga')->with('success', 'Data Berhasil Dikirim');
     }
     public function show($id)
     {
-        $data = \App\Models\SuratPengajuan::where('id_surat', $id)
-            ->join('surat_ket_pindah_datang', 'surat_pengajuan.id_surat', '=', 'surat_ket_pindah_datang.id_surat_ket_pindah_datang')
-            ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
-            ->where('surat_pengajuan.jenis_surat', 'Surat Keterangan Pindah Datang')
-            ->select('surat_pengajuan.*', 'surat_ket_pindah_datang.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
+        $data = \App\Models\SuratPengajuan::where('permohonan_surat.id_permohonan_surat', $id)
+            ->join('surat_ket_pindah_datang', 'permohonan_surat.id_permohonan_surat', '=', 'surat_ket_pindah_datang.id_permohonan_surat')
+            ->join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->where('permohonan_surat.jenis_surat', 'Surat Keterangan Pindah Datang')
+            ->select('permohonan_surat.*', 'surat_ket_pindah_datang.*', 'warga.*')
             ->first();
 
         return view('admin.detailsuratpindah_datang', compact('data'));
     }
     public function edit($id)
     {
-        $data = \App\Models\SuratPengajuan::where('id_surat', $id)
-            ->join('surat_ket_pindah_datang', 'surat_pengajuan.id_surat', '=', 'surat_ket_pindah_datang.id_surat_ket_pindah_datang')
-            ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
-            ->where('surat_pengajuan.jenis_surat', 'Surat Keterangan Pindah Datang')
-            ->select('surat_pengajuan.*', 'surat_ket_pindah_datang.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
+        $data = \App\Models\SuratKetPindahDatang::where('surat_ket_pindah_datang.id_permohonan_surat', $id)
+            ->join('permohonan_surat', 'surat_ket_pindah_datang.id_permohonan_surat', '=', 'permohonan_surat.id_permohonan_surat')
+            ->join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->select('permohonan_surat.*', 'surat_ket_pindah_datang.*', 'warga.*')
             ->first();
 
         return view('users.detailsuratpindah_datang', compact('data'));
@@ -69,17 +71,13 @@ class SuratKetDatangController extends Controller
         }
 
         $keteranganWarga = $request->input('keterangan_warga');
-
+        $idPermohonanSurat = $data->id_permohonan_surat;
         if ($keteranganWarga != null) {
-
-            $suratPengajuan = \App\Models\SuratPengajuan::where('id_surat', $id)
-                ->where('jenis_surat', 'Surat Keterangan Pindah Datang')
-                ->first();
+            $suratPengajuan = \App\Models\SuratPengajuan::find($idPermohonanSurat);
 
             $suratPengajuan->update([
-                'keterangan_warga' => $request->keterangan_warga,
+                'keterangan_warga' => $keteranganWarga,
             ]);
-
         }
 
         return redirect()->back()->with('success', 'Sukses Edit Data Surat!');

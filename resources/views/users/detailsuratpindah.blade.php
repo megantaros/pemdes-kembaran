@@ -5,30 +5,6 @@
 
 @section('content')
 @php
-    $shdk = $data->shdk;
-    
-    if($shdk = '01') {
-        $shdk = 'Kepala Keluarga';
-    } elseif ($shdk == '02') {
-        $shdk = 'Suami';
-    } elseif ($shdk == '03') {
-        $shdk = 'Istri';
-    } elseif ($shdk == '04') {
-        $shdk = 'Anak';
-    } elseif ($shdk == '05') {
-        $shdk = 'Menantu';
-    } elseif ($shdk == '06') {
-        $shdk = 'Cucu';
-    } elseif ($shdk == '07') {
-        $shdk = 'Orangtua';
-    } elseif ($shdk == '08') {
-        $shdk = 'Mertua';
-    } elseif ($shdk == '09') {
-        $shdk = 'Famili Lainnya';
-    } elseif ($shdk == '10') {
-        $shdk = 'Pembantu';
-    }
-
     $alasanPermohonan = $data->alasan_permohonan;
 
     if( $alasanPermohonan == '1') {
@@ -45,7 +21,7 @@
         <div class="card-body">
 
             <div>
-                <h2 class="lg:text-lg md:text-sm text-sm font-semibold">Detail Surat Keterangan Pindah</h2>
+                <h2 class="lg:text-lg text-lg font-semibold">Detail Surat Keterangan Pindah</h2>
                 <div class="flex">
                     <p class="lg:text-md md:text-sm text-sm" style="font-family: Poppins">Pastikan identitas Anda sesuai dengan yang tertera di e-KTP</p>
                 </div>
@@ -65,34 +41,25 @@
 
                     <div>
                         <div class="text-label text-sm">Nama Lengkap *</div>
-                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nama_warga }}" readonly/>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nama_warga }}" disabled/>
                     </div>
 
                     <div>
                         <div class="text-label text-sm">NIK *</div>
-                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" readonly/>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" disabled/>
+                    </div>
+
+                    <div class="lg:col-span-2">
+                        <div class="text-label text-sm">No. KK *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->kk }}" disabled/>
                     </div>
 
                     <div class="lg:col-span-2">
                         <div class="text-label text-sm">Alamat *</div>
-                        <textarea class="textarea textarea-primary w-full placeholder:text-sm" readonly>{{ $data->alamat }}</textarea>
+                        <textarea class="textarea textarea-primary w-full placeholder:text-sm" disabled style="background: #fff !important;">{{ $data->alamat }}</textarea>
                     </div>
 
-                    <div>
-                        <div class="text-label text-sm">KK *</div>
-                        <input type="text" placeholder="Masukkan No. KK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="kk" value="{{ $data->kk }}"/>
-    
-                        @error('kk')
-                        <div class="alert alert-error shadow-lg text-white w-full m-auto my-1">
-                            <div>
-                            <i class="bi bi-x-circle"></i>
-                            <span>Kolom tidak boleh kosong!</span>
-                            </div>
-                        </div>
-                        @enderror
-                    </div>
-
-                    <div>
+                    <div class="lg:col-span-2">
                         <div class="text-label text-sm">Nama Kepala Keluarga *</div>
                         <input type="text" placeholder="Masukkan Nama Kepala Keluarga" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="nama_kepala_keluarga" value="{{ $data->nama_kepala_keluarga }}"/>
 
@@ -129,7 +96,7 @@
                         @enderror
                     </div>
 
-                    <div>
+                    {{-- <div>
                         <div class="text-label text-sm">Jumlah Anggota Pindah *</div>
                         <input type="number" placeholder="Masukkan Jumlah Anggota Pindah" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="jml_angg_pindah" value="{{ $data->jml_angg_pindah }}"/>
 
@@ -141,22 +108,22 @@
                             </div>
                         </div>
                         @enderror
-                    </div>
+                    </div> --}}
 
-                    <div class="lg:col-span-2">
+                    <div>
                         <div class="text-label text-sm">Status Hubungan Dalam Keluarga *</div>
                         <select class="select select-primary w-full my-1" name="shdk">
-                            <option value="{{ $data->shdk }}" selected disabled>{{ $shdk }}</option>
-                            <option value="01">Kepala Keluarga</option>
-                            <option value="02">Suami</option>
-                            <option value="03">Istri</option>
-                            <option value="04">Anak</option>
-                            <option value="05">Menantu</option>
-                            <option value="06">Cucu</option>
-                            <option value="07">Orangtua</option>
-                            <option value="08">Mertua</option>
-                            <option value="09">Famili Lainnya</option>
-                            <option value="10">Pembantu</option>
+                            <option value="{{ $data->shdk }}" disabled selected>{{ $data->shdk }}</option>
+                            <option value="Kepala Keluarga">Kepala Keluarga</option>
+                            <option value="Suami">Suami</option>
+                            <option value="Istri">Istri</option>
+                            <option value="Anak">Anak</option>
+                            <option value="Menantu">Menantu</option>
+                            <option value="Cucu">Cucu</option>
+                            <option value="Orang Tua">Orangtua</option>
+                            <option value="Mertua">Mertua</option>
+                            <option value="Famili Lainnya">Famili Lainnya</option>
+                            <option value="Pembantu">Pembantu</option>
                         </select>
 
                         @error('shdk')

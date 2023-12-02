@@ -52,8 +52,8 @@
         <thead>
           <tr>
             <th class="bg-primary text-white capitalize font-normal">Nomor</th>
+            <th class="bg-primary text-white capitalize font-normal">Kode Surat</th>
             <th class="bg-primary text-white capitalize font-normal">Nama</th>
-            <th class="bg-primary text-white capitalize font-normal">NIK</th>
             <th class="bg-primary text-white capitalize font-normal">Jenis Surat</th>
             <th class="bg-primary text-white capitalize font-normal">Tanggal Diajukan</th>
             <th class="bg-primary text-white capitalize font-normal">Aksi</th>
@@ -90,8 +90,8 @@
 
           <tr id="listLetters" class="border-b-2 border-primary font-semibold p-3 text-gray-800" style="font-family: Poppins;">
             <th class="text-sm">{{$no++}}</th>
+            <td class="text-sm uppercase">{{ substr($item->id_permohonan_surat, 0, 6) }}</td>
             <td class="text-sm">{{ $item->nama_warga }}</td>
-            <td class="text-sm">{{ $item->nik }}</td>
             <td class="text-sm">{{ $item->jenis_surat }}</td>
             <td class="text-sm">
               {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('DD MMMM YYYY') }}

@@ -69,7 +69,7 @@
   
                   <div>
                     <h2 class="font-semibold">Surat Pengantar RT</h2>
-                    <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-semibold text-gray-500">{{ $data->pengantar_rt != null ? $data->pengantar_rt : 'Belum Upload File' }}</p>
+                    <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-normal text-gray-500">{{ $data->pengantar_rt != null ? $data->pengantar_rt : 'Belum Upload File' }}</p>
                   </div>
   
                 </div>
@@ -91,7 +91,7 @@
   
                 <div>
                   <h2 class="font-semibold">Fotokopi KTP</h2>
-                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-semibold text-gray-500">{{ $data->fc_ktp != null ? $data->fc_ktp : 'Belum Upload File' }}</p>
+                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-normal text-gray-500">{{ $data->fc_ktp != null ? $data->fc_ktp : 'Belum Upload File' }}</p>
                 </div>
   
               </div>
@@ -113,7 +113,7 @@
   
                 <div>
                   <h2 class="font-semibold">Fotokopi KK</h2>
-                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-semibold text-gray-500">{{ $data->fc_kk != null ? $data->fc_kk : 'Belum Upload File' }}</p>
+                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-normal text-gray-500">{{ $data->fc_kk != null ? $data->fc_kk : 'Belum Upload File' }}</p>
                 </div>
   
               </div>
@@ -135,7 +135,7 @@
   
                 <div>
                   <h2 class="font-semibold">Foto Rumah / Lokasi</h2>
-                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-semibold text-gray-500">{{ $data->foto_lokasi != null ? $data->foto_lokasi : 'Belum Upload File' }}</p>
+                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-normal text-gray-500">{{ $data->foto_lokasi != null ? $data->foto_lokasi : 'Belum Upload File' }}</p>
                 </div>
   
               </div>
@@ -150,11 +150,11 @@
             <div class="p-4 bg-white rounded-lg relative lg:xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1 flex items-center border-[#9CB4CC] border-2 my-1">
   
                 @php
-                    $keteranganWarga = $data->keterangan_warga;
-  
-                    if($keteranganWarga == '') {
-                        $keteranganWarga = 'Belum ada keterangan dari warga';
-                    }
+                  $keteranganWarga = $data->keterangan_warga;
+
+                  if($keteranganWarga == '') {
+                      $keteranganWarga = 'Belum ada keterangan dari warga';
+                  }
                 @endphp
   
                 <div class="text-label text-sm">Keterangan Warga *</div>

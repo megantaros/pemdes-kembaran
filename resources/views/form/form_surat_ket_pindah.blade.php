@@ -51,7 +51,7 @@
 
                         <input type="hidden" value="{{ Auth::user()->id_warga }}" name="id_warga"/>
 
-                        <div class="text-label text-sm">KK *</div>
+                        {{-- <div class="text-label text-sm">KK *</div>
                         <input type="text" placeholder="Masukkan No. KK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="kk"/>
 
                         @error('kk')
@@ -61,7 +61,7 @@
                             <span>Kolom tidak boleh kosong!</span>
                             </div>
                         </div>
-                        @enderror
+                        @enderror --}}
 
                         <div class="text-label text-sm">Nama Kepala Keluarga *</div>
                         <input type="text" placeholder="Masukkan Nama Kepala Keluarga" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="nama_kepala_keluarga"/>
@@ -121,7 +121,7 @@
                         </div>
                         @enderror
 
-                        <div class="text-label text-sm">Jumlah Anggota Pindah *</div>
+                        {{-- <div class="text-label text-sm">Jumlah Anggota Pindah *</div>
                         <input type="number" placeholder="Masukkan Jumlah Anggota Pindah" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="jml_angg_pindah"/>
 
                         @error('jml_angg_pindah')
@@ -131,20 +131,20 @@
                             <span>Kolom tidak boleh kosong!</span>
                             </div>
                         </div>
-                        @enderror
+                        @enderror --}}
 
                         <div class="text-label text-sm">Status Hubungan Dalam Keluarga *</div>
                         <select class="select select-primary w-full my-1" name="shdk">
-                            <option value="01">Kepala Keluarga</option>
-                            <option value="02">Suami</option>
-                            <option value="03">Istri</option>
-                            <option value="04">Anak</option>
-                            <option value="05">Menantu</option>
-                            <option value="06">Cucu</option>
-                            <option value="07">Orangtua</option>
-                            <option value="08">Mertua</option>
-                            <option value="09">Famili Lainnya</option>
-                            <option value="10">Pembantu</option>
+                            <option value="Kepala Keluarga">Kepala Keluarga</option>
+                            <option value="Suami">Suami</option>
+                            <option value="Istri">Istri</option>
+                            <option value="Anak">Anak</option>
+                            <option value="Menantu">Menantu</option>
+                            <option value="Cucu">Cucu</option>
+                            <option value="Orang Tua">Orang Tua</option>
+                            <option value="Mertua">Mertua</option>
+                            <option value="Famili Lainnya">Famili Lainnya</option>
+                            <option value="Pembantu">Pembantu</option>
                         </select>
 
                         @error('shdk')

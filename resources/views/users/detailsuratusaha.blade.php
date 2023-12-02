@@ -178,7 +178,7 @@
         <div class="card-body">
 
             <div>
-                <h2 class="lg:text-lg md:text-sm text-sm font-semibold">Detail Surat Keterangan Usaha</h2>
+                <h2 class="lg:text-lg text-lg font-semibold">Detail Surat Keterangan Usaha</h2>
                 <div class="flex">
                     <p class="lg:text-md md:text-sm text-sm" style="font-family: Poppins">Pastikan identitas Anda sesuai dengan yang tertera di e-KTP</p>
                 </div>
@@ -204,6 +204,16 @@
                     <div>
                         <div class="text-label text-sm">NIK *</div>
                         <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" disabled/>
+                    </div>
+
+                    <div>
+                        <div class="text-label text-sm">Pekerjaan *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->pekerjaan }}" disabled/>
+                    </div>
+
+                    <div>
+                        <div class="text-label text-sm">Agama *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->agama }}" disabled/>
                     </div>
 
                     <div class="lg:col-span-2">

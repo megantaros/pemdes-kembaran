@@ -19,7 +19,7 @@ class PermohonanSKCK extends Controller
         $data = \App\Models\Skck::create([
             'id_permohonan_surat' => $permohonaSurat->id_permohonan_surat,
             // 'kk' => $request->kk,
-            'kewarganegaraan' => 'WNI',
+            // 'kewarganegaraan' => 'WNI',
             'keperluan' => $request->keperluan,
             'pengantar_rt' => $request->pengantar_rt,
             'fc_ktp' => $request->fc_ktp,

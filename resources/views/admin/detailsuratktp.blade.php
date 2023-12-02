@@ -43,9 +43,14 @@
               <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->pekerjaan }}" disabled/>
             </div>
 
-            <div class="xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1">
+            <div>
               <div class="text-label text-sm">Agama *</div>
               <input type="text" placeholder="Masukkan Agama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->agama }}" disabled/>
+            </div>
+
+            <div>
+                <div class="text-label text-sm">Jenis Permohonan *</div>
+                <input type="text" placeholder="Masukkan No. KK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="data->jenis_permohonan" value="{{ $data->jenis_permohonan }}" disabled/>
             </div>
 
             <div class="lg:xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1">
@@ -53,22 +58,18 @@
               <textarea class="textarea textarea-primary w-full placeholder:text-sm" disabled style="background: #fff !important";>{{ $data->alamat }}</textarea>
             </div>
   
-            <div class="xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1">
-                <div class="text-label text-sm">Jenis Permohonan *</div>
-                <input type="text" placeholder="Masukkan No. KK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="data->jenis_permohonan" value="{{ $data->jenis_permohonan }}" disabled/>
-            </div>
   
             <div class="p-4 bg-white rounded-lg relative lg:xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1 flex items-center border-[#9CB4CC] border-2 my-1">
   
                 <div class="flex flex-1 items-center gap-4">
   
                   <div class="h-20 border-2 bg-primary rounded-lg overflow-hidden w-32">
-                    <img src="{{ url('berkaspemohon/'. $data->pengantar_rt ) }}" alt="Pengantar RT" class="rounded-sm h-20 object-cover m-auto">
+                    <img src="{{ url('berkaspemohon/'. $data->pengantar_rt ) }}" alt="Pengantar RT" class="rounded-sm object-cover w-full h-full">
                   </div>
   
                   <div>
                     <h2 class="font-semibold">Surat Pengantar RT</h2>
-                    <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-semibold text-gray-500">{{ $data->pengantar_rt != null ? $data->pengantar_rt : 'Belum Upload File' }}</p>
+                    <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-normal text-gray-500">{{ $data->pengantar_rt != null ? $data->pengantar_rt : 'Belum Upload File' }}</p>
                   </div>
   
                 </div>
@@ -85,12 +86,12 @@
               <div class="flex flex-1 items-center gap-4">
   
                 <div class="h-20 border-2 bg-primary rounded-lg overflow-hidden w-32">
-                  <img src="{{ url('berkaspemohon/'. $data->foto_ktp ) }}" alt="Pengantar RT" class="rounded-sm h-20 object-cover m-auto">
+                  <img src="{{ url('berkaspemohon/'. $data->foto_ktp ) }}" alt="Pengantar RT" class="rounded-sm object-cover w-full h-full">
                 </div>
   
                 <div>
                   <h2 class="font-semibold">Foto KTP</h2>
-                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-semibold text-gray-500">{{ $data->foto_ktp != null ? $data->foto_ktp : 'Belum Upload File' }}</p>
+                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-normal text-gray-500">{{ $data->foto_ktp != null ? $data->foto_ktp : 'Belum Upload File' }}</p>
                 </div>
   
               </div>
@@ -107,12 +108,12 @@
               <div class="flex flex-1 items-center gap-4">
   
                 <div class="h-20 border-2 bg-primary rounded-lg overflow-hidden w-32">
-                  <img src="{{ url('berkaspemohon/'. $data->foto_kk ) }}" alt="KK" class="rounded-sm h-20 object-cover m-auto">
+                  <img src="{{ url('berkaspemohon/'. $data->foto_kk ) }}" alt="KK" class="rounded-sm object-cover w-full h-full">
                 </div>
   
                 <div>
                   <h2 class="font-semibold">Foto KK</h2>
-                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-semibold text-gray-500">{{ $data->foto_kk != null ? $data->foto_kk : 'Belum Upload File' }}</p>
+                  <p class="xl:text-sm lg:text-sm md:text-sm text-xs font-normal text-gray-500">{{ $data->foto_kk != null ? $data->foto_kk : 'Belum Upload File' }}</p>
                 </div>
   
               </div>

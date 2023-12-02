@@ -49,19 +49,16 @@ class SuratKetDomisiliController extends Controller
             $data->fc_kk = $request->file('fc_kk')->getClientOriginalName();
             $data->save();
         }
-        ;
         if ($request->hasFile('foto_lokasi')) {
             $request->file('foto_lokasi')->move('berkaspemohon/', $request->file('foto_lokasi')->getClientOriginalName());
             $data->foto_lokasi = $request->file('foto_lokasi')->getClientOriginalName();
             $data->save();
         }
-        ;
         if ($request->hasFile('pengantar_rt')) {
             $request->file('pengantar_rt')->move('berkaspemohon/', $request->file('pengantar_rt')->getClientOriginalName());
             $data->pengantar_rt = $request->file('pengantar_rt')->getClientOriginalName();
             $data->save();
         }
-        ;
         // return dd($data);
 
         return redirect()->route('surat.warga')->with('success', 'Data Berhasil Dikirim');
