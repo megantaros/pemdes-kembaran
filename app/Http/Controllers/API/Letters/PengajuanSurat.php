@@ -48,7 +48,7 @@ class PengajuanSurat extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Data berhasil dihapus',
+            'message' => 'Permohonan Surat Berhasil Dihapus!',
         ]);
     }
 }

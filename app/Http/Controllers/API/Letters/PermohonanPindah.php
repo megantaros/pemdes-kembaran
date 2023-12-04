@@ -12,16 +12,20 @@ class PermohonanPindah extends Controller
 
         $id_warga = auth('sanctum')->user()->id_warga;
 
-        $data = \App\Models\SuratKetPindah::create([
+        $permohonanSurat = \App\Models\SuratPengajuan::create([
             'id_warga' => $id_warga,
-            'kk' => $request->kk,
+            'jenis_surat' => 'Surat Keterangan Pindah',
+            'tanggal' => date('Y-m-d'),
+        ]);
+
+        $data = \App\Models\SuratKetPindah::create([
+            'id_permohonan_surat' => $permohonanSurat->id_permohonan_surat,
             'nama_kepala_keluarga' => $request->nama_kepala_keluarga,
             'alasan_pindah' => $request->alasan_pindah,
             'lainnya' => $request->lainnya,
             'alamat_tujuan' => $request->alamat_tujuan,
-            'jml_angg_pindah' => $request->jml_angg_pindah,
-            'pengantar_rt' => $request->pengantar_rt,
             'shdk' => $request->shdk,
+            'pengantar_rt' => $request->pengantar_rt,
             'foto_ktp' => $request->foto_ktp,
             'foto_kk' => $request->foto_kk,
         ]);
@@ -41,26 +45,18 @@ class PermohonanPindah extends Controller
             $data->pengantar_rt = $request->file('pengantar_rt')->getClientOriginalName();
             $data->save();
         }
-        ;
-
-        \App\Models\SuratPengajuan::create([
-            'id_warga' => $data->id_warga,
-            'jenis_surat' => 'Surat Keterangan Pindah',
-            'id_surat' => $data->id_surat_ket_pindah,
-        ]);
 
         return response()->json([
-            'message' => 'Data berhasil dikirim',
+            'message' => 'Permohonan Surat Berhasil Dibuat!',
             'data' => $data
         ]);
     }
     public function edit($id)
     {
-        $data = \App\Models\SuratPengajuan::where('id_surat', $id)
-            ->join('surat_ket_pindah', 'surat_pengajuan.id_surat', '=', 'surat_ket_pindah.id_surat_ket_pindah')
-            ->join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
-            ->where('surat_pengajuan.jenis_surat', 'Surat Keterangan Pindah')
-            ->select('surat_pengajuan.*', 'surat_ket_pindah.*', 'warga.nama_warga', 'warga.nik', 'warga.alamat')
+        $data = \App\Models\SuratKetPindah::where('surat_ket_pindah.id_permohonan_surat', $id)
+            ->join('permohonan_surat', 'surat_ket_pindah.id_permohonan_surat', '=', 'permohonan_surat.id_permohonan_surat')
+            ->join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->select('permohonan_surat.*', 'surat_ket_pindah.*', 'warga.*')
             ->first();
 
         return response()->json([
@@ -96,20 +92,18 @@ class PermohonanPindah extends Controller
         }
 
         $keteranganWarga = $request->input('keterangan_warga');
-
+        $idPermohonanSurat = $data->id_permohonan_surat;
         if ($keteranganWarga != null) {
 
-            $suratPengajuan = \App\Models\SuratPengajuan::where('id_surat', $id)
-                ->where('jenis_surat', 'Surat Keterangan Pindah')
-                ->first();
+            $suratPengajuan = \App\Models\SuratPengajuan::find($idPermohonanSurat);
 
             $suratPengajuan->update([
                 'keterangan_warga' => $request->keterangan_warga,
             ]);
-
         }
+
         return response()->json([
-            'message' => 'Data berhasil diubah',
+            'message' => 'Data Permohonan Surat Berhasil Diubah!',
             'data' => $data
         ]);
     }

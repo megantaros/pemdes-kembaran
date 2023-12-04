@@ -85,7 +85,7 @@ class PermohonanSKCK extends Controller
         }
 
         return response()->json([
-            'message' => 'Data berhasil diubah',
+            'message' => 'Data Permohonan Surat Berhasil Diubah!',
             'data' => $data
         ]);
     }

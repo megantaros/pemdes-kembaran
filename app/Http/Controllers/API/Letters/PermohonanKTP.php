@@ -97,7 +97,6 @@ class PermohonanKTP extends Controller
             $suratPengajuan->update([
                 'keterangan_warga' => $request->keterangan_warga,
             ]);
-
         }
 
         return response()->json([

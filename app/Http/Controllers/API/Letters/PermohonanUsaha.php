@@ -51,7 +51,7 @@ class PermohonanUsaha extends Controller
         }
 
         return response()->json([
-            'message' => 'Data berhasil dikirim',
+            'message' => 'Permohonan Surat Berhasil Dibuat!',
             'data' => $data
         ]);
     }
@@ -109,7 +109,7 @@ class PermohonanUsaha extends Controller
         }
 
         return response()->json([
-            'message' => 'Data berhasil diubah',
+            'message' => 'Data Permohonan Surat Berhasil Diubah!',
             'data' => $data
         ]);
     }

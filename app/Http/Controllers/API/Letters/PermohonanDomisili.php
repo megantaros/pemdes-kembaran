@@ -105,7 +105,7 @@ class PermohonanDomisili extends Controller
         }
 
         return response()->json([
-            'message' => 'Data berhasil diubah',
+            'message' => 'Permohonan Surat Berhasil Diubah!',
             'data' => $data
         ]);
     }
