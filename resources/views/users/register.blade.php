@@ -15,7 +15,7 @@
       <div class="flex lg:flex-row flex-col shadow-lg form-login lg:w-4/5 w-4/5 lg:h-auto rounded-lg overflow-hidden">
         <div class="lg:w-full w-full bg-primary relative text-center py-6">
           <div class="lg:absolute lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 w-full">
-            <img id="logoAuth" src="{{asset('assets/logo-login.png')}}" alt="Logo Kebumen" class="m-auto lg:w-[153px] lg:h-[210px] w-auto h-[150px]">
+            <img src="{{asset('assets/logo-login.png')}}" alt="Logo Kebumen" class="m-auto lg:w-[153px] lg:h-[210px] w-auto h-[150px]">
             <div class="lg:text-2xl text-[#FFEBAD] lg:mt-6 mt-2 text-lg">Selamat Datang</div>
             <div class="text-lg text-white" style="font-family: Poppins">Portal Pelayanan Pemdes Kembaran</div>
           </div>
@@ -28,9 +28,9 @@
 
               <div class="mb-3">
 
-                <input type="text" placeholder="Masukkan Nama Anda" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="name"/>
+                <input type="text" placeholder="Masukkan Nama Anda" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="nama_warga"/>
 
-                @error('name')
+                @error('nama_warga')
                 <div class="alert alert-error shadow-lg text-white w-full m-auto my-2">
                   <div>
                   <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>

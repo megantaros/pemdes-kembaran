@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -13,9 +12,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('warga', function (Blueprint $table) {
-            //
-            $table->string('role')->default('user');
+        //
+        Schema::table("surat_ket_domisili", function (Blueprint $table) {
+            $table->foreign('id_permohonan_surat')->references('id_permohonan_surat')->on('permohonan_surat')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -26,9 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('warga', function (Blueprint $table) {
-            //
-            Schema::dropColumns('role');
-        });
+        //
     }
 };

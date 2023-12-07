@@ -12,4 +12,13 @@ class KTP extends Model
     protected $dates = ['created_at'];
     protected $table = 'surat_peng_ktp';
     protected $primaryKey = 'id_surat_peng_ktp';
+    protected $keyType = 'string';
+    public $incrementing = false;
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = \Illuminate\Support\Str::uuid();
+        });
+    }
 }

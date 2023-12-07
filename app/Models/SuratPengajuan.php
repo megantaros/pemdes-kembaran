@@ -10,6 +10,15 @@ class SuratPengajuan extends Model
     use HasFactory;
     protected $guarded = [];
     protected $dates = ['tanggal'];
-    protected $table = 'surat_pengajuan';
-    protected $primaryKey = 'id';
+    protected $table = 'permohonan_surat';
+    protected $primaryKey = 'id_permohonan_surat';
+    protected $keyType = 'string';
+    public $incrementing = false;
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = \Illuminate\Support\Str::uuid();
+        });
+    }
 }

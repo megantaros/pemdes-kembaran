@@ -9,7 +9,7 @@
         <div class="card-body">
 
             <div>
-                <h2 class="lg:text-lg md:text-sm text-sm font-semibold">Detail Surat Keterangan Domisili</h2>
+                <h2 class="lg:text-lg text-lg font-semibold">Detail Surat Keterangan Domisili</h2>
                 <div class="flex">
                     <p class="lg:text-md md:text-sm text-sm" style="font-family: Poppins">Pastikan identitas Anda sesuai dengan yang tertera di e-KTP</p>
                 </div>
@@ -29,31 +29,42 @@
 
                     <div>
                         <div class="text-label text-sm">Nama Lengkap *</div>
-                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->name }}" readonly/>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nama_warga }}" disabled/>
                     </div>
 
                     <div>
                         <div class="text-label text-sm">NIK *</div>
-                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" readonly/>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" disabled/>
+                    </div>
+
+                    <div>
+                        <div class="text-label text-sm">No. KK *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->kk }}" disabled/>
+                    </div>
+
+                    <div>
+                        <div class="text-label text-sm">Tempat, Tanggal Lahir *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->ttl }}" disabled/>
+                    </div>
+
+                    <div>
+                        <div class="text-label text-sm">Jenis Kelamin *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->jenis_kelamin }}" disabled/>
+                    </div>
+
+                    <div>
+                        <div class="text-label text-sm">Pekerjaan *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->pekerjaan }}" disabled/>
+                    </div>
+
+                    <div class="lg:col-span-2">
+                        <div class="text-label text-sm">Agama *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->agama }}" disabled/>
                     </div>
 
                     <div class="lg:col-span-2">
                         <div class="text-label text-sm">Alamat *</div>
-                        <textarea class="textarea textarea-primary w-full placeholder:text-sm" readonly>{{ $data->alamat }}</textarea>
-                    </div>
-
-                    <div class="lg:col-span-2">
-                        <div class="text-label text-sm">KK *</div>
-                        <input type="text" placeholder="Masukkan No. KK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="kk" value="{{ $data->kk }}"/>
-    
-                        @error('kk')
-                        <div class="alert alert-error shadow-lg text-white w-full m-auto my-1">
-                            <div>
-                            <i class="bi bi-x-circle"></i>
-                            <span>Kolom tidak boleh kosong!</span>
-                            </div>
-                        </div>
-                        @enderror
+                        <textarea class="textarea textarea-primary w-full placeholder:text-sm" disabled style="background: #fff !important">{{ $data->alamat }}</textarea>
                     </div>
 
                     <div class="lg:col-span-2">
@@ -162,12 +173,12 @@
                     <div class="p-4 bg-white rounded-lg relative lg:col-span-2 flex items-center border-[#9CB4CC] border-2 my-1">
 
                         <div class="text-label text-sm">Keterangan Warga *</div>
-                        <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1" placeholder="Tambah Keterangan (Optional)" name="keterangan_warga">{{ $data->keterangan_warga }}</textarea>
+                        <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1" placeholder="Tambah Keterangan (Optional)" name="keterangan_warga" {{ $statusSurat == '1' ? '' : 'disabled ' }}>{{ $data->keterangan_warga == '' ? 'Tidak ada keterangan warga' : $data->keterangan_warga }}</textarea>
 
                     </div>
 
                     <div class="lg:col-span-2">
-                        <button type="submit" class="{{ $statusSurat == 'Diterima' || $statusSurat == 'Ditolak' ? 'hidden' : 'btn btn-warning w-full text-white font-normal capitalize' }}">Update</button>
+                        <button type="submit" class="{{ $statusSurat == '1' ? 'btn btn-warning w-full text-white font-normal capitalize' : 'hidden' }}">Update</button>
                     </div>
 
                 </div>

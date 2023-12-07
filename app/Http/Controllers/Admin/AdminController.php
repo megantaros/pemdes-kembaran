@@ -8,75 +8,120 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     //
+    public function edit($id_admin)
+    {
+        return view('admin.profile');
+    }
+    public function update(Request $request, $id_admin)
+    {
+        $data = \App\Models\Admin::find($id_admin);
+        $data->update($request->except('password', 'confirmPassword'));
+
+        $password = $request->password;
+        $confirmPassword = $request->confirmPassword;
+
+        if ($password != '') {
+            if ($password == $confirmPassword) {
+                $data->update([
+                    'password' => bcrypt($password)
+                ]);
+            } else {
+                return redirect()->back()->with('error', 'Password tidak sama!');
+            }
+        }
+
+        return redirect()->back()->with('success', 'Data anda berhasil diupdate!');
+    }
     public function dashboard()
     {
-        $suratMasuk = \App\Models\SuratPengajuan::where('status', 'Terkirim')->count();
-        $suratKeluar = \App\Models\SuratPengajuan::where('status', 'Diterima')->count();
-        $suratDitolak = \App\Models\SuratPengajuan::where('status', 'Ditolak')->count();
+        $suratMasuk = \App\Models\SuratPengajuan::where('status', 1)->count();
+        $suratKeluar = \App\Models\SuratPengajuan::where('status', 5)->count();
+        $suratDitolak = \App\Models\SuratPengajuan::where('status', 6)->count();
         $warga = \App\Models\User::count();
+        $statusSurat = \App\Models\SuratPengajuan::select('status')->groupBy('status')->get();
 
-        return view('admin.dashboard', ['suratMasuk' => $suratMasuk, 'suratKeluar' => $suratKeluar, 'suratDitolak' => $suratDitolak, 'warga' => $warga]);
+        $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->where('permohonan_surat.status', 1)
+            ->orderBy('permohonan_surat.created_at', 'DESC')
+            ->get();
+
+        return view('admin.dashboard', [
+            'suratMasuk' => $suratMasuk,
+            'suratKeluar' => $suratKeluar,
+            'suratDitolak' => $suratDitolak,
+            'warga' => $warga,
+            'data' => $data,
+            'statusSurat' => $statusSurat
+        ]);
     }
 
-    public function surat(Request $request, $statusSurat)
+    public function verifikasiSurat()
     {
-        $startDate = $request->startDate;
-        $endDate = $request->endDate;
-        if ($startDate && $endDate) {
-            $this->getDate($startDate, $endDate, $statusSurat);
-        }
+        $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->where('permohonan_surat.status', 2)
+            ->orderBy('permohonan_surat.created_at', 'DESC')
+            ->get();
 
-        // $query = $request->query;
-
-        // if ($query != '') {
-        //     $this->getSearch($query, $statusSurat);
-        // }
-
-        $data = \App\Models\SuratPengajuan::join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
-            ->where('surat_pengajuan.status', $statusSurat)->get();
-
-        if ($statusSurat == 'terkirim') {
-            return view('admin.suratmasuk', compact('data'));
-        } elseif ($statusSurat == 'diterima') {
-            return view('admin.suratkeluar', compact('data'));
-        } else {
-            return view('admin.suratditolak', compact('data'));
-        }
+        return view('admin.suratmasuk', compact('data'));
     }
 
-    // public function getDate($startDate, $endDate, $statusSurat)
-    // {
-    //     $data = \App\Models\SuratPengajuan::join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
-    //         ->whereBetween('surat_pengajuan.created_at', [$startDate, $endDate])
-    //         ->where('surat_pengajuan.status', $statusSurat)->get();
+    public function prosesSurat()
+    {
+        $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->where('permohonan_surat.status', 3)
+            ->orderBy('permohonan_surat.created_at', 'DESC')
+            ->get();
 
-    //     if ($statusSurat == 'Terkirim') {
-    //         return view('admin.suratmasuk', compact('data'));
-    //     } elseif ($statusSurat == 'Diterima') {
-    //         return view('admin.suratkeluar', compact('data'));
-    //     } else {
-    //         return view('admin.suratditolak', compact('data'));
-    //     }
+        return view('admin.suratproses', compact('data'));
+    }
+    public function signedSurat()
+    {
+        $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->where('permohonan_surat.status', 4)
+            ->orderBy('permohonan_surat.created_at', 'DESC')
+            ->get();
 
-    // }
+        return view('admin.suratsigned', compact('data'));
+    }
+    public function selesaiSurat()
+    {
+        $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->where('permohonan_surat.status', 5)
+            ->orderBy('permohonan_surat.updated_at', 'DESC')
+            ->get();
 
-    // public function getSearch($searchQuery, $statusSurat)
-    // {
-    //     $data = \App\Models\SuratPengajuan::join('warga', 'surat_pengajuan.id_warga', '=', 'warga.id_warga')
-    //         ->where(function ($query) use ($searchQuery) {
-    //             $query->where('warga.name', 'LIKE', '%' . $searchQuery . '%')
-    //                 ->orWhere('warga.nik', 'LIKE', '%' . $searchQuery . '%')
-    //                 ->orWhere('surat_pengajuan.jenis_surat', 'LIKE', '%' . $searchQuery . '%');
-    //         })
-    //         ->where('surat_pengajuan.status', $statusSurat)
-    //         ->get();
+        return view('admin.suratkeluar', compact('data'));
+    }
+    public function ditolakSurat()
+    {
+        $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+            ->where('permohonan_surat.status', 6)
+            ->orderBy('permohonan_surat.updated_at', 'DESC')
+            ->get();
 
-    //     if ($statusSurat == 'Terkirim') {
-    //         return view('admin.suratmasuk', compact('data'));
-    //     } elseif ($statusSurat == 'Diterima') {
-    //         return view('admin.suratkeluar', compact('data'));
-    //     } else {
-    //         return view('admin.suratditolak', compact('data'));
-    //     }
-    // }
+        return view('admin.suratditolak', compact('data'));
+    }
+    public function cetakSurat(Request $request)
+    {
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
+
+        if ($startDate && $endDate) {
+            $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+                ->where('permohonan_surat.status', 5)
+                ->whereBetween('permohonan_surat.updated_at', [$startDate, $endDate])
+                ->orderBy('permohonan_surat.created_at', 'DESC')
+                ->get();
+
+            return view('admin.cetak_suratkeluar', compact('data'));
+        } else {
+            $data = \App\Models\SuratPengajuan::join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
+                ->where('permohonan_surat.status', 5)
+                ->orderBy('permohonan_surat.updated_at', 'DESC')
+                ->get();
+
+            return view('admin.cetak_suratkeluar', compact('data'));
+        }
+
+    }
 }

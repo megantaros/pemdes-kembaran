@@ -23,13 +23,16 @@ Route::prefix('auth')->group(function () {
     Route::post('/register', [\App\Http\Controllers\Auth\AuthController::class, 'register'])->name('store.warga');
     Route::get('/login', [\App\Http\Controllers\FrontendController::class, 'loginWarga'])->name('login.warga');
     Route::post('/login', [\App\Http\Controllers\Auth\AuthController::class, 'loginWarga'])->name('attempt.warga');
+    Route::get('/login-admin', [\App\Http\Controllers\FrontendController::class, 'loginAdmin'])->name('login.admin');
+    Route::post('/login-admin', [\App\Http\Controllers\Auth\AuthController::class, 'loginAdmin'])->name('attempt.admin');
 });
 
-Route::middleware(['auth', 'web'])->group(function () {
+Route::middleware('auth:web')->group(function () {
 
     Route::prefix('auth-session')->group(function () {
 
         Route::resource('warga', \App\Http\Controllers\Auth\WargaController::class);
+        Route::put('/update-profil/{id_warga}', [\App\Http\Controllers\Auth\WargaController::class, 'completedProfile'])->name('completed.profile');
         Route::get('/permohonan-surat', [\App\Http\Controllers\Auth\WargaController::class, 'suratWarga'])->name('surat.warga');
         Route::get('/info-akun', [\App\Http\Controllers\Auth\WargaController::class, 'infoAkun'])->name('info.warga');
         Route::resource('pengajuan-surat', \App\Http\Controllers\Letters\PengajuanSuratController::class);
@@ -41,20 +44,38 @@ Route::middleware(['auth', 'web'])->group(function () {
         Route::resource('keterangan-pindah', App\Http\Controllers\Letters\SuratKetPindahController::class);
         Route::resource('keterangan-datang', App\Http\Controllers\Letters\SuratKetDatangController::class);
 
-        Route::post('/logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout.warga');
+        Route::post('/logout-warga', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout.warga');
     });
 
 });
 
-Route::prefix('admin')->group(function () {
+Route::middleware('auth:admin')->group(function () {
 
-    Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('dashboard');
-    Route::get('/daftar-surat/{status_surat}', [\App\Http\Controllers\Admin\AdminController::class, 'surat'])->name('daftar.surat');
-    Route::get('/daftar-surat/{status_surat}/cetak', [\App\Http\Controllers\Admin\AdminController::class, 'cetakSurat'])->name('cetak.surat');
-    Route::resource('validasi-surat', \App\Http\Controllers\Letters\PengajuanSuratController::class);
-    Route::resource('permohonan-kk', \App\Http\Controllers\Letters\SuratPengKkController::class);
+    Route::prefix('admin')->group(function () {
 
+        Route::resource('warga-admin', \App\Http\Controllers\Auth\WargaController::class);
+        Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('dashboard');
+        Route::get('/daftar-surat/verifikasi-surat', [\App\Http\Controllers\Admin\AdminController::class, 'verifikasiSurat'])->name('verifikasi.surat');
+        Route::get('/daftar-surat/proses-surat', [\App\Http\Controllers\Admin\AdminController::class, 'prosesSurat'])->name('proses.surat');
+        Route::get('/daftar-surat/signed-surat', [\App\Http\Controllers\Admin\AdminController::class, 'signedSurat'])->name('signed.surat');
+        Route::get('/daftar-surat/selesai-surat', [\App\Http\Controllers\Admin\AdminController::class, 'selesaiSurat'])->name('selesai.surat');
+        Route::get('/daftar-surat/ditolak-surat', [\App\Http\Controllers\Admin\AdminController::class, 'ditolakSurat'])->name('ditolak.surat');
+        Route::get('/daftar-surat/cetak', [\App\Http\Controllers\Admin\AdminController::class, 'cetakSurat'])->name('cetak.surat');
+        Route::resource('admin', \App\Http\Controllers\Admin\AdminController::class);
+        Route::resource('validasi-surat', \App\Http\Controllers\Letters\PengajuanSuratController::class);
+        Route::resource('permohonan-kk', \App\Http\Controllers\Letters\SuratPengKkController::class);
+        Route::resource('permohonan-ktp', \App\Http\Controllers\Letters\SuratPengKtpController::class);
+        Route::resource('permohonan-skck', \App\Http\Controllers\Letters\SuratPengSkckController::class);
+        Route::resource('permohonan-domisili', \App\Http\Controllers\Letters\SuratKetDomisiliController::class);
+        Route::resource('permohonan-usaha', \App\Http\Controllers\Letters\SuratKetUsahaController::class);
+        Route::resource('permohonan-pindah', \App\Http\Controllers\Letters\SuratKetPindahController::class);
+        Route::resource('permohonan-datang', \App\Http\Controllers\Letters\SuratKetDatangController::class);
+
+        Route::post('/logout-admin', [\App\Http\Controllers\Auth\AuthController::class, 'logoutAdmin'])->name('logout.admin');
+
+    });
 });
+
 
 // Route::controller(AdminController::class)->group(function(){
 //     Route::get('/loginadmin', 'login')->name('loginadmin');

@@ -52,7 +52,7 @@
                     @auth
                     <li tabindex="0" class="z-10">
                         <a class="text-sm text-primary" style="background: #FFEBAD">
-                            Hi, {{ Auth::user()->name }}
+                            Hi, {{ Auth::user()->nama_warga }}
                             <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
                         </a>
                         <ul class="p-2 text-[#06283D] navUl mt-1 bg-white">
@@ -103,7 +103,7 @@
                             <i class="fa fa-bars" aria-hidden="true"></i>
                         </a>
                         <ul class="p-2 text-[#06283D] navUl mt-2 bg-white text-sm right-0 shadow-lg">
-                            <li><a href="{{ route('info.warga') }}" class="bg-[#FFEBAD]">Hi, {{ Auth::user()->name }}</a></li>
+                            <li><a href="{{ route('info.warga') }}" class="bg-[#FFEBAD]">Hi, {{ Auth::user()->nama_warga }}</a></li>
                             <li><a href="/" class="navLi {{ Route::is('beranda') ? 'active' : '' }}">Beranda</a></li>
                             <li><a href="/layanan" class="navLi {{ Route::is('layanan') ? 'active' : '' }}">Layanan</a></li>
                             <li><a href="/kontak" class="navLi {{ Route::is('kontak') ? 'active' : '' }}">Kontak</a></li>
@@ -130,8 +130,8 @@
                     <div class="flex gap-4 items-center">
                         <img src="{{ asset('assets/man.png') }}" alt="Icon Profil" class="h-12" />
                         <div>
-                            <h2 class="font-normal">Hi, {{ Auth::user()->name }}</h2>
-                            <a href="{{ route('info.warga') }}" class="font-normal text-sm hover:underline leading-5" style="font-family: Poppins">
+                            <h2 class="font-semibold">Hi, {{ Auth::user()->nama_warga }}</h2>
+                            <a href="{{ route('info.warga') }}" class="text-sm hover:underline leading-5" style="font-family: Poppins">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                 <span>Ubah Profil</span>
                             </a>
@@ -140,22 +140,25 @@
 
                     <hr class="my-4">
 
-                    <a href="{{ route('surat.warga') }}" class="capitalize font-normal text-white flex gap-2 justify-start hover:text-white {{ Route::is('surat.warga') ? "btn btn-primary" : "btn btn-outline btn-primary" }}">
+                    <a href="{{ route('surat.warga') }}" class="capitalize text-white flex gap-2 justify-start hover:text-white font-normal {{ Route::is('surat.warga') ? "btn btn-primary" : "btn btn-outline btn-primary" }}">
                         <i class="fa fa-envelope mx-2 text-xl" aria-hidden="true"></i>
                         <span>Permohonan Surat</span>
                     </a>
 
-                    <a href="{{ route('info.warga') }}" class="capitalize font-normal text-white flex gap-2 justify-start hover:text-white {{ Route::is('info.warga') ? "btn btn-primary" : "btn btn-outline btn-primary" }}">
+                    <a href="{{ route('info.warga') }}" class="capitalize text-white flex gap-2 justify-start hover:text-white font-normal {{ Route::is('info.warga') ? "btn btn-primary" : "btn btn-outline btn-primary" }}">
                         <i class="fa fa-user mx-2 text-lg" aria-hidden="true"></i>
                         <span>Info Profil</span>
                     </a>
 
                     <hr class="my-4">
 
-                    <a href="{{ route('logout.warga') }}" class="btn btn-error capitalize font-normal text-white flex gap-2 justify-start hover:text-white">
-                        <i class="fa fa-sign-out mx-2 text-lg" aria-hidden="true"></i>
-                        <span>Logout</span>
-                    </a>
+                    <form action="{{ route('logout.warga') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-error capitalize text-white flex gap-2 justify-start hover:text-white w-full font-normal">
+                            <i class="fa fa-sign-out mx-2 text-lg" aria-hidden="true"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
                     
                 </div>
             </div>

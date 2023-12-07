@@ -62,7 +62,7 @@
 
                 <div>
                     <div class="text-label text-sm">Nama *</div>
-                    <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="name" value="{{ Auth::user()->name }}"/>
+                    <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="name" value="{{ Auth::user()->nama_warga }}"/>
 
                     <div class="text-label text-sm">Email *</div>
                     <input type="email" placeholder="Masukkan Email" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="email" value="{{ Auth::user()->email }}"/>
@@ -70,19 +70,20 @@
                     <div class="text-label text-sm">NIK *</div>
                     <input type="text" placeholder="Masukkan NIK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="nik" value="{{ Auth::user()->nik }}"/>
 
+                    <div class="text-label text-sm">No. KK *</div>
+                    <input type="text" placeholder="Masukkan No. Kartu Keluarga" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="pekerjaan" value="{{ Auth::user()->kk }}"/>
+
+                </div>
+                <div>
+                    <div class="text-label text-sm">Nomor Telfon *</div>
+                    <input type="text" placeholder="Masukkan Nomor Telfon" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="notelpon" value="{{ Auth::user()->notelpon }}" />
+
                     <div class="text-label text-sm">Jenis Kelamin *</div>
                     <select class="select select-primary w-full my-1" name="jenis_kelamin">
                         <option selected disabled="disabled">{{ Auth::user()->jenis_kelamin }}</option>
                         <option value="Pria">Pria</option>
                         <option value="Wanita">Wanita</option>
                     </select>
-                </div>
-                <div>
-                    <div class="text-label text-sm">Nomor Telfon *</div>
-                    <input type="text" placeholder="Masukkan Nomor Telfon" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="notelpon" value="{{ Auth::user()->notelpon }}" />
-
-                    <div class="text-label text-sm">Tempat, Tanggal Lahir *</div>
-                    <input type="text" placeholder="Masukkan Tempat, Tanggal Lahir" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="ttl" value="{{ Auth::user()->ttl }}"/>
 
                     <div class="text-label text-sm">Pekerjaan *</div>
                     <input type="text" placeholder="Masukkan Pekerjaan" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="pekerjaan" value="{{ Auth::user()->pekerjaan }}"/>
@@ -99,6 +100,9 @@
                 </div>
 
                 <div class="lg:col-span-2">
+                    <div class="text-label text-sm">Tempat, Tanggal Lahir *</div>
+                    <input type="text" placeholder="Masukkan Tempat, Tanggal Lahir" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="ttl" value="{{ Auth::user()->ttl }}"/>
+
                     <div class="text-label text-sm">Alamat *</div>
                     <textarea class="textarea textarea-primary w-full placeholder:text-sm" placeholder="Masukkan Alamat" name="alamat">{{ Auth::user()->alamat }}</textarea>
                 </div>

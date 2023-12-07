@@ -18,13 +18,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nama_warga',
         'email',
         'password',
         'jenis_kelamin',
         'notelpon',
         'alamat',
         'nik',
+        'kk',
         'ttl',
         'pekerjaan',
         'agama'
@@ -32,7 +33,7 @@ class User extends Authenticatable
 
     protected $table = 'warga';
     protected $primaryKey = 'id_warga';
-    
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -51,8 +52,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    // public function model2()
-    // {
-    //     return $this->belongsTo(Domisili::class);
-    // }
+
+    protected $keyType = 'string';
+    public $incrementing = false;
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = \Illuminate\Support\Str::uuid();
+        });
+    }
 }

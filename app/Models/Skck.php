@@ -12,8 +12,13 @@ class Skck extends Model
     protected $dates = ['created_at'];
     protected $table = 'surat_peng_skck';
     protected $primaryKey = 'id_surat_peng_skck';
-    // public function model2()
-    // {
-    //     return $this->hasMany(Domisili::class);
-    // }
+    protected $keyType = 'string';
+    public $incrementing = false;
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = \Illuminate\Support\Str::uuid();
+        });
+    }
 }

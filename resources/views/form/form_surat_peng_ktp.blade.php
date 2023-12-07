@@ -67,7 +67,7 @@
                             </div>
                         @enderror
 
-                        <div class="text-label text-sm">No. KK *</div>
+                        {{-- <div class="text-label text-sm">No. KK *</div>
                         <input type="text" placeholder="Masukkan No. KK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="kk"/>
 
                         @error('kk')
@@ -77,7 +77,7 @@
                                 <span>Kolom tidak boleh kosong!</span>
                                 </div>
                             </div>
-                        @enderror
+                        @enderror --}}
                     </div>
 
                     <div class="p-4 bg-slate-200 rounded-lg">

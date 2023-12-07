@@ -2,7 +2,7 @@
 
 @section('title', 'Surat Keluar')
 
-@section('outgoingActive', 'bg-[#e5e7eb] bg-opacity-20')
+@section('doneActive', 'bg-[#e5e7eb] bg-opacity-20')
 
 @section('content')
 <div class="card bg-white shadow-lg mb-4">
@@ -10,67 +10,50 @@
 
     <div class="p-4 bg-slate-200 rounded-lg">
 
-        <div>
-            <label for="" class="text-label text-sm">Cari</label>
-            <input id="search" type="text" placeholder="Cari disini..." class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm"/>
-        </div>
+      <div>
+        <label class="text-label text-sm">Cari</label>
+        <input id="search" type="text" placeholder="Cari disini..." class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm"/>
+      </div>
 
     </div>
 
-    <div class="p-4 bg-slate-200 rounded-lg">
-      <form action="{{ route('daftar.surat', ['status_surat' => 'keluar']) }}" method="GET">
-        @csrf
-        @method('GET')
-        <input type="hidden" name="startDate"/>
-        <input type="hidden" name="endDate"/>
-        <label for="" class="text-label text-sm">Tanggal</label>
 
-        <div class="flex items-center gap-2">
-          <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="daterange" value="01/01/2023 - 01/15/2023" />
-          <button type="submit" class="btn btn-primary capitalize font-normal text-white">Cek</button>
-        </div>
-      </form>
+    <div class="p-4 bg-slate-200 rounded-lg">
+      <label for="" class="text-label text-sm">Tanggal</label>
+
+      <div class="flex items-center gap-2">
+        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="daterange" value="11/01/2023 - 11/30/2023" />
+      </div>
 
     </div>
 
     <div>
-        <a href="" target="__blank" class="btn btn-success capitalize font-normal flex items-center gap-2 lg:w-2/5">
-            <i class="fa fa-print" aria-hidden="true"></i>
-            <span>Cetak Laporan</span>
-        </a>
-    </div>
+        <form action="{{ route('cetak.surat', request()->query()) }}" method="GET" target="_blank">
+          @csrf
+          @method('GET')
 
-    
+          <input type="hidden" name="startDate"/>
+          <input type="hidden" name="endDate"/>
 
-    {{-- <div class="p-4">
-      <div class="card-title">Surat Masuk</div>
-      <div class="flex gap-2">
-        <a href="{{ route('daftar.surat', ['status_surat' => 'terkirim']) }}" class="btn btn-info flex items-center gap-2" style="font-family: Poppins">
-          <i class="fa fa-inbox" aria-hidden="true"></i>
-          <span>Surat Masuk</span>
-        </a>
-        <a href="{{ route('daftar.surat', ['status_surat' => 'ditolak']) }}" class="btn btn-danger flex items-center gap-2" style="font-family: Poppins">
-          <i class="fa fa-times" aria-hidden="true"></i>
-          <span>Surat Ditolak</span>
-        </a>
-        <a href="{{ route('daftar.surat', ['status_surat' => 'diterima']) }}" class="btn btn-success flex items-center gap-2" style="font-family: Poppins">
-          <i class="fa fa-check" aria-hidden="true"></i>
-          <span>Surat Diterima</span>
-        </a>
-      </div>
-    </div> --}}
-
-      
+          <button type="submit" class="btn btn-success capitalize font-normal flex items-center gap-2 lg:w-2/5">
+              <i class="fa fa-print" aria-hidden="true"></i>
+              <span>Cetak Laporan</span>
+          </button>
+        </form>
+    </div>  
   </div>
 </div>
 
 <div class="card bg-white shadow-lg">
   <div class="card-body p-4 gap-4">
 
-    <div class="card-title p-4 bg-primary text-white rounded-lg font-normal">
+    <div class="card-title p-4 bg-primary text-white rounded-lg font-normal block text-center">
         <h2 class="m-auto">
             Daftar Surat Keluar
         </h2>
+        <p class="font-normal text-sm" style="font-family: Poppins;">
+          Berikut adalah daftar surat keluar yang telah diproses oleh admin
+        </p>
     </div>
 
     <hr class="border-2">
@@ -81,11 +64,13 @@
         <thead>
           <tr>
             <th class="bg-primary text-white capitalize font-normal">Nomor</th>
+            <th class="bg-primary text-white capitalize font-normal">Kode Surat</th>
             <th class="bg-primary text-white capitalize font-normal">Nama</th>
-            <th class="bg-primary text-white capitalize font-normal">NIK</th>
+            {{-- <th class="bg-primary text-white capitalize font-normal">Nama</th>
+            <th class="bg-primary text-white capitalize font-normal">NIK</th> --}}
             <th class="bg-primary text-white capitalize font-normal">Jenis Surat</th>
-            <th class="bg-primary text-white capitalize font-normal">Tanggal Diajukan</th>
-            <th class="bg-primary text-white capitalize font-normal">Keterangan</th>
+            <th class="bg-primary text-white capitalize font-normal">Tanggal Diterbitkan</th>
+            {{-- <th class="bg-primary text-white capitalize font-normal">Keterangan</th> --}}
             <th class="bg-primary text-white capitalize font-normal">Aksi</th>
           </tr>
         </thead>
@@ -99,48 +84,38 @@
           @foreach ($data as $item)
 
           @php
-            $statusSurat = $item->status;
-            
-            if($statusSurat == "Terkirim"){
-                $statusSurat = "text-orange-500";
-            } elseif($statusSurat == "Ditolak"){
-                $statusSurat = "text-red-800";
-            } else {
-                $statusSurat = "text-green-800";
-            }
-
             $jenisSurat = $item->jenis_surat;
 
             if($jenisSurat == "Surat Pengantar KTP") {
-                $jenisSurat = route("pengantar-ktp.show", ['pengantar_ktp' => $item->id_surat]);
+                $jenisSurat = route("permohonan-ktp.show", ['permohonan_ktp' => $item->id_permohonan_surat]);
             } elseif($jenisSurat == "Surat Pengantar KK") {
-                $jenisSurat = route("permohonan-kk.show", ['permohonan_kk' => $item->id_surat]);
+                $jenisSurat = route("permohonan-kk.show", ['permohonan_kk' => $item->id_permohonan_surat]);
             } elseif($jenisSurat == "Surat Pengantar SKCK") {
-                $jenisSurat = route("pengantar-skck.show", ['pengantar_skck' => $item->id_surat]);
+                $jenisSurat = route("permohonan-skck.show", ['permohonan_skck' => $item->id_permohonan_surat]);
             } elseif($jenisSurat == "Surat Keterangan Domisili") {
-                $jenisSurat = route("keterangan-domisili.show", ['keterangan_domisili' => $item->id_surat]);
+                $jenisSurat = route("permohonan-domisili.show", ['permohonan_domisili' => $item->id_permohonan_surat]);
             } elseif($jenisSurat == "Surat Keterangan Pindah") {
-                $jenisSurat = route("keterangan-pindah.show", ['keterangan_pindah' => $item->id_surat]);;
+                $jenisSurat = route("permohonan-pindah.show", ['permohonan_pindah' => $item->id_permohonan_surat]);
             } elseif($jenisSurat == "Surat Keterangan Pindah Datang") {
-                $jenisSurat = route("keterangan-datang.show", ['keterangan_datang' => $item->id_surat]);;
+                $jenisSurat = route("permohonan-datang.show", ['permohonan_datang' => $item->id_permohonan_surat]);
             } elseif($jenisSurat == "Surat Keterangan Usaha") {
-                $jenisSurat = route("keterangan-usaha.show", ['keterangan_usaha' => $item->id_surat]);
+                $jenisSurat = route("permohonan-usaha.show", ['permohonan_usaha' => $item->id_permohonan_surat]);
             }
           @endphp
 
-          <tr class="border-b-2 border-primary font-semibold p-3 text-gray-800" style="font-family: Poppins;">
+          <tr id="listLetters" class="border-b-2 border-primary font-semibold p-3 text-gray-800" style="font-family: Poppins;">
             <th class="text-sm">{{$no++}}</th>
-            <td class="text-sm">{{ $item->name }}</td>
-            <td class="text-sm">{{ $item->nik }}</td>
+            <td class="text-sm uppercase">{{ substr($item->id_permohonan_surat, 0, 6) }}</td>
+            <td class="text-sm">{{ $item->nama_warga }}</td>
             <td class="text-sm">{{ $item->jenis_surat }}</td>
             <td class="text-sm">
-              {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y') }}
+              {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('DD MMMM YYYY') }}
             </td>
+            {{-- <td>
+              <textarea class="textarea textarea-primary w-full placeholder:text-sm" placeholder="Tulis disini..." disabled rows="1">{{ $item->keterangan_warga ? $item->keterangan_warga : 'Belum ada keterangan' }}</textarea>
+            </td> --}}
             <td>
-              <textarea class="textarea textarea-primary w-full placeholder:text-sm" placeholder="Tulis disini..." disabled rows="1">{{ $item->keterangan_warga }}</textarea>
-            </td>
-            <td>
-              <a href="{{ $jenisSurat }}" class="text-sm hover:underline btn btn-info flex capitalize gap-2" style="font-family: Poppins">
+              <a href="{{ $jenisSurat }}" class="btn btn-outline btn-info gap-2 capitalize" style="font-family: Poppins">
                 <i class="fa fa-info-circle"></i>
                 <span>Detail</span>
               </a>

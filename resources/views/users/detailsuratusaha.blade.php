@@ -178,7 +178,7 @@
         <div class="card-body">
 
             <div>
-                <h2 class="lg:text-lg md:text-sm text-sm font-semibold">Detail Surat Keterangan Usaha</h2>
+                <h2 class="lg:text-lg text-lg font-semibold">Detail Surat Keterangan Usaha</h2>
                 <div class="flex">
                     <p class="lg:text-md md:text-sm text-sm" style="font-family: Poppins">Pastikan identitas Anda sesuai dengan yang tertera di e-KTP</p>
                 </div>
@@ -198,23 +198,33 @@
 
                     <div>
                         <div class="text-label text-sm">Nama Lengkap *</div>
-                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->name }}" readonly/>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nama_warga }}" disabled/>
                     </div>
 
                     <div>
                         <div class="text-label text-sm">NIK *</div>
-                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" readonly/>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" disabled/>
+                    </div>
+
+                    <div>
+                        <div class="text-label text-sm">Pekerjaan *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->pekerjaan }}" disabled/>
+                    </div>
+
+                    <div>
+                        <div class="text-label text-sm">Agama *</div>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->agama }}" disabled/>
                     </div>
 
                     <div class="lg:col-span-2">
                         <div class="text-label text-sm">Alamat *</div>
-                        <textarea class="textarea textarea-primary w-full placeholder:text-sm" readonly>{{ $data->alamat }}</textarea>
+                        <textarea class="textarea textarea-primary w-full placeholder:text-sm disabled:bg-white" disabled style="background: #fff !important;">{{ $data->alamat }}</textarea>
                     </div>
 
                     <div>
                         <div class="text-label text-sm">Kewarganegaraan *</div>
                         <select class="select select-primary w-full my-1" name="kewarganegaraan">
-                            <option selected value="{{ $data->kewarganegaraan }}">{{ $data->kewarganegaraan }}</option>
+                            <option selected value="{{ $data->kewarganegaraan }}" disabled>{{ $data->kewarganegaraan }}</option>
                             <option value="WNI">WNI</option>
                             <option value="WNA">WNA</option>
                         </select>
@@ -381,12 +391,12 @@
                     <div class="p-4 bg-white rounded-lg relative lg:col-span-2 flex items-center border-[#9CB4CC] border-2 my-1">
 
                         <div class="text-label text-sm">Keterangan Warga *</div>
-                        <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1" placeholder="Tambah Keterangan (Optional)" name="keterangan_warga">{{ $data->keterangan_warga }}</textarea>
+                        <textarea class="textarea textarea-primary w-full placeholder:text-sm my-1" placeholder="Tambah Keterangan (Optional)" name="keterangan_warga" {{ $statusSurat == '1' ? '' : 'disabled ' }}>{{ $data->keterangan_warga == '' ? 'Tidak ada keterangan warga' : $data->keterangan_warga }}</textarea>
 
                     </div>
 
                     <div class="lg:col-span-2">
-                        <button type="submit" class="{{ $statusSurat == 'Diterima' || $statusSurat == 'Ditolak' ? 'hidden' : 'btn btn-warning w-full text-white font-normal capitalize' }}">Update</button>
+                        <button type="submit" class="{{ $statusSurat == '1' ? 'btn btn-warning w-full text-white font-normal capitalize' : 'hidden' }}">Update</button>
                     </div>
 
                 </div>

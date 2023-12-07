@@ -17,12 +17,16 @@ class Admin extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'admin';
+    protected $primaryKey = 'id_admin';
     protected $fillable = [
-        'name',
+        'nama_admin',
         'email',
         'password',
         'jenis_kelamin',
         'notelpon',
+        'agama',
+        'jabatan',
         'alamat',
     ];
 
@@ -44,5 +48,14 @@ class Admin extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    protected $keyType = 'string';
+    public $incrementing = false;
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = \Illuminate\Support\Str::uuid();
+        });
+    }
 
 }

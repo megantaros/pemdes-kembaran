@@ -125,7 +125,7 @@
         <div class="card-body">
 
             <div>
-                <h2 class="lg:text-lg md:text-sm text-sm font-semibold">Detail Surat Keterangan Domisili</h2>
+                <h2 class="lg:text-lg text-lg font-semibold">Detail Surat Keterangan Pindah Datang</h2>
                 <div class="flex">
                     <p class="lg:text-md md:text-sm text-sm" style="font-family: Poppins">Pastikan identitas Anda sesuai dengan yang tertera di e-KTP</p>
                 </div>
@@ -145,17 +145,17 @@
 
                     <div>
                         <div class="text-label text-sm">Nama Lengkap *</div>
-                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->name }}" readonly/>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nama_warga }}" disabled />
                     </div>
 
                     <div>
                         <div class="text-label text-sm">NIK *</div>
-                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" readonly/>
+                        <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" value="{{ $data->nik }}" disabled />
                     </div>
 
                     <div class="lg:col-span-2">
                         <div class="text-label text-sm">Alamat *</div>
-                        <textarea class="textarea textarea-primary w-full placeholder:text-sm" readonly>{{ $data->alamat }}</textarea>
+                        <textarea class="textarea textarea-primary w-full placeholder:text-sm" disabled style="background: #fff !important">{{ $data->alamat }}</textarea>
                     </div>
 
                     <div class="p-4 bg-white rounded-lg relative lg:col-span-2 flex items-center border-[#9CB4CC] border-2 my-1">

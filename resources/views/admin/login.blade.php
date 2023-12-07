@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PEMDES - Kembaran</title>
+    <title>
+      Login Admin | Portal Pelayanan Pemdes Kembaran
+    </title>
     <link rel="shortcut icon" href="{{ asset('assets/favicon.png') }}" type="image/x-icon" style="width: auto;">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins&family=Viga&display=swap" rel="stylesheet">
@@ -21,12 +23,14 @@
               <div class="lg:text-xl text-md text-white">Pemdes Desa Kembaran</div>
             </div>
           </div>
-          <div class="lg:p-10 p-4 flex flex-col justify-start w-full bg-white">
-            <form action="/loginadmin" method="POST">
+          <div class="lg:p-10 p-4 flex justify-start w-full bg-white items-center">
+            <form action="{{ route('attempt.admin') }}" method="POST" class="w-full">
               @csrf
-                <h2 class="font-bold lg:text-4xl text-xl lg:mb-4 mb-3">Login Admin</h2> 
+              @method('POST')
+                <h2 class="font-bold lg:text-4xl text-xl lg:mb-14 mb-3">Login Admin</h2>
+
                 <div class="mb-2">
-                  <input type="text" placeholder="Masukkan Email Anda" class="lg:input-md input-sm placeholder:text-sm bg-[#F0F4F4] w-full rounded my-1 lg:text-md text-sm" name="email"/>
+                  <input type="text" placeholder="Masukkan Email Anda" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="email"/>
                   @error('email')
                   <div class="alert alert-error shadow-lg text-white w-full m-auto my-2">
                     <div>
@@ -36,7 +40,7 @@
                     </div>
                   </div>
                   @enderror
-                  <input type="password" placeholder="Masukkan Password Anda" class="lg:input-md input-sm placeholder:text-sm bg-[#F0F4F4] w-full rounded my-1 lg:text-md text-sm" name="password"/>
+                  <input type="password" placeholder="Masukkan Password Anda" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="password"/>
                   @error('password')
                   <div class="alert alert-error shadow-lg text-white w-full m-auto my-2">
                     <div>
