@@ -63,6 +63,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/daftar-surat/cetak', [\App\Http\Controllers\Admin\AdminController::class, 'cetakSurat'])->name('cetak.surat');
         Route::resource('admin', \App\Http\Controllers\Admin\AdminController::class);
         Route::resource('validasi-surat', \App\Http\Controllers\Letters\PengajuanSuratController::class);
+        Route::get('hapus-surat/{id}', [\App\Http\Controllers\Letters\PengajuanSuratController::class, 'destroy'])->name('hapus.surat');
         Route::resource('permohonan-kk', \App\Http\Controllers\Letters\SuratPengKkController::class);
         Route::resource('permohonan-ktp', \App\Http\Controllers\Letters\SuratPengKtpController::class);
         Route::resource('permohonan-skck', \App\Http\Controllers\Letters\SuratPengSkckController::class);

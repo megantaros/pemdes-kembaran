@@ -16,7 +16,7 @@ class PengajuanSurat extends Controller
             ->get();
 
         return response()->json([
-            'message' => 'Berhasil menampilkan data',
+            'message' => 'Berhasil menampilkan data!',
             'data' => $data
         ]);
     }
@@ -26,7 +26,7 @@ class PengajuanSurat extends Controller
         $data = \App\Models\SuratPengajuan::find($id);
 
         return response()->json([
-            'message' => 'Berhasil menampilkan data',
+            'message' => 'Berhasil menampilkan data!',
             'data' => $data
         ]);
     }

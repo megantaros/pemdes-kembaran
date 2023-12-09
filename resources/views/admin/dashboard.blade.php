@@ -83,7 +83,6 @@
           @endphp
 
           @foreach ($data as $item)
-
           <tr id="listLetters" class="border-b-2 border-primary font-semibold p-3 text-gray-800" style="font-family: Poppins;">
             <th class="text-sm">{{ $no++ }}</th>
             <td class="text-sm uppercase">{{ substr($item->id_permohonan_surat, 0, 6) }}</td>
@@ -94,7 +93,7 @@
               {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('dddd, D MMMM Y') }}
             </td>
             <td>
-              <form action="{{ route('validasi-surat.update', ['validasi_surat' => $item->id_permohonan_surat]) }}" method="POST">
+              <form action="{{ route('validasi-surat.update', ['validasi_surat' => $item->id_permohonan_surat]) }}" method="POST" class="flex gap-2">
                 @csrf
                 @method('PUT')
                 <input type="hidden" name="status" value="2">
@@ -102,9 +101,15 @@
                 <button type="submit" class="btn btn-outline btn-success" style="font-family: Poppins">
                   <span class="text-sm capitalize flex items-center justify-center gap-1">
                     <i class="fa fa-check"></i>
-                    Terima & Verifikasi Berkas
+                    Terima
                   </span>
                 </button>
+                <a href="#" data-id="{{ $item->id_permohonan_surat }}" data-surat="{{ $item->jenis_surat }}" class="btn btn-outline btn-error deleteLetter" style="font-family: Poppins">
+                  <span class="text-sm capitalize flex items-center justify-center gap-1">
+                    <i class="fa fa-trash"></i>
+                    Hapus
+                  </span>
+                </a>
               </form>
             </td>
           </tr>
@@ -115,4 +120,5 @@
   </div>
 </div>
 @endsection
+
 
