@@ -77,8 +77,8 @@
                     @method('POST')
   
                     <div class="text-label text-sm">Nama *</div>
-                    <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="name"/>
-                    @error('name')
+                    <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="nama_warga"/>
+                    @error('nama_warga')
                     <div class="alert alert-error shadow-lg text-white w-full m-auto my-2">
                       <div>
                       <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -355,6 +355,67 @@
       } else {
         keteranganAdmin.addClass('hidden');
       }
+    });
+
+    $('.deleteLetter').on('click', function(e) {
+      e.preventDefault();
+
+      var idSuratPermohonan = $(this).data('id');
+      const surat = $(this).data('surat');
+
+      swal({
+        title: 'Apakah anda yakin?',
+        text: `Data ${surat} akan dihapus secara permanen!`,
+        icon: 'warning',
+        buttons: {
+          cancel: {
+            text: 'Batal',
+            value: null,
+            visible: true,
+            className: 'font-normal;',
+            closeModal: true,
+          },
+          confirm: {
+            text: 'Hapus',
+            value: true,
+            visible: true,
+            className: 'font-normal',
+            closeModal: true
+          }
+        },
+        dangerMode: true,
+      }).then((willDelete) => {
+        if(willDelete) {
+          window.location = `/admin/hapus-surat/${idSuratPermohonan}`
+          // swal({
+          //   title: 'Berhasil',
+          //   text: `Data ${surat} berhasil dihapus!`,
+          //   icon: 'success',
+          //   button: {
+          //     text: 'Tutup',
+          //     value: null,
+          //     visible: true,
+          //     className: 'font-normal',
+          //     closeModal: true
+          //   }
+          // })
+        } else {
+          swal({
+            title: 'Gagal',
+            text: `Data ${surat} gagal dihapus!`,
+            icon: 'error',
+            button: {
+              text: 'Tutup',
+              value: null,
+              visible: true,
+              className: 'font-normal',
+              closeModal: true
+            }
+          })
+        }
+      }).catch((err) => {
+        console.log(err);
+      })
     });
   });
 

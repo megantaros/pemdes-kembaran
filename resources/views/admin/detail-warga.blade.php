@@ -68,7 +68,7 @@
 
                     <div>
                         <div class="text-label text-sm">Nama *</div>
-                        <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="name" value="{{ $data->name }}"/>
+                        <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="nama_warga" value="{{ $data->nama_warga }}"/>
 
                         <div class="text-label text-sm">Email *</div>
                         <input type="email" placeholder="Masukkan Email" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="email" value="{{ $data->email }}"/>
@@ -132,38 +132,37 @@
                 <hr class="border-2">
 
                 @foreach ($pengajuanSurat as $item)
-
                 @php
-                    $status = $item->status;
-                    
-                    if($status == 'Terkirim') {
-                        $status = 'border-primary';
-                    } elseif($status == 'Ditolak') {
-                        $status = 'border-error';
+                    $statusSurat = $item->status;
+                    $borderStatus = "";
+                    if($statusSurat == 1 || $statusSurat == 2 || $statusSurat == 3 || $statusSurat == 4){
+                        $borderStatus = "border-primary";
+                    } elseif($statusSurat == 6){
+                        $borderStatus = "border-red-800";
                     } else {
-                        $status = 'border-success';
+                        $borderStatus = "border-green-800";
                     }
 
                     $jenisSurat = $item->jenis_surat;
 
                     if($jenisSurat == "Surat Pengantar KTP") {
-                        $jenisSurat = route("permohonan-ktp.show", ['permohonan_ktp' => $item->id_surat]);
+                        $jenisSurat = route("permohonan-ktp.show", ['permohonan_ktp' => $item->id_permohonan_surat]);
                     } elseif($jenisSurat == "Surat Pengantar KK") {
-                        $jenisSurat = route("permohonan-kk.show", ['permohonan_kk' => $item->id_surat]);
+                        $jenisSurat = route("permohonan-kk.show", ['permohonan_kk' => $item->id_permohonan_surat]);
                     } elseif($jenisSurat == "Surat Pengantar SKCK") {
-                        $jenisSurat = route("permohonan-skck.show", ['permohonan_skck' => $item->id_surat]);
+                        $jenisSurat = route("permohonan-skck.show", ['permohonan_skck' => $item->id_permohonan_surat]);
                     } elseif($jenisSurat == "Surat Keterangan Domisili") {
-                        $jenisSurat = route("permohonan-domisili.show", ['permohonan_domisili' => $item->id_surat]);
+                        $jenisSurat = route("permohonan-domisili.show", ['permohonan_domisili' => $item->id_permohonan_surat]);
                     } elseif($jenisSurat == "Surat Keterangan Pindah") {
-                        $jenisSurat = route("permohonan-pindah.show", ['permohonan_pindah' => $item->id_surat]);
+                        $jenisSurat = route("permohonan-pindah.show", ['permohonan_pindah' => $item->id_permohonan_surat]);
                     } elseif($jenisSurat == "Surat Keterangan Pindah Datang") {
-                        $jenisSurat = route("permohonan-datang.show", ['permohonan_datang' => $item->id_surat]);
+                        $jenisSurat = route("permohonan-datang.show", ['permohonan_datang' => $item->id_permohonan_surat]);
                     } elseif($jenisSurat == "Surat Keterangan Usaha") {
-                        $jenisSurat = route("permohonan-usaha.show", ['permohonan_usaha' => $item->id_surat]);
+                        $jenisSurat = route("permohonan-usaha.show", ['permohonan_usaha' => $item->id_permohonan_surat]);
                     }
                 @endphp
                     
-                <div class="card rounded-none border-l-4 font-semibold text-sm {{ $status }}" style="font-family: Poppins;">
+                <div class="card rounded-none border-l-4 font-semibold text-sm {{ $borderStatus }}" style="font-family: Poppins;">
                     <div class="card-body p-2">
                         <a href="{{ $jenisSurat }}" class="hover:underline">
                             <i class="fa fa-file-alt" aria-hidden="true"></i>

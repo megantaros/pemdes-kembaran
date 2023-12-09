@@ -28,7 +28,7 @@ class AuthController extends Controller
         }
 
         return response()->json([
-            'message' => 'Success',
+            'message' => 'Anda berhasil daftar!',
             'data' => $data
         ]);
     }
@@ -50,7 +50,8 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'data' => $user
+            'data' => $user,
+            'message' => 'Anda berhasil login!'
         ]);
     }
     public function getUser(Request $request)

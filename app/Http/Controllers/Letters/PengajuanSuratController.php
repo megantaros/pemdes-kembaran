@@ -79,6 +79,6 @@ class PengajuanSuratController extends Controller
         $data = \App\Models\SuratPengajuan::find($id);
         $data->delete();
 
-        return redirect()->route('surat.warga')->with('success', 'Data Berhasil Dihapus');
+        return redirect()->back()->with('success', 'Data Surat Berhasil Dihapus');
     }
 }

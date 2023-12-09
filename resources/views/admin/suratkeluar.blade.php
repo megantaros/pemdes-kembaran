@@ -111,9 +111,6 @@
             <td class="text-sm">
               {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('DD MMMM YYYY') }}
             </td>
-            {{-- <td>
-              <textarea class="textarea textarea-primary w-full placeholder:text-sm" placeholder="Tulis disini..." disabled rows="1">{{ $item->keterangan_warga ? $item->keterangan_warga : 'Belum ada keterangan' }}</textarea>
-            </td> --}}
             <td>
               <a href="{{ $jenisSurat }}" class="btn btn-outline btn-info gap-2 capitalize" style="font-family: Poppins">
                 <i class="fa fa-info-circle"></i>

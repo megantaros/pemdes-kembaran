@@ -9,35 +9,29 @@
     <div class="card-body p-4 grid lg:grid-cols-2 gap-4">
   
       <div class="p-4 bg-slate-200 rounded-lg">
-  
-          <div>
-              <label for="" class="text-label text-sm">Cari</label>
-              <input id="search" type="text" placeholder="Cari disini..." class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm"/>
-          </div>
+
+        <div>
+          <label class="text-label text-sm">Cari</label>
+          <input id="search" type="text" placeholder="Cari disini..." class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm"/>
+        </div>
   
       </div>
   
-      <div class="p-4 bg-slate-200 rounded-lg">
-        <form action="{{ route('warga.index') }}" method="GET">
-          @csrf
-          @method('GET')
-          <input type="hidden" name="startDate"/>
-          <input type="hidden" name="endDate"/>
-          <label for="" class="text-label text-sm">Tanggal</label>
   
-          <div class="flex items-center gap-2">
-            <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="daterange" value="01/01/2023 - 01/15/2023" />
-            <button type="submit" class="btn btn-primary capitalize font-normal text-white">Cek</button>
-          </div>
-        </form>
+      <div class="p-4 bg-slate-200 rounded-lg">
+        <label for="" class="text-label text-sm">Tanggal</label>
+  
+        <div class="flex items-center gap-2">
+          <input type="text" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="daterange" value="11/01/2023 - 11/30/2023" />
+        </div>
   
       </div>
   
       <div class="flex gap-4">
-          <a href="" target="__blank" class="btn btn-info capitalize font-normal flex items-center gap-2 lg:w-2/5">
+          {{-- <a href="" target="__blank" class="btn btn-info capitalize font-normal flex items-center gap-2 lg:w-2/5">
             <i class="fa fa-print" aria-hidden="true"></i>
             <span>Cetak Laporan</span>
-          </a>
+          </a> --}}
           <a href="#modalAddWarga" class="btn btn-success capitalize font-normal flex items-center gap-2 lg:w-2/5">
             <i class="fa fa-user-plus" aria-hidden="true"></i>
             <span>Tambah Warga</span>
@@ -60,7 +54,7 @@
       <hr class="border-2">
   
       <div class="overflow-x-auto">
-        <table class="table w-full">
+        <table id="listLetters" class="table w-full">
   
           <thead>
             <tr>
