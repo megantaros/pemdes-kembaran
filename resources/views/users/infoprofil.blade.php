@@ -62,7 +62,7 @@
 
                 <div>
                     <div class="text-label text-sm">Nama *</div>
-                    <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="name" value="{{ Auth::user()->nama_warga }}"/>
+                    <input type="text" placeholder="Masukkan Nama" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="nama_warga" value="{{ Auth::user()->nama_warga }}"/>
 
                     <div class="text-label text-sm">Email *</div>
                     <input type="email" placeholder="Masukkan Email" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="email" value="{{ Auth::user()->email }}"/>
@@ -71,7 +71,7 @@
                     <input type="text" placeholder="Masukkan NIK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="nik" value="{{ Auth::user()->nik }}"/>
 
                     <div class="text-label text-sm">No. KK *</div>
-                    <input type="text" placeholder="Masukkan No. Kartu Keluarga" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="pekerjaan" value="{{ Auth::user()->kk }}"/>
+                    <input type="text" placeholder="Masukkan No. Kartu Keluarga" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="kk" value="{{ Auth::user()->kk }}"/>
 
                 </div>
                 <div>

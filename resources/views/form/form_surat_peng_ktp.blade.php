@@ -43,7 +43,7 @@
 
                 <hr>
 
-                <form class="grid lg:grid-cols-2 text-left gap-6" action="{{ route('pengantar-ktp.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 text-left gap-6" action="{{ route('pengantar-ktp.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
 
@@ -66,18 +66,6 @@
                                 </div>
                             </div>
                         @enderror
-
-                        {{-- <div class="text-label text-sm">No. KK *</div>
-                        <input type="text" placeholder="Masukkan No. KK" class="input input-bordered input-primary w-full my-1 read-only:bg-[#9cb4cc] placeholder:text-sm" name="kk"/>
-
-                        @error('kk')
-                            <div class="alert alert-error shadow-lg text-white w-full m-auto my-1">
-                                <div>
-                                <i class="bi bi-x-circle"></i>
-                                <span>Kolom tidak boleh kosong!</span>
-                                </div>
-                            </div>
-                        @enderror --}}
                     </div>
 
                     <div class="p-4 bg-slate-200 rounded-lg">
@@ -119,7 +107,7 @@
 
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1">
                         <button type="submit" class="btn btn-primary w-full text-white font-normal capitalize">Kirim</button>
                     </div>
                 </form>

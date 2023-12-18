@@ -75,8 +75,6 @@
                 @enderror
 
               </div> 
-
-              <div class="w-full mb-6"><a href="#" class="lg:text-md text-sm">Lupa password ?<a></div>
               
               <button type="submit" class="btn-login rounded-md w-full">Daftar</button>
 

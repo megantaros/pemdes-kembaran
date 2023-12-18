@@ -65,7 +65,7 @@
 
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1">
                         <button type="submit" class="btn btn-primary w-full text-white font-normal capitalize">Kirim</button>
                     </div>
                 </form>

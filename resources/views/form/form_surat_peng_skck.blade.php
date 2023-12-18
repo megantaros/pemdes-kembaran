@@ -43,7 +43,7 @@
 
                 <hr>
 
-                <form class="grid lg:grid-cols-2 text-left gap-6" action="{{ route('pengantar-skck.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 text-left gap-6" action="{{ route('pengantar-skck.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
 
@@ -91,7 +91,7 @@
 
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1">
                         <button type="submit" class="btn btn-primary w-full text-white font-normal capitalize">Kirim</button>
                     </div>
                 </form>

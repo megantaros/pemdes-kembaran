@@ -42,7 +42,7 @@
 
                 <hr class="border-1 border-primary">
 
-                <form id="guestForm" onsubmit="getModalLogin()" class="grid lg:grid-cols-2 text-left gap-6">
+                <form id="guestForm" onsubmit="getModalLogin()" class="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 text-left gap-6">
 
                     <div class="p-4 bg-slate-200 rounded-lg">
                         <div class="text-label text-sm">Nama *</div>
@@ -69,7 +69,7 @@
                         </select>
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1">
                         <button type="submit" class="btn btn-primary w-full text-white font-normal capitalize">Buat</button>
                     </div>
                 </form>
@@ -88,7 +88,7 @@
                     </div>
                 </div>
 
-                <form class="grid lg:grid-cols-2 text-left gap-6" action="{{ route('pengajuan-surat.store') }}" method="POST" method="POST">
+                <form class="xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1 text-left gap-6" action="{{ route('pengajuan-surat.store') }}" method="POST" method="POST">
                     @csrf
                     @method('POST')
 
@@ -117,7 +117,7 @@
                         </select>
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1 mt-8">
                         <button type="submit" class="btn btn-primary w-full text-white font-normal capitalize">Buat</button>
                     </div>
                 </form>
