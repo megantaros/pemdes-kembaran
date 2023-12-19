@@ -53,17 +53,56 @@
               @enderror
             </div>
             <div class="max-w-xs w-full mb-6"><a href="#" class="lg:text-md text-sm">Lupa password ?<a></div>
-            <button type="submit" class="btn-login rounded-md w-full text-md py-3">Masuk</button>
+            <button type="submit" class="btn btn-primary capitalize font-normal text-white rounded-md w-full text-md">Masuk</button>
             <div class="text-sm mt-5 text-center">Belum punya akun ? 
             <span><a href="{{ route('register.warga') }}" class="font-semibold">Daftar disini!<a></span></div>
         </form>
+        <div class="h-full flex items-end justify-center">
+          <a id="downloadApp" class="btn btn-outline btn-primary w-1/2 capitalize font-normal">
+            <img src="{{ asset('assets/icon_app_round.png')}}" alt="Logo App" class="w-7 h-7">
+            <span class="ml-2">Aplikasi Android</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<script>
+  const downloadApp = document.getElementById('downloadApp');
+  downloadApp.addEventListener('click', () => {
+    swal({
+      title: "Download Aplikasi",
+      text: "Download Aplikasi Pelayanan Pemdes Kembaran",
+      icon: "info",
+      buttons: {
+        cancel: {
+            text: 'Batal',
+            value: null,
+            visible: true,
+            className: 'font-normal;',
+            closeModal: true,
+          },
+          confirm: {
+            text: 'Download',
+            value: true,
+            visible: true,
+            className: 'font-normal bg-success text-white',
+            closeModal: true
+          }
+      },
+      dangerMode: false,
+    })
+    .then((willDownload) => {
+      if (willDownload) {
+        window.location.href = "/app/permohonan-surat.apk";
+      } else {
+        swal("Terima Kasih");
+      }
+    });
+  })
+</script>
 </body>
 
 <script>

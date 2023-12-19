@@ -71,7 +71,6 @@ class SuratPengKkController extends Controller
     }
     public function show($id)
     {
-
         $data = \App\Models\SuratPengajuan::where('permohonan_surat.id_permohonan_surat', $id)
             ->join('surat_peng_kk', 'permohonan_surat.id_permohonan_surat', '=', 'surat_peng_kk.id_permohonan_surat')
             ->join('warga', 'permohonan_surat.id_warga', '=', 'warga.id_warga')
